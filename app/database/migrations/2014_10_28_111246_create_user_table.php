@@ -12,7 +12,7 @@ class CreateUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Users', function($table)
+		Schema::create('users', function($table)
 		{
 			$table->bigIncrements('id');
 			$table->bigInteger('account_id')->unsigned()->references('id')->on('Accounts');
@@ -34,7 +34,7 @@ class CreateUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Users');
+		Schema::drop('users');
 	}
 
 }

@@ -2,7 +2,7 @@
 
 class Room extends Eloquent {
 
-	protected $table = 'Rooms';
+	protected $table = 'rooms';
 
 	public function app()
     {

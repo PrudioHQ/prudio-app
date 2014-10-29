@@ -2,7 +2,7 @@
 
 class Apps extends Eloquent {
 
-	protected $table = 'Apps';
+	protected $table = 'apps';
 
 	public function account()
     {

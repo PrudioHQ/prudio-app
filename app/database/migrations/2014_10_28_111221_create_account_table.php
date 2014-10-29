@@ -12,7 +12,7 @@ class CreateAccountTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Accounts', function($table)
+		Schema::create('accounts', function($table)
 		{
 			$table->bigIncrements('id');
 			$table->string('name');
@@ -28,7 +28,7 @@ class CreateAccountTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Accounts');
+		Schema::drop('accounts');
 	}
 
 }

@@ -12,7 +12,7 @@ class CreateRoomTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Rooms', function($table)
+		Schema::create('rooms', function($table)
 		{
 			$table->bigIncrements('id');
 			$table->bigInteger('account_id')->unsigned()->references('id')->on('Accounts');
@@ -30,7 +30,7 @@ class CreateRoomTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Rooms');
+		Schema::drop('rooms');
 	}
 
 }

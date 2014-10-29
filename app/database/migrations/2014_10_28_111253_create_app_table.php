@@ -12,7 +12,7 @@ class CreateAppTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Apps', function($table)
+		Schema::create('apps', function($table)
 		{
 			$table->bigIncrements('id');
 			$table->bigInteger('account_id')->unsigned()->references('id')->on('Accounts');
@@ -35,7 +35,7 @@ class CreateAppTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Apps');
+		Schema::drop('apps');
 	}
 
 }
