@@ -20,6 +20,7 @@ class CreateUserTable extends Migration {
 			$table->string('lname')->default('');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->string('remember_token')->default('');
 
 			$table->timestamps();
 			$table->softDeletes();

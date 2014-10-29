@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/',        'HomeController@showWelcome');
+
+Route::any( '/logout', 'HomeController@doLogout');
+
+Route::get( '/signin', 'HomeController@showSignin');
+Route::post('/signin', 'HomeController@doSignin');
+
+Route::get( '/signup', 'HomeController@showSignup');
+Route::post('/signup', 'HomeController@doSignup');
+
+Route::controller('dashboard', 'DashboardController');

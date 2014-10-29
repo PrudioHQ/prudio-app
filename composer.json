@@ -3,8 +3,16 @@
 	"description": "The Laravel Framework.",
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
+	"repositories": [		
+        {		
+            "type": "vcs",		
+            "url": "https://github.com/cossou/laravel-oauth2"		
+        }		
+    ],
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"madewithlove/laravel-oauth2": "dev-master",
+        "barryvdh/laravel-debugbar": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
