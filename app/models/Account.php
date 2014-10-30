@@ -9,4 +9,8 @@ class Account extends Eloquent {
         return $this->hasMany('Apps');
     }
 
+    public function app($id)
+    {
+        return $this->hasMany('Apps')->first();
+    }
 }

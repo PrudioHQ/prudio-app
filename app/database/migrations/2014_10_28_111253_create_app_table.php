@@ -23,6 +23,8 @@ class CreateAppTable extends Migration {
 			$table->boolean('online')->default(true);
 			$table->string('slack_api_token')->default('');
 			$table->string('slack_invite_user')->default('');
+			$table->bigInteger('room_count')->default(1);
+			$table->string('room_prefix', 5)->default('sp-');
 			$table->timestamps();
 			$table->softDeletes();
 		});

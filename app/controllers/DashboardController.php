@@ -8,19 +8,13 @@ class DashboardController extends BaseController {
 
 	public function __construct()
     {
+		parent::__construct();
         $this->beforeFilter('auth');
     }
 
 	public function getIndex()
 	{
-		$user    = Auth::user();
-		$account = $user->account;
-		$apps    = $account->apps;
-
-		return View::make('dashboard.index')
-		->with('user',    $user)
-		->with('account', $account)
-		->with('apps',    $apps);
+		return View::make('dashboard.index');
 	}
 
 	public function getNew()
@@ -33,6 +27,18 @@ class DashboardController extends BaseController {
 		->with('user',    $user)
 		->with('account', $account)
 		->with('apps',    $apps);
+	}
+
+	public function getApp($id = null)
+	{
+		$user    = Auth::user();
+		$account = $user->account;
+		$app    = $account->app($id);
+
+		return View::make('dashboard.app')
+		->with('user',    $user)
+		->with('account', $account)
+		->with('app',     $app);
 	}
 
 	public function getSettings()

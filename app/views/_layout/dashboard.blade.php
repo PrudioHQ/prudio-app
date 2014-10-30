@@ -32,7 +32,7 @@
                 <ul>
                     <li class="pure-menu-heading">Apps</li>
                     @foreach($apps as $app)
-                    <li>{{ link_to('dashboard/' . $app->id, $app->name) }}</li>
+                    <li>{{ link_to('dashboard/app/' . $app->id, $app->name) }}</li>
                     @endforeach
                     @if(count($apps) == 0)
                     <li>{{ link_to('dashboard/new', 'Create a new app') }}</li>
