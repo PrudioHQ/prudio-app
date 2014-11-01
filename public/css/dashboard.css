@@ -2,17 +2,18 @@
  * -- BASE STYLES --
  * Most of these are inherited from Base, but I want to change a few.
  */
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
 body {
     color: #333;
 }
 
-
-
 a {
     text-decoration: none;
-    color: #252a3a;
+    color: #277FE7;
 }
-
 
 /*
  * -- HELPER STYLES --
@@ -52,14 +53,14 @@ a {
     width: 100%;
     height: 40px;
     position: relative;
-    background: #356aa0;
-	background: -moz-linear-gradient(-45deg,  #356aa0 0%, #252a3a 100%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#356aa0), color-stop(100%,#252a3a));
-	background: -webkit-linear-gradient(-45deg,  #356aa0 0%,#252a3a 100%);
-	background: -o-linear-gradient(-45deg,  #356aa0 0%,#252a3a 100%);
-	background: -ms-linear-gradient(-45deg,  #356aa0 0%,#252a3a 100%);
-	background: linear-gradient(135deg,  #356aa0 0%,#252a3a 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#356aa0', endColorstr='#252a3a',GradientType=1 );
+    background: #2A9DFF;
+	background: -moz-linear-gradient(-45deg,  #2A9DFF 0%, #277FE7 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#2A9DFF), color-stop(100%,#277FE7));
+	background: -webkit-linear-gradient(-45deg,  #2A9DFF 0%,#277FE7 100%);
+	background: -o-linear-gradient(-45deg,  #2A9DFF 0%,#277FE7 100%);
+	background: -ms-linear-gradient(-45deg,  #2A9DFF 0%,#277FE7 100%);
+	background: linear-gradient(135deg,  #2A9DFF 0%,#277FE7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2A9DFF', endColorstr='#277FE7',GradientType=1 );
 }
 
 #nav h3 {
@@ -73,7 +74,7 @@ a {
 }
 
 #nav li {
-    text-shadow: -1px -1px 0px #111;
+    /* text-shadow: -1px -1px 0px #111; */
 }
 
 /* Show the "Menu" button on phones */
@@ -109,14 +110,14 @@ a {
 #nav .pure-menu.pure-menu-open {
     background: transparent;
     border: none;
-    border-top: 1px solid #356aa0;
+    border-top: 1px solid #2A9DFF;
     margin-top: 0.8em;
     padding-top: 0.8em;
     text-align: left;
 }
     #nav .pure-menu a:hover,
     #nav .pure-menu a:focus {
-        background: #252a3a;
+        background: #277FE7;
     }
     #nav .pure-menu a {
         color: #fff;
@@ -124,8 +125,9 @@ a {
     }
     #nav .pure-menu-heading {
         border-bottom: none;
+        font-weight: 700;
         font-size:100%;
-        color: #252a3a;
+        color: rgba(34, 47, 75, 0.8);
         text-shadow: none;
     }
 

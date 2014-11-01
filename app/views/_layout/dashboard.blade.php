@@ -10,13 +10,13 @@
 
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
     <!--<![endif]-->
     <!--[if lt IE 9]>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
     <![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css">
-
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 
         <div class="nav-inner">
             <!--button class="primary-button pure-button">Compose</button-->
-            <H3>DASHBOARD <span class="beta">beta</span></H3>
+            <H3>Prudio <span class="beta">beta</span></H3>
 
             <div class="pure-menu pure-menu-open">
                 <ul>
