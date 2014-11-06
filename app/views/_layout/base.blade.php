@@ -20,5 +20,16 @@
 <body>
 	@include('_layout.top-menu')
     @yield('content')
+
+    <script src="http://chat.prud.io/client.js?token=77475a1d-d347-4514-b0b3-1f01c1a205ea" async></script>
+    <script>
+
+        window._PrudioSettings = {
+          title: 'Pickle Films Support',
+          name:  'Hélder Duarte',
+          email: 'helder.duarte@sto.ad',
+        };
+
+    </script>
 </body>
 </html>
