@@ -1,294 +1,442 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-/*
- * -- BASE STYLES --
- * Most of these are inherited from Base, but I want to change a few.
- */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize *//*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%}
 body {
-    line-height: 1.7em;
-    color: #7f8c8d;
-    font-size: 13px;
+    margin: 0;
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-label {
-    color: #34495e;
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
 }
-
-.pure-img-responsive {
-    max-width: 100%;
+audio, canvas, progress, video {
+    display: inline-block;
+    vertical-align: baseline;
+}
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+[hidden], template {
+    display: none;
+}
+a {
+    background: 0 0;
+}
+a:active, a:hover {
+    outline: 0;
+}
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+b, strong {
+    font-weight: 700;
+}
+dfn {
+    font-style: italic;
+}
+h1 {
+    font-size: 2em;
+    margin: .67em 0;
+}
+mark {
+    background: #ff0;
+    color: #000;
+}
+small {
+    font-size: 80%}
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+    top: -.5em;
+}
+sub {
+    bottom: -.25em;
+}
+img {
+    border: 0;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+figure {
+    margin: 1em 40px;
+}
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+pre {
+    overflow: auto;
+}
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+button {
+    overflow: visible;
+}
+button, select {
+    text-transform: none;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button[disabled], html input[disabled] {
+    cursor: default;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+input {
+    line-height: normal;
+}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
     height: auto;
 }
-
-/*
- * -- LAYOUT STYLES --
- * These are some useful classes which I will need
- */
-.l-box {
-    padding: 1em;
+input[type=search] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
-
-.l-box-lrg {
-    padding: 2em;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none;
 }
-
-.is-center {
-    text-align: center;
+fieldset {
+    border: 1px solid silver;
+    margin: 0 2px;
+    padding: .35em .625em .75em;
 }
-
-
-
-/*
- * -- PURE FORM STYLES --
- * Style the form inputs and labels
- */
-.pure-form label {
-    margin: 1em 0 0;
-    font-weight: bold;
-    font-size: 100%;
+legend {
+    border: 0;
+    padding: 0;
 }
-
-.pure-form input[type] {
-    border: 2px solid #ddd;
-    box-shadow: none;
-    font-size: 100%;
-    width: 100%;
-    margin-bottom: 1em;
+textarea {
+    overflow: auto;
 }
-
-/*
- * -- PURE BUTTON STYLES --
- * I want my pure-button elements to look a little different
- */
-.pure-button {
-    background-color: #1f8dd6;
-    color: white;
-    padding: 0.5em 2em;
-    border-radius: 5px;
+optgroup {
+    font-weight: 700;
 }
-
-a.pure-button-primary {
-    background: white;
-    color: #1f8dd6;
-    border-radius: 5px;
-    font-size: 120%;
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
-
-
-/*
- * -- MENU STYLES --
- * I want to customize how my .pure-menu looks at the top of the page
- */
-
-.home-menu {
-    padding: 0.5em;
-    text-align: center;
-    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+td, th {
+    padding: 0;
 }
-.home-menu.pure-menu-open {
-    background: #2d3e50;
+@-webkit-keyframes fade-in {
+    0% {
+    opacity: 0;
 }
-.pure-menu.pure-menu-open.pure-menu-fixed {
-    /* Fixed menus normally have a border at the bottom. */
-    border-bottom: none;
-    /* I need a higher z-index here because of the scroll-over effect. */
-    z-index: 4;
+100% {
+    opacity: 1;
 }
-
-.home-menu .pure-menu-heading {
-    color: white;
+}@-moz-keyframes fade-in {
+    0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}@-o-keyframes fade-in {
+    0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}@keyframes fade-in {
+    0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}.github, .hero .email {
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.button-container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.border-box, .hero .email {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Quicksand', sans-serif;
     font-weight: 400;
-    font-size: 120%;
-    float: left;
+    text-rendering: optimizeLegibility;
 }
-
-.home-menu .pure-menu-selected a {
-    color: white;
+p {
+    color: #8f8f8f;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 26px;
+    line-height: 1.625rem;
 }
-
-.home-menu a {
-    color: #6FBEF3;
+footer p, p.small {
+    font-size: 14px;
+    font-size: .875rem;
+    line-height: 21px;
+    line-height: 1.3125rem;
 }
-.home-menu li a:hover,
-.home-menu li a:focus {
-    background: none;
+a {
+    text-decoration: none;
+    color: #777;
+    font-weight: 500;
+}
+a:hover {
+    text-decoration: underline;
+    color: #444;
+}
+strong {
+    font-weight: 500;
+}
+h2 {
+    color: #272727;
+    font-weight: 500;
+    text-align: center;
+    font-size: 27px;
+    font-size: 1.6875rem;
+    line-height: 35px;
+    line-height: 2.1875rem;
+}
+h3 {
+    color: #272727;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-size: .75rem;
+    line-height: 15px;
+    line-height: .9375rem;
+    letter-spacing: 1px;
+}
+section {
+    display: inline-block;
+    width: 100%}
+.container {
+    max-width: 64em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.center, footer p {
+    text-align: center;
+}
+.button {
     border: none;
-    color: #AECFE5;
+    display: inline-block;
+    padding: 14px 20px;
+    letter-spacing: 1px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 }
-
-
-/*
- * -- SPLASH STYLES --
- * This is the blue top section that appears on the page.
- */
-
-.splash-container {
-    background: #1f8dd6;
-    z-index: 1;
-    overflow: hidden;
-    /* The following styles are required for the "scroll-over" effect */
-    width: 100%;
-    height: 88%;
-    top: 0;
-    left: 0;
-    position: fixed !important;
+.button.stroke {
+    border: 2px solid;
 }
-
-.splash {
-    /* absolute center .splash within .splash-container */
-    width: 80%;
-    height: 50%;
-    margin: auto;
-    position: absolute;
-    top: 100px; left: 0; bottom: 0; right: 0;
+.button:hover {
+    text-decoration: none;
+}
+.button-container {
+    display: inline-block;
     text-align: center;
-    text-transform: uppercase;
+    width: 100%}
+.hero {
+    background: rgb(40,127,233);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjg3ZmU5IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzMyOWFmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    background: -moz-linear-gradient(-45deg,  rgba(40,127,233,1) 0%, rgba(50,154,255,1) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(40,127,233,1)), color-stop(100%,rgba(50,154,255,1)));
+    background: -webkit-linear-gradient(-45deg,  rgba(40,127,233,1) 0%,rgba(50,154,255,1) 100%);
+    background: -o-linear-gradient(-45deg,  rgba(40,127,233,1) 0%,rgba(50,154,255,1) 100%);
+    background: -ms-linear-gradient(-45deg,  rgba(40,127,233,1) 0%,rgba(50,154,255,1) 100%);
+    background: linear-gradient(135deg,  rgba(40,127,233,1) 0%,rgba(50,154,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#287fe9', endColorstr='#329aff',GradientType=1 );
+    overflow: hidden;
+    padding-bottom: 6.25rem;
+    padding-top: 4.375rem;
 }
-
-/* This is the main heading that appears on the blue section */
-.splash-head {
-    font-size: 20px;
-    font-weight: bold;
+.hero img {
+    max-width: 124px;
+}
+.hero .logo, .hero p {
+    text-align: center;
+}
+.hero a {
     color: white;
-    border: 3px solid white;
-    padding: 1em 1.6em;
-    font-weight: 100;
-    border-radius: 5px;
-    line-height: 1em;
-}
-
-/* This is the subheading that appears on the blue section */
-.splash-subhead {
-    color: white;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
-}
-
-/*
- * -- CONTENT STYLES --
- * This represents the content area (everything below the blue section)
- */
-.content-wrapper-home {
-    /* These styles are required for the "scroll-over" effect */
-    position: absolute;
-    top: 87%;
-    width: 100%;
-    min-height: 12%;
-    z-index: 2;
-    background: white;
-
-}
-
-.content-wrapper {
-    /* These styles are required for the "scroll-over" effect */
-    position: absolute;
-    top: 8%;
-    width: 100%;
-    min-height: 12%;
-    z-index: 2;
-    background: white;
-
-}
-
-/* This is the class used for the main content headers (<h2>) */
-.content-head {
     font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 2em 0 1em;
 }
-
-/* This is a modifier class used when the content-head is inside a ribbon */
-.content-head-ribbon {
+.hero .inner {
+    width: 87.17949%;
+    float: left;
+    margin-right: 2.5641%;
+    margin-left: 6.41026%}
+@media only screen and (max-width:767px) {
+    .hero .inner {
+    width: 87.17949%;
+    float: left;
+    margin-right: 2.5641%;
+    margin-left: 6.41026%}
+}.hero p {
     color: white;
+    font-size: 30px;
+    font-size: 1.875rem;
+    line-height: 40px;
+    line-height: 2.5rem;
+    margin-bottom: 2.625rem;
 }
-
-/* This is the class used for the content sub-headers (<h3>) */
-.content-subhead {
-    color: #1f8dd6;
+@media only screen and (max-width:767px) {
+    .hero p {
+    font-size: 21px;
+    font-size: 1.3125rem;
+    line-height: 36px;
+    line-height: 2.25rem;
 }
-    .content-subhead i {
-        margin-right: 7px;
-    }
-
-/* This is the class used for the dark-background areas. */
-.ribbon {
-    background: #2d3e50;
-    color: #aaa;
+}.hero .email {
+    display: block;
+    letter-spacing: .03em;
+    padding: 20px;
+    width: 100%;
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 24px;
+    line-height: 1.5rem;
 }
-
-/* This is the class used for the footer */
-.footer {
-    background: #111;
+.hero .email::-webkit-input-placeholder {
+    color: #f6cf48;
 }
-
-/*
- * -- TABLET (AND UP) MEDIA QUERIES --
- * On tablets and other medium-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 48em) {
-
-    /* We increase the body font size */
-    body {
-        font-size: 16px;
-    }
-    /* We want to give the content area some more padding */
-    .content {
-        padding: 1em;
-    }
-
-    /* We can align the menu header to the left, but float the
-    menu items to the right. */
-    .home-menu {
-        text-align: left;
-    }
-        .home-menu ul {
-            float: right;
-        }
-
-    /* We increase the height of the splash-container */
-/*    .splash-container {
-        height: 500px;
-    }*/
-
-    /* We decrease the width of the .splash, since we have more width
-    to work with */
-    .splash {
-        width: 50%;
-        height: 50%;
-    }
-
-    .splash-head {
-        font-size: 250%;
-    }
-
-
-    /* We remove the border-separator assigned to .l-box-lrg */
-    .l-box-lrg {
-        border: none;
-    }
-
+.hero .email:-moz-placeholder {
+    color: #f6cf48;
 }
-
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
-@media (min-width: 78em) {
-    /* We increase the header font size even more */
-    .splash-head {
-        font-size: 300%;
-    }
+.hero .email::-moz-placeholder {
+    color: #f6cf48;
+}
+.hero .email:-ms-input-placeholder {
+    color: #f6cf48;
+}
+.hero .email:active, .hero .email:focus, .hero .email:hover {
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+.hero form {
+    position: relative;
+}
+.hero form input[type=submit] {
+    background: url(../images/arrow-right.svg) no-repeat center;
+    background-size: 20%;
+    border: none;
+    color: transparent;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+form {
+    width: 48.71795%;
+    float: left;
+    margin-right: 2.5641%;
+    margin-left: 25.64103%}
+@media only screen and (max-width:767px) {
+    form {
+    width: 87.17949%;
+    float: left;
+    margin-right: 2.5641%;
+    margin-left: 6.41026%}
+}.button.email {
+    color: #fff;
+    background: #625835;
+}
+.response {
+    padding: 15px 10px 0;
+    text-align: center;
+    color: #695d36;
+    font-weight: 500;
+}
+.info .inner {
+    margin-left: 6.41026%;
+    width: 87.17949%;
+    float: left;
+    margin-right: 2.5641%}
+.info h2 {
+    margin-bottom: 1.125rem;
+    margin-top: 4.6875rem;
+}
+.info h2:after {
+    content: url(../images/zig-zag.svg);
+    display: block;
+    margin: 60px auto 0;
+    text-align: center;
+    width: 15%}
+@media only screen and (max-width:480px) {
+    .info h2: after {
+    margin-top: 42px;
+    width: 34%}
+}.info .col {
+    float: left;
+    width: 36.76471%}
+.info .col-1 {
+    margin-left: 8.82353%;
+    margin-right: 8.82353%}
+.info h3 {
+    margin-top: 3rem;
+}
+@media only screen and (max-width:767px) {
+    .info .col {
+    width: 85.29412%;
+    float: left;
+    margin-right: 2.94118%;
+    margin-left: 7.35294%}
+}.github {
+    border-color: #cdcdcd;
+    color: #cdcdcd;
+    text-transform: uppercase;
+    margin-bottom: 3.9375rem;
+    margin-top: 3.9375rem;
+    font-size: 13px;
+    font-size: .8125rem;
+    line-height: 13px;
+    line-height: .8125rem;
+}
+.github:hover {
+    border-color: #625835;
+    color: #625835;
+}
+footer {
+    background: #272727;
+    display: inline-block;
+    width: 100%}
+footer p {
+    letter-spacing: .02em;
+    opacity: .8;
+}
+.has-js .col>*, .has-js .hero form, .has-js .hero p, .has-js .logo {
+    visibility: hidden;
 }
