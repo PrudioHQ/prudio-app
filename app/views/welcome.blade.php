@@ -11,7 +11,7 @@
 		<p>
 			We are still building Prudio. 
 			<br>
-			Want to <a href="https://assembly.com/prudio-live-chat-for-your-slack-team" target="_blank">join the team</a>?
+			Want to <a href="https://assembly.com/prudio" target="_blank">join the team</a>?
 			<br>
 			<br>
 			<a href="mailto:hello@prud.io">hello@prud.io</a>
