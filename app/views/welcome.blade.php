@@ -27,7 +27,7 @@
 @section('prudio-js')
 	
 	<!-- This is where PRUDIO starts --> 
-	<script src="http://chat.prud.io/client.js?token=77475a1d-d347-4514-b0b3-1f01c1a205ea" async></script>
+	<script src="http://chat.prud.io/client.js?appid=77475a1d-d347-4514-b0b3-1f01c1a205ea" async></script>
     <script>
 
     	// This is optional 
