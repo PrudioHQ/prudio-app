@@ -43,7 +43,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "user": {
+      "type": "hasOne",
+      "model": "user",
+      "foreignKey": ""
+    },
+    "account": {
+      "type": "hasOne",
+      "model": "account",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": []
 }
