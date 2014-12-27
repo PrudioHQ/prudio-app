@@ -1,0 +1,22 @@
+{
+  "name": "user",
+  "base": "User",
+  "plural": "users",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "fname": {
+      "type": "string",
+      "required": true
+    },
+    "lname": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
