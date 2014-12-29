@@ -16,7 +16,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": ""
+    },
+    "apps": {
+      "type": "hasMany",
+      "model": "App",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": []
 }

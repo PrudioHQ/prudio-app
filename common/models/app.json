@@ -45,12 +45,12 @@
   "validations": [],
   "relations": {
     "user": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "user",
       "foreignKey": ""
     },
     "account": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "account",
       "foreignKey": ""
     }
