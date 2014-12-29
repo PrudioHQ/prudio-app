@@ -1,0 +1,60 @@
+{
+  "name": "App",
+  "plural": "apps",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "online": {
+      "type": "boolean"
+    },
+    "join": {
+      "type": "boolean"
+    },
+    "slack_api_token": {
+      "type": "string",
+      "required": true
+    },
+    "slack_bot_token": {
+      "type": "string",
+      "required": true
+    },
+    "slack_invite_user": {
+      "type": "string",
+      "required": true
+    },
+    "slack_invite_bot": {
+      "type": "string",
+      "required": true
+    },
+    "room_count": {
+      "type": "number",
+      "required": true
+    },
+    "room_prefix": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": ""
+    },
+    "account": {
+      "type": "belongsTo",
+      "model": "account",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
