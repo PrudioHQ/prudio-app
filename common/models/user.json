@@ -1,0 +1,33 @@
+{
+  "name": "user",
+  "plural": "users",
+  "base": "User",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "fname": {
+      "type": "string",
+      "required": true
+    },
+    "lname": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": ""
+    },
+    "apps": {
+      "type": "hasMany",
+      "model": "App",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
