@@ -4,7 +4,7 @@ var rename = require('gulp-rename');
 var loopbackAngular = require('gulp-loopback-sdk-angular');
 
 gulp.task('lb-services', function () {
-    return gulp.src('./server/app.js')
+    return gulp.src('./server/server.js')
 	    .pipe(loopbackAngular())
 	    .pipe(rename('lb-services.js'))
 	    .pipe(gulp.dest('./dashboard/dist/js'));
