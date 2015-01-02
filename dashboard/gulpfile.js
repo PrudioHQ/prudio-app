@@ -28,7 +28,7 @@ gulp.task('usemin', function() {
             js: [minifyJs(), 'concat'],
             css: [minifyCss({keepSpecialComments: 0}), 'concat'],
         }))
-        .pipe(gulp.dest('../client/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 /**
@@ -41,7 +41,7 @@ gulp.task('copy-bower_fonts', function() {
         .pipe(rename({
             dirname: '/fonts'
         }))
-        .pipe(gulp.dest('../client/lib'));
+        .pipe(gulp.dest('dist/lib'));
 });
 
 /**
@@ -51,26 +51,26 @@ gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
-        .pipe(gulp.dest('../client/img'));
+        .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('custom-js', function() {
     return gulp.src(paths.scripts)
         .pipe(minifyJs())
         .pipe(concat('dashboard.min.js'))
-        .pipe(gulp.dest('../client/js'));
+        .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('custom-less', function() {
     return gulp.src(paths.styles)
         .pipe(less())
-        .pipe(gulp.dest('../client/css'));
+        .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('custom-templates', function() {
     return gulp.src(paths.templates)
         .pipe(minifyHTML())
-        .pipe(gulp.dest('../client/templates'));
+        .pipe(gulp.dest('dist/templates'));
 });
 
 /**
@@ -89,14 +89,14 @@ gulp.task('watch', function() {
  */
 gulp.task('webserver', function() {
     connect.server({
-        root: '../client',
+        root: 'dist',
         livereload: true,
         port: 8888
     });
 });
 
 gulp.task('livereload', function() {
-    gulp.src(['../client/**/*.*'])
+    gulp.src(['dist/**/*.*'])
         .pipe(watch())
         .pipe(connect.reload());
 });
