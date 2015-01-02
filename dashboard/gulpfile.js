@@ -84,17 +84,6 @@ gulp.task('watch', function() {
     gulp.watch([paths.index], ['usemin']);
 });
 
-/**
- * Live reload server
- */
-gulp.task('webserver', function() {
-    connect.server({
-        root: 'dist',
-        livereload: true,
-        port: 8888
-    });
-});
-
 gulp.task('livereload', function() {
     gulp.src(['dist/**/*.*'])
         .pipe(watch())
@@ -105,4 +94,4 @@ gulp.task('livereload', function() {
  * Gulp tasks
  */
 gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
-gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
+gulp.task('default', ['build', 'livereload', 'watch']);
