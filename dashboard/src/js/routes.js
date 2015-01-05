@@ -23,6 +23,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
               url: '/register',
               templateUrl: 'templates/register.html'
             })
+            .state('password-reset', {
+              url: '/reset',
+              templateUrl: 'templates/password-reset.html'
+            })
             .state('tables', {
                 url: '/tables',
                 templateUrl: 'templates/tables.html'
