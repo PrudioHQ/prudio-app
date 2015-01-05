@@ -15,6 +15,18 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/',
                 templateUrl: 'templates/dashboard.html'
             })
+            .state('login', {
+                url: '/login',
+                templateUrl: 'templates/login.html'
+            })
+            .state('register', {
+              url: '/register',
+              templateUrl: 'templates/register.html'
+            })
+            .state('password-reset', {
+              url: '/reset',
+              templateUrl: 'templates/password-reset.html'
+            })
             .state('tables', {
                 url: '/tables',
                 templateUrl: 'templates/tables.html'
