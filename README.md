@@ -16,7 +16,8 @@
 
 ## Running the application (API Server + Dashboard)
 
-### Installation
+### Steps
 
 1. Run `slc run` and open your browser at [http://localhost:3000/](http://localhost:3000/).
 2. Run the gulp default task: `gulp`. This will build any changes made automatically, and also run a live reload server.
+3. Open your browser at [http://localhost:3000/explorer](http://localhost:3000/explorer) to check the API endpoints.
