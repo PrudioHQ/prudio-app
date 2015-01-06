@@ -11,25 +11,31 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
 
         // Application routes
         $stateProvider
-            .state('index', {
-                url: '/',
-                templateUrl: 'templates/dashboard.html'
+            .state('master', {
+                templateUrl: 'templates/master.html'
             })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'templates/login.html'
+                .state('master.index', {
+                    url: '/',
+                    templateUrl: 'templates/dashboard.html',
+                    controller: 'MasterCtrl'
+                })
+
+
+            .state('auth', {
+                templateUrl: 'templates/auth/wrapper.html'
             })
-            .state('register', {
-              url: '/register',
-              templateUrl: 'templates/register.html'
-            })
-            .state('password-reset', {
-              url: '/reset',
-              templateUrl: 'templates/password-reset.html'
-            })
-            .state('tables', {
-                url: '/tables',
-                templateUrl: 'templates/tables.html'
-            });
+                .state('auth.login', {
+                    url: '/login',
+                    templateUrl: 'templates/login.html',
+                    controller: 'AuthCtrl'
+                })
+                .state('auth.register', {
+                  url: '/register',
+                  templateUrl: 'templates/register.html'
+                })
+                .state('auth.password-reset', {
+                  url: '/reset',
+                  templateUrl: 'templates/password-reset.html'
+                });
     }
 ]);
