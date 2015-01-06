@@ -1,7 +1,12 @@
 angular
 .module('RDash')
-.controller('LoginCtrl', ['$scope', LoginCtrl]);
+.controller('loginCtrl', ['$scope', 'User', function($scope, User) {
 
-function LoginCtrl($scope) {
+  $scope.form = {};
 
-}
+  $scope.login = function() {
+    var cred = $scope.form;
+    User.login(cred);
+  };
+
+}]);
