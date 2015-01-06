@@ -26,16 +26,16 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             })
                 .state('auth.login', {
                     url: '/login',
-                    templateUrl: 'templates/login.html',
+                    templateUrl: 'templates/auth/login.html',
                     controller: 'AuthCtrl'
                 })
                 .state('auth.register', {
                   url: '/register',
-                  templateUrl: 'templates/register.html'
+                  templateUrl: 'templates/auth/register.html'
                 })
                 .state('auth.password-reset', {
                   url: '/reset',
-                  templateUrl: 'templates/password-reset.html'
+                  templateUrl: 'templates/auth/password-reset.html'
                 });
     }
 ]);
