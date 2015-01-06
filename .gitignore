@@ -37,3 +37,9 @@ node_modules
 
 # Temporary files
 tmp
+
+# Build Directory
+build
+
+# Bower components
+dashboard/src/components

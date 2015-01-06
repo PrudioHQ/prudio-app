@@ -1,6 +1,6 @@
 {
   "name": "prudio-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Slack Instant Messaging Widget",
   "main": "server/server.js",
   "scripts": {
@@ -23,10 +23,19 @@
     "loopback-explorer": "^1.1.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "bower": "^1.3.9",
     "gulp": "~3.8.0",
-    "gulp-chug": "0.4.*",
+    "gulp-connect": "^2.0.6",
+    "gulp-usemin": "^0.3.7",
+    "gulp-watch": "^0.6.9",
+    "gulp-wrap": "^0.3.0",
+    "gulp-minify-css": "^0.3.8",
+    "gulp-uglify": "^1.0.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-less": "^1.3.6",
     "gulp-loopback-sdk-angular": "^0.1.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-minify-html": "^0.1.6",
     "gulp-rename": "^1.2.0",
     "jshint": "^2.5.6"
   },
