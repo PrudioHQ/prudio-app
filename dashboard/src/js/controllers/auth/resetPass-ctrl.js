@@ -2,13 +2,13 @@ angular
 .module('RDash')
 .controller('resetPassCtrl', ['$scope', 'User', function($scope, User) {
 
-  $scope.email = {};
+  $scope.form = {};
+  $scope.emailSent = false;
 
-  $scope.reset = function() {
-    var email = $scope.email;
-    User.resetPassword(email).then(function(){
-      console.log("Reset password");
-    });
+  $scope.resetPass = function() {
+    var email = $scope.form.email;
+    User.resetPassword(email)
+    $scope.emailSent = true;
   };
 
 }]);
