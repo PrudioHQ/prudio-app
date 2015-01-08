@@ -4,7 +4,7 @@ angular
 
   $scope.register = function(form) {
     if (form.$invalid) {
-      // return
+      return
     }
     var newUser = {
       fname: form.fname,
@@ -14,7 +14,7 @@ angular
     };
     User.create(newUser, function(){
       // TODO: Notify the user that has been successfully created
-      $state.go('master');
+      $state.go('master', {}, {location: true});
     }, function(res){
       console.log(res);
       $scope.errorMessage = res.data.error.message
