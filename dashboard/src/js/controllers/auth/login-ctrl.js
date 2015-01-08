@@ -1,28 +1,21 @@
 angular
 .module('RDash')
-.controller('loginCtrl', ['$scope', '$location', 'User', function($scope, $location, User) {
+.controller('loginCtrl', ['$scope', '$state', 'User', function($scope, $state, User) {
 
-	$scope.credentials = {};
+	$scope.login = function(form) {
+		var credentials = {
+			email: form.email,
+			password: form.password
+		}
+		var rememberMe = form.remember;
 
- 
-	$scope.login = function() {
-		$scope.loginResult = User.login({
-			include: 'user',
-			rememberMe: $scope.credentials.remember
-		}, $scope.credentials,
-		function() {
-			var next = $location.nextAfterLogin || '/';
-			$location.nextAfterLogin = null;
-		  
-			if(next === '/login') {
-		    	next = '/';
-			}
-
-		  	$location.path(next);
-		},
-		function(res) {
-		  	$scope.loginError = res.data.error;
+		User.login({rememberMe: rememberMe}, credentials, function() {
+			// TODO: Notify user that has succesfully logged in
+			$state.go('master');
+		}, function() {
+			$scope.error = true;
 		});
+
 	};
 
 }]);
