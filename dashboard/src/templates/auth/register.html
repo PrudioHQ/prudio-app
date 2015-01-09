@@ -20,8 +20,14 @@
         <form ng-submit="register(form)" name="form" novalidate>
           <div class="form-group">
             <label for="name">Your name</label>
-            <input type="name" class="form-control" id="name" placeholder="John" ng-model="form.fname" ng-required="true">
-            <input type="name" class="form-control" id="lname" placeholder="Doe" ng-model="form.lname" ng-required="true">
+            <div class="row">
+              <div class="col-sm-6" style="padding-left: 0; margin-bottom: 0">
+                <input type="name" class="form-control" id="name" placeholder="John" ng-model="form.fname" ng-required="true">
+              </div>
+              <div class="col-sm-6" style="padding-right: 0; margin-bottom: 0">
+                <input type="name" class="form-control" id="lname" placeholder="Doe" ng-model="form.lname" ng-required="true">
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email address</label>

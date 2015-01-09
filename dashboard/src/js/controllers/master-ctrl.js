@@ -11,15 +11,6 @@ function MasterCtrl($scope, $cookieStore, User) {
      */
     var mobileView = 992;
 
-    User.findById({ id: 1 }, 
-        function(res) {
-            console.log("Found");
-            console.log(res);
-        }, function(res) {
-            console.log("Not found");
-        }
-    );
-
     $scope.getWidth = function() {
         return window.innerWidth;
     };
