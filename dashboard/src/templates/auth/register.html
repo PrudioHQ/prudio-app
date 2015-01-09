@@ -8,12 +8,16 @@
 
       <rd-widget-body>
         <p>
-          Lorem ipsum dolor sit amet, consectetur.
+          Please use the form below to register.
+        </p>
+
+        <p class="text-danger" ng-show="errorMessage">
+          There is something wrong. Please fill all the fields correctly.
         </p>
 
         <hr>
 
-        <form ng-submit="register()" name="registerForm" novalidate>
+        <form ng-submit="register(form)" name="form" novalidate>
           <div class="form-group">
             <label for="name">Your name</label>
             <input type="name" class="form-control" id="name" placeholder="John" ng-model="form.fname" ng-required="true">
