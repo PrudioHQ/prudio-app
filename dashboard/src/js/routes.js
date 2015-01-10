@@ -14,7 +14,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'templates/master.html',
                 data: {
                   permissions: {
-                    except: ['anonymous'],
+                    only: ['registered'],
                     redirectTo: 'auth.login'
                   }
                 }
@@ -32,24 +32,44 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 .state('auth.login', {
                     url: '/login',
                     templateUrl: 'templates/auth/login.html',
-                    controller: 'AuthCtrl'
+                    controller: 'AuthCtrl',
+                    data: {
+                      permissions: {
+                        only: ['anonymous'],
+                        redirectTo: 'master.index'
+                      }
+                    }
                 })
                 .state('auth.register', {
                   url: '/register',
-                  templateUrl: 'templates/auth/register.html'
+                  templateUrl: 'templates/auth/register.html',
+                  data: {
+                    permissions: {
+                      only: ['anonymous'],
+                      redirectTo: 'auth.login'
+                    }
+                  }
                 })
                 .state('auth.password-reset', {
                   url: '/reset',
-                  templateUrl: 'templates/auth/password-reset.html'
+                  templateUrl: 'templates/auth/password-reset.html',
+                  data: {
+                    permissions: {
+                      only: ['registered'],
+                      redirectTo: 'auth.login'
+                    }
+                  }
                 });
     }
 ])
+
 .run(['Permission', 'User', function(Permission, User){
-  Permission.defineRole('anonymous', function (stateParams) {
-    // If the returned value is *truthy* then the user has the role, otherwise they don't
-    if (User) {
-      return true; // Is anonymous
-    }
-    return false;
+  Permission
+  .defineRole('anonymous', function (stateParams) {
+    return !User.isAuthenticated();
+  })
+  .defineRole('registered', function(stateParams) {
+    return User.isAuthenticated();
   });
+
 }]);
