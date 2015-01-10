@@ -6,13 +6,18 @@
 angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
-        // For unmatched routes
         $urlRouterProvider.otherwise('/');
 
         // Application routes
         $stateProvider
             .state('master', {
-                templateUrl: 'templates/master.html'
+                templateUrl: 'templates/master.html',
+                data: {
+                  permissions: {
+                    only: ['registered'],
+                    redirectTo: 'auth.login'
+                  }
+                }
             })
                 .state('master.index', {
                     url: '/',
@@ -27,15 +32,44 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 .state('auth.login', {
                     url: '/login',
                     templateUrl: 'templates/auth/login.html',
-                    controller: 'AuthCtrl'
+                    controller: 'AuthCtrl',
+                    data: {
+                      permissions: {
+                        only: ['anonymous'],
+                        redirectTo: 'master.index'
+                      }
+                    }
                 })
                 .state('auth.register', {
                   url: '/register',
-                  templateUrl: 'templates/auth/register.html'
+                  templateUrl: 'templates/auth/register.html',
+                  data: {
+                    permissions: {
+                      only: ['anonymous'],
+                      redirectTo: 'auth.login'
+                    }
+                  }
                 })
                 .state('auth.password-reset', {
                   url: '/reset',
-                  templateUrl: 'templates/auth/password-reset.html'
+                  templateUrl: 'templates/auth/password-reset.html',
+                  data: {
+                    permissions: {
+                      only: ['registered'],
+                      redirectTo: 'auth.login'
+                    }
+                  }
                 });
     }
-]);
+])
+
+.run(['Permission', 'User', function(Permission, User){
+  Permission
+  .defineRole('anonymous', function (stateParams) {
+    return !User.isAuthenticated();
+  })
+  .defineRole('registered', function(stateParams) {
+    return User.isAuthenticated();
+  });
+
+}]);
