@@ -12,10 +12,10 @@
 ### Installation
 1. Install the *Node* dependencies: `npm install`.
 2. Install *Strongloop*: `npm install -g strongloop`.
-1. Install *Gulp*: `npm install -g gulp`.
-1. Install *Bower* dependencies: `npm install -g bower`.
-2. Install the *Bower* dependencies: `bower install`.
-3. Run the *Gulp* build task: `gulp build`.
+3. Install *Gulp*: `npm install -g gulp`.
+4. Install *Bower* dependencies: `npm install -g bower`.
+5. Install the *Bower* dependencies: `bower install`.
+6. Run the *Gulp* build task: `gulp build`.
 
 ## Running the application (API Server + Dashboard)
 
