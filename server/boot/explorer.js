@@ -2,8 +2,9 @@ module.exports = function mountLoopBackExplorer(server) {
   var explorer;
   var environment = process.env.NODE_ENV || 'development';
 
-  if(environment !== 'development')
+  if(environment !== 'development') {
     return;
+  }
 
   try {
     explorer = require('loopback-explorer');

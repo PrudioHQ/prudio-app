@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     usemin = require('gulp-usemin'),
-    wrap = require('gulp-wrap'),
     connect = require('gulp-connect'),
     watch = require('gulp-watch'),
     minifyCss = require('gulp-minify-css'),
@@ -9,7 +8,6 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-minify-html'),
-    rename = require('gulp-rename'),
 	loopbackAngular = require('gulp-loopback-sdk-angular');
 
 var paths = {
@@ -18,7 +16,7 @@ var paths = {
     images: 'dashboard/src/img/**/*.*',
     templates: 'dashboard/src/templates/**/*.html',
     index: 'dashboard/src/index.html',
-    bower_fonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
+    bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
 
 /**
@@ -39,7 +37,7 @@ gulp.task('usemin', function() {
 gulp.task('build-assets', ['copy-bower_fonts']);
 
 gulp.task('copy-bower_fonts', function() {
-    return gulp.src(paths.bower_fonts)
+    return gulp.src(paths.bowerFonts)
         .pipe(rename({
             dirname: '/fonts'
         }))
