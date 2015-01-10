@@ -1,1 +1,3 @@
-angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies', 'lbServices']);
+'use strict';
+
+angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies', 'lbServices', 'permission']);
