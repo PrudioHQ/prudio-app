@@ -14,7 +14,7 @@ angular
     };
     User.create(newUser, function(){
       // TODO: Notify the user that has been successfully created
-      $state.go('master', {}, {location: true});
+      $state.go('master.index', {}, {location: true});
     }, function(res){
       console.log(res);
       $scope.errorMessage = res.data.error.message
