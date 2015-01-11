@@ -46,7 +46,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                   data: {
                     permissions: {
                       only: ['anonymous'],
-                      redirectTo: 'auth.login'
+                      redirectTo: 'master.index'
                     }
                   }
                 })

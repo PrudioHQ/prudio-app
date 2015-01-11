@@ -11,7 +11,7 @@ angular
 
 		User.login({rememberMe: rememberMe}, credentials, function() {
 			// TODO: Notify user that has succesfully logged in
-			$state.go('master', {}, {location: true});
+			$state.go('master.index', {}, {location: true});
 		}, function() {
 			$scope.error = true;
 		});

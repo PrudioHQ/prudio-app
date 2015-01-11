@@ -8,6 +8,8 @@ angular
 
 function AuthCtrl($scope) {
 
-  console.log("AuthCtrl");
+	console.log("AuthCtrl");
+
+	
 
 }
