@@ -1,8 +1,28 @@
 module.exports = function(User) {
 
+	User.afterCreate = function(next) {
+
+		if (this.accountId === undefined || this.accountId === 0) {
+						
+			this.account.create({
+				name: this.fname + " " + this.lname + "'s Account"
+			}, function(err, account) {
+				if (err) {
+					console.error(err);
+				} else {
+					console.log('Account:', account);
+				}
+			});
+
+		}
+
+		next();
+	}
+	
 	User.afterSave = function(next) {
 
 		User.app.models.Email.send({
+			async: true,
 			to: this.email,
 			from: 'hello@prud.io',
 			subject: 'Welcome to Prud.io',
@@ -26,7 +46,9 @@ module.exports = function(User) {
 				console.log(err);
 			}
 
-			return next(err);
+			next(err);
 		});
+	
 	}
+	
 };
