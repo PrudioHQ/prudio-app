@@ -2,8 +2,8 @@
   "slack-login": {
     "provider": "slack",
     "module": "passport-slack",
-    "clientID": "{3045626515.3266629173}",
-    "clientSecret": "{59410a969993564da98b4a3c2ca5ac89}",
+    "clientID": "3045626515.3266629173",
+    "clientSecret": "59410a969993564da98b4a3c2ca5ac89",
     "callbackURL": "http://localhost:3000/auth/slack/callback",
     "authPath": "/auth/slack",
     "callbackPath": "/auth/slack/callback",
