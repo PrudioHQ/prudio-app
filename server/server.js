@@ -31,8 +31,9 @@ try {
 passportConfigurator.init();
 
 // Set up related models
+var user = app.models.User
 passportConfigurator.setupModels({
-  userModel: app.models.user,
+  userModel: user,
   userIdentityModel: app.models.userIdentity,
   userCredentialModel: app.models.userCredential
 });
