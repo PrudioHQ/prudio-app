@@ -55,8 +55,8 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                   templateUrl: 'templates/auth/password-reset.html',
                   data: {
                     permissions: {
-                      only: ['registered'],
-                      redirectTo: 'auth.login'
+                      only: ['anonymous'],
+                      redirectTo: 'master.index'
                     }
                   }
                 });
