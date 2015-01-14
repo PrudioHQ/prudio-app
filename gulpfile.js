@@ -104,5 +104,5 @@ gulp.task('lb-services', function () {
 /**
  * Gulp tasks
  */
-gulp.task('build', ['usemin', 'lb-services', 'build-assets', 'build-custom']);
-gulp.task('default', ['lb-services', 'build', 'livereload', 'watch']);
+gulp.task('build', ['lb-services', 'usemin', 'build-assets', 'build-custom']);
+gulp.task('default', ['build', 'livereload', 'watch']);
