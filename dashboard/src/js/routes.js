@@ -63,7 +63,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
     }
 ])
 
-.run(['Permission', 'User', function(Permission, User){
+.run(['Permission', 'User', 'LoopBackAuth', '$cookies', function(Permission, User, LoopBackAuth, $cookies){
+  LoopBackAuth.currentUserId = $cookies['userId'] || null;
+  LoopBackAuth.accessTokenId = $cookies['access-token'] || '';
+  LoopBackAuth.save();
+  
+  User.getCurrent(function(user, err) {
+  });
+
   Permission
   .defineRole('anonymous', function (stateParams) {
     return !User.isAuthenticated();
