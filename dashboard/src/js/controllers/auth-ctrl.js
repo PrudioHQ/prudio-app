@@ -7,9 +7,5 @@ angular
 .controller('AuthCtrl', ['$scope', AuthCtrl]);
 
 function AuthCtrl($scope) {
-
 	console.log("AuthCtrl");
-
-	
-
 }
