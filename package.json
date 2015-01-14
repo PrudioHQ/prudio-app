@@ -3,9 +3,6 @@
   "version": "0.0.2",
   "description": "Slack Instant Messaging Widget",
   "main": "server/server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "engines": {
     "node": "0.10.x"
   },
@@ -37,6 +34,10 @@
     "gulp-rename": "^1.2.0",
     "gulp-minify-html": "^0.1.6",
     "jshint": "^2.5.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install && grunt build",
   },
   "repository": {
     "type": "git",
