@@ -3,14 +3,14 @@ module.exports = function(User) {
 	User.afterCreate = function(next) {
 
 		if (this.accountId === undefined || this.accountId === 0) {
-						
+			
+			var name = this.fname + " " + this.lname + "'s Account";
+
 			this.account.create({
-				name: this.fname + " " + this.lname + "'s Account"
+				name: name
 			}, function(err, account) {
 				if (err) {
 					console.error(err);
-				} else {
-					console.log('Account:', account);
 				}
 			});
 
