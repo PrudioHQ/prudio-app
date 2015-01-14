@@ -7,6 +7,6 @@
     "callbackURL": "http://prudio-app-mariosant1.c9.io/auth/slack/callback",
     "authPath": "/auth/slack",
     "callbackPath": "/auth/slack/callback",
-    "successRedirect": "/"
+    "successRedirect": "/auth"
   }
 }
