@@ -64,6 +64,10 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
 ])
 
 .run(['Permission', 'User', function(Permission, User){
+  var u = User.getCurrent(function(usr) {
+    console.log(usr);
+  }, function(err) { console.log(err);});
+  
   Permission
   .defineRole('anonymous', function (stateParams) {
     return !User.isAuthenticated();

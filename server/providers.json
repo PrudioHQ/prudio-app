@@ -4,9 +4,9 @@
     "module": "passport-slack",
     "clientID": "3045626515.3266629173",
     "clientSecret": "59410a969993564da98b4a3c2ca5ac89",
-    "callbackURL": "http://localhost:3000/auth/slack/callback",
+    "callbackURL": "http://prudio-app-mariosant1.c9.io/auth/slack/callback",
     "authPath": "/auth/slack",
     "callbackPath": "/auth/slack/callback",
-    "successRedirect": "/auth/account"
+    "successRedirect": "/"
   }
 }

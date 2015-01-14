@@ -7,12 +7,10 @@
       "type": "string"
     },
     "fname": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "lname": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],
