@@ -98,11 +98,11 @@ gulp.task('lb-services', function () {
     return gulp.src('./server/server.js')
 	    .pipe(loopbackAngular())
 	    .pipe(rename('lb-services.js'))
-	    .pipe(gulp.dest('build/js'));
+	    .pipe(gulp.dest('dashboard/src/js'));
 });
 
 /**
  * Gulp tasks
  */
-gulp.task('build', ['lb-services', 'usemin', 'build-assets', 'build-custom']);
+gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
 gulp.task('default', ['build', 'livereload', 'watch']);
