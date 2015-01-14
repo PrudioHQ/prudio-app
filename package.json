@@ -12,6 +12,7 @@
   "dependencies": {
     "compression": "^1.0.3",
     "errorhandler": "^1.1.1",
+    "lb-connector-mandrill": "0.0.3",
     "loopback": "^2.8.0",
     "loopback-boot": "^2.4.0",
     "loopback-component-passport": "^1.1.0",
@@ -28,7 +29,6 @@
     "gulp-connect": "^2.0.6",
     "gulp-usemin": "^0.3.7",
     "gulp-watch": "^0.6.9",
-    "gulp-wrap": "^0.3.0",
     "gulp-minify-css": "^0.3.8",
     "gulp-uglify": "^1.0.1",
     "gulp-concat": "^2.4.1",
@@ -36,7 +36,6 @@
     "gulp-loopback-sdk-angular": "^0.1.3",
     "gulp-rename": "^1.2.0",
     "gulp-minify-html": "^0.1.6",
-    "gulp-rename": "^1.2.0",
     "jshint": "^2.5.6"
   },
   "repository": {
