@@ -1,0 +1,25 @@
+{
+  "name": "externalProviderToken",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "provider": {
+      "type": "string",
+      "required": true
+    },
+    "token": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}

@@ -15,6 +15,11 @@
       "type": "hasMany",
       "model": "user",
       "foreignKey": ""
+    },
+    "externalProviderTokens": {
+      "type": "hasMany",
+      "model": "externalProviderToken",
+      "foreignKey": ""
     }
   },
   "acls": [],

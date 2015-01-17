@@ -38,5 +38,9 @@
   "Email": {
     "dataSource": "mandrill",
     "public": false
+  },
+  "externalProviderToken": {
+    "dataSource": "db",
+    "public": false
   }
 }
