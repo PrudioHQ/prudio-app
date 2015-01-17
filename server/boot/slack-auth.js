@@ -25,12 +25,22 @@ module.exports = function slackOAuth(server) {
 
   			request
 	  			.get({url: url + '?' + qs.stringify(query), json: true}, function (error, response, body) {
-	  					res.send(body);
+	  	        var token = response.body;
+	  	        token.provider = 'slack';
+	  	        
+  	  	      server.models.Account.findById(state, function(err, account) {
+  	  	        if (err) {res.send(err);} // No account found
+  	  	        token.accountId = account.id;
+  	  	        server.models.externalProviderToken.create(token, function() {
+  	  	          res.redirect(301, '/');
+  	  	        });
+  	  	      });
+	  	      				
 	  				})
 	  			.on('error', function(err) {
 					console.log(err);
 					res.send(err);
-				})
+				});
   		}
 	});
 };
