@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$state', '$cookieStore', 'User', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$window', '$state', '$cookieStore', 'User', MasterCtrl]);
 
-function MasterCtrl($scope, $state, $cookieStore, User) {
+function MasterCtrl($scope, $window, $state, $cookieStore, User) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -40,6 +40,14 @@ function MasterCtrl($scope, $state, $cookieStore, User) {
         User.logout(function() {
             $state.go('auth.login', {}, { location: true });
         });
+    };
+
+    $scope.authSlack = function() {
+
+        console.log("authSlack");
+        $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=http://localhost:3000/auth/slack\&scope\=post\&state\=xxx';
+        // $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=https://app.prud.io/auth/slack\&scope\=post\&state\=xxx';
+        
     };
 
     window.onresize = function() {
