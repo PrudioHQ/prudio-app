@@ -45,8 +45,8 @@ function MasterCtrl($scope, $window, $state, $cookieStore, User) {
     $scope.authSlack = function() {
 
         console.log("authSlack");
-        $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=http://localhost:3000/auth/slack\&scope\=post\&state\=xxx';
-        // $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=https://app.prud.io/auth/slack\&scope\=post\&state\=xxx';
+        // $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=http://localhost:3000/auth/slack\&scope\=post\&state\=xxx';
+        $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=https://app.prud.io/auth/slack\&scope\=post\&state\=xxx';
         
     };
 
