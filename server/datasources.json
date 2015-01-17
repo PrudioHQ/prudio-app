@@ -1,11 +1,12 @@
 {
-	"db": {
-		"name": "db",
-		"connector": "memory",
-		"file": "tmp/localdb"
-	},
-	"mandrill": {
-		"connector": "lb-connector-mandrill",
-		"apikey": ""
-	}
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "file": "tmp/localdb"
+  },
+  "mandrill": {
+    "name": "mandrill",
+    "connector": "lb-connector-mandrill",
+    "apikey": ""
+  }
 }
