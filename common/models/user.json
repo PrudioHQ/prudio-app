@@ -28,6 +28,13 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone", 
+      "permission": "ALLOW",       
+      "property": "passwordUpdate"         
+    }
+  ],
   "methods": []
 }

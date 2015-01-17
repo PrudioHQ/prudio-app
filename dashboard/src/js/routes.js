@@ -59,6 +59,16 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                       redirectTo: 'master.index'
                     }
                   }
+                })
+                .state('auth.password-reset-form', {
+                  url: '/reset-form/:accessToken',
+                  templateUrl: 'templates/auth/password-reset-form.html',
+                  data: {
+                    permissions: {
+                      only: ['anonymous'],
+                      redirectTo: 'master.index'
+                    }
+                  }
                 });
     }
 ])

@@ -840,6 +840,45 @@ module.factory(
           method: "PUT"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.User#passwordUpdate
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Resets the user password with the reset token
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `accessToken` – `{string=}` - 
+         *
+         *  - `password` – `{string=}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `result` – `{boolean=}` - 
+         */
+        "passwordUpdate": {
+          url: urlBase + "/users/passwordUpdate",
+          method: "POST"
+        },
+
         // INTERNAL. Use Account.users.findById() instead.
         "::findById::Account::users": {
           url: urlBase + "/accounts/:id/users/:fk",

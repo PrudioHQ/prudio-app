@@ -7,8 +7,9 @@ angular
 
   $scope.resetPass = function() {
     var email = $scope.form.email;
-    User.resetPassword(email)
-    $scope.emailSent = true;
+    User.resetPassword({email: email}, function() {
+   		$scope.emailSent = true;
+    });
   };
 
 }]);
