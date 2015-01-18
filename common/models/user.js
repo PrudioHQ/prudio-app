@@ -46,14 +46,13 @@ module.exports = function(User) {
 			// The reset token!
 			console.log(info.accessToken.id);
 
-			/*
 			User.app.models.Email.send({
 				async: true,
 				to: info.user.email,
 				from: 'hello@prud.io',
-				subject: 'Welcome to Prud.io',
+				subject: 'Reset your password',
 				template: {
-					name: "signup-e-mail"
+					name: "reset-password"
 				},
 				merge_vars: [
 					{
@@ -62,6 +61,10 @@ module.exports = function(User) {
 							{
 								name: "name",
 								content: info.user.fname
+							},
+							{
+								name: "token",
+								content: info.accessToken.id
 							}]
 					}
 				]
@@ -72,7 +75,6 @@ module.exports = function(User) {
 					console.log(err);
 				}
 			});
-			*/
 		}
 	});
 
