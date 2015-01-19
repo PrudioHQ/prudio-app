@@ -31,13 +31,13 @@ module.exports = function slackOAuth(server) {
               externalToken.token = token.access_token;
 	  	        externalToken.scope = token.scope;
 	  	        
-  	  	      server.models.Account.findById(state[0], function(err, account) {
+  	  	      server.models.Account.findById(state[1], function(err, account) {
   	  	        if (err) {
                   res.send(err); // No account found
                 } 
   	  	        
                 externalToken.accountId = account.id;
-                externalToken.userId = state[1];
+                externalToken.userId = state[0];
 
   	  	        server.models.externalProviderToken.create(externalToken, function() {
                   res.redirect(301, '/#/authorized');
