@@ -77,7 +77,7 @@ module.exports = function(User) {
 			});
 		}
 	});
-
+	
 	User.afterCreate = function(next) {
 
 		if (this.accountId === undefined || this.accountId === 0) {
@@ -89,15 +89,13 @@ module.exports = function(User) {
 			}, function(err, account) {
 				if (err) {
 					console.error(err);
+					next(err);
 				}
+
+				next();
 			});
 
 		}
-
-		next();
-	}
-	
-	User.afterCreate = function(next) {
 
 		User.app.models.Email.send({
 			async: true,

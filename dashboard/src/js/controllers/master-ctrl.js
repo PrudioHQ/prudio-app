@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$window', '$state', '$cookieStore', 'User', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$window', '$state', '$cookieStore', 'SlackService', 'User', MasterCtrl]);
 
-function MasterCtrl($scope, $window, $state, $cookieStore, User) {
+function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -45,8 +45,21 @@ function MasterCtrl($scope, $window, $state, $cookieStore, User) {
     $scope.authSlack = function() {
 
         console.log("authSlack");
-        // $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=http://localhost:3000/auth/slack\&scope\=post\&state\=xxx';
-        $window.location.href = 'https://slack.com/oauth/authorize\?client_id\=3045626515.3266629173\&redirect_uri\=https://app.prud.io/auth/slack\&scope\=post\&state\=xxx';
+
+        User.getCurrent(function(user, req, err) { 
+
+            if(err) {
+                console.log("Error: ", err);
+                return; 
+            }
+            
+            $window.location.href = SlackService.url + 
+                        '?client_id' + '=' + SlackService.clientId +
+                        '&scope=' + SlackService.scope + 
+                        '&redirect_uri=' + location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/auth/slack' +
+                        '&state=' + user.id + '.' + user.accountId;
+
+        });
         
     };
 

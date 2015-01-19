@@ -98,7 +98,7 @@ gulp.task('lb-services', function () {
     return gulp.src('./server/server.js')
 	    .pipe(loopbackAngular())
 	    .pipe(rename('lb-services.js'))
-	    .pipe(gulp.dest('dashboard/src/js'));
+	    .pipe(gulp.dest('dashboard/src/js/services'));
 });
 
 /**
