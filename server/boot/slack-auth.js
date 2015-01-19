@@ -36,8 +36,8 @@ module.exports = function slackOAuth(server) {
                   res.send(err); // No account found
                 } 
   	  	        
-                externalToken.accountId = parseInt(account.id);
-                externalToken.userId = parseInt(state[1]);
+                externalToken.accountId = account.id;
+                externalToken.userId = state[1];
 
   	  	        server.models.externalProviderToken.create(externalToken, function() {
                   res.redirect(301, '/#/authorized');
