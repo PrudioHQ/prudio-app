@@ -24,6 +24,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                     templateUrl: 'templates/dashboard.html',
                     controller: 'MasterCtrl'
                 })
+                .state('master.authorized', {
+                    url: '/authorized',
+                    templateUrl: 'templates/authorized.html',
+                    controller: 'MasterCtrl'
+                })
 
 
             .state('auth', {

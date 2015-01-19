@@ -5,8 +5,6 @@ module.exports = function slackOAuth(server) {
 
   	server.get('/auth/slack', function(req, res){
 		
-  		console.log("Auth Slack!!!");
-
   		var client_id     = process.env.SLACK_CLIENT_ID;
   		var client_secret = process.env.SLACK_CLIENT_SECRET;
   		var redirect_uri  = process.env.SLACK_REDIRECT_URI;  //'http://localhost:3000/auth/slack';
@@ -25,12 +23,31 @@ module.exports = function slackOAuth(server) {
 
   			request
 	  			.get({url: url + '?' + qs.stringify(query), json: true}, function (error, response, body) {
-	  					res.send(body);
+	  	        var token = response.body;
+              var externalToken = {};
+              state = state.split(".");
+
+              externalToken.provider = 'slack';
+              externalToken.token = token.access_token;
+	  	        externalToken.scope = token.scope;
+	  	        
+  	  	      server.models.Account.findById(state[0], function(err, account) {
+  	  	        if (err) {
+                  res.send(err); // No account found
+                } 
+  	  	        
+                externalToken.accountId = parseInt(account.id);
+                externalToken.userId = parseInt(state[1]);
+
+  	  	        server.models.externalProviderToken.create(externalToken, function() {
+                  res.redirect(301, '/#/authorized');
+  	  	        });
+  	  	      });			
 	  				})
-	  			.on('error', function(err) {
-					console.log(err);
-					res.send(err);
-				})
+        		.on('error', function(err) {
+        			console.log(err);
+        			res.send(err);
+        		});
   		}
 	});
 };
