@@ -10,11 +10,11 @@
 ### Installation
 1. Install *Bower*: `sudo npm install -g bower`.
 2. Install *Strongloop*: `sudo npm install -g strongloop`.
-2.1 *For Ubuntu, the following needs to be run*: `sudo apt-get install nodejs-legacy`
-3. Install *Gulp*: `sudo npm install -g gulp`.
-4. Install the *Node* dependencies: `sudo npm install`.
-5. Install the *Bower* dependencies: `bower install`.
-6. Run the *Gulp* build task: `sudo gulp build`.
+3. *For Ubuntu*, the following needs to be run: `sudo apt-get install nodejs-legacy`
+4. Install *Gulp*: `sudo npm install -g gulp`.
+5. Install the *Node* dependencies: `sudo npm install`.
+6. Install the *Bower* dependencies: `bower install`.
+7. Run the *Gulp* build task: `sudo gulp build`.
 
 ## Running the application (API Server + Dashboard)
 
