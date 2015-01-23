@@ -19,6 +19,17 @@ var paths = {
     bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
 
+/** Convert our LESS to CSS files in the components directory **/
+gulp.task('build-less', function() {
+    return gulp.src(paths.styles)
+        .pipe(less())
+        .pipe(minifyCss())
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('dashboard/src/components/css'));
+});
+
 /**
  * Handle bower components from index
  */
@@ -47,7 +58,7 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-templates']);
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
@@ -59,12 +70,6 @@ gulp.task('custom-js', function() {
         .pipe(minifyJs())
         .pipe(concat('dashboard.min.js'))
         .pipe(gulp.dest('build/js'));
-});
-
-gulp.task('custom-less', function() {
-    return gulp.src(paths.styles)
-        .pipe(less())
-        .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('custom-templates', function() {
@@ -104,5 +109,5 @@ gulp.task('lb-services', function () {
 /**
  * Gulp tasks
  */
-gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
+gulp.task('build', ['build-less','usemin', 'build-assets', 'build-custom']);
 gulp.task('default', ['build', 'livereload', 'watch']);
