@@ -19,7 +19,9 @@ var paths = {
     bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
 
-/** Convert our LESS to CSS files in the components directory **/
+/** 
+ * Convert our LESS to CSS files in the components directory 
+ */
 gulp.task('build-less', function() {
     return gulp.src(paths.styles)
         .pipe(less())
