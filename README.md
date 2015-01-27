@@ -8,12 +8,13 @@
 * [Gulp](http://gulpjs.com/)
 
 ### Installation
-1. Install the *Node* dependencies: `npm install`.
-2. Install *Strongloop*: `npm install -g strongloop`.
-3. Install *Gulp*: `npm install -g gulp`.
-4. Install *Bower* dependencies: `npm install -g bower`.
-5. Install the *Bower* dependencies: `bower install`.
-6. Run the *Gulp* build task: `gulp build`.
+1. Install *Bower*: `sudo npm install -g bower`.
+2. Install *Strongloop*: `sudo npm install -g strongloop`.
+3. *For Ubuntu*, the following needs to be run: `sudo apt-get install nodejs-legacy`
+4. Install *Gulp*: `sudo npm install -g gulp`.
+5. Install the *Node* dependencies: `sudo npm install`.
+6. Install the *Bower* dependencies: `bower install`.
+7. Run the *Gulp* build task: `sudo gulp build`.
 
 ## Running the application (API Server + Dashboard)
 
