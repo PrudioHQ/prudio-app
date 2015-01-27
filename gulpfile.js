@@ -8,7 +8,7 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-minify-html'),
-	loopbackAngular = require('gulp-loopback-sdk-angular');
+    loopbackAngular = require('gulp-loopback-sdk-angular');
 
 var paths = {
     scripts: 'dashboard/src/js/**/*.*',
@@ -18,19 +18,6 @@ var paths = {
     index: 'dashboard/src/index.html',
     bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
-
-/** 
- * Convert our LESS to CSS files in the components directory 
- */
-gulp.task('build-less', function() {
-    return gulp.src(paths.styles)
-        .pipe(less())
-        .pipe(minifyCss())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('dashboard/src/components/css'));
-});
 
 /**
  * Handle bower components from index
@@ -60,7 +47,7 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-templates']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
@@ -72,6 +59,12 @@ gulp.task('custom-js', function() {
         .pipe(minifyJs())
         .pipe(concat('dashboard.min.js'))
         .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('custom-less', function() {
+    return gulp.src(paths.styles)
+        .pipe(less())
+        .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('custom-templates', function() {
@@ -103,13 +96,13 @@ gulp.task('livereload', function() {
 
 gulp.task('lb-services', function () {
     return gulp.src('./server/server.js')
-	    .pipe(loopbackAngular())
-	    .pipe(rename('lb-services.js'))
-	    .pipe(gulp.dest('dashboard/src/js/services'));
+        .pipe(loopbackAngular())
+        .pipe(rename('lb-services.js'))
+        .pipe(gulp.dest('dashboard/src/js/services'));
 });
 
 /**
  * Gulp tasks
  */
-gulp.task('build', ['build-less', 'usemin', 'build-assets', 'build-custom']);
+gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
 gulp.task('default', ['build', 'livereload', 'watch']);
