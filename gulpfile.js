@@ -64,6 +64,8 @@ gulp.task('custom-js', function() {
 gulp.task('custom-less', function() {
     return gulp.src(paths.styles)
         .pipe(less())
+        .pipe(minifyCss({keepSpecialComments: 0}))
+        .pipe(rename('index.min.css'))
         .pipe(gulp.dest('build/css'));
 });
 
