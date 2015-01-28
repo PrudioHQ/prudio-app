@@ -4,10 +4,14 @@
 
 angular
     .module('RDash')
-    .controller('changePasswordCtrl', ['$scope', changePasswordCtrl]);
+    .controller('changePasswordCtrl', ['$scope', 'User', changePasswordCtrl]);
 
-function changePasswordCtrl($scope) {
+function changePasswordCtrl($scope, User) {
 
     console.log("changePasswordCtrl");
+
+    $scope.submitForm = function(password) {
+        alert(password);
+    }
 
 }
