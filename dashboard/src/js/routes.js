@@ -25,9 +25,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                     controller: 'MasterCtrl'
                 })
                 .state('master.settings', {
-                    url: '/settings',
-                    templateUrl: 'templates/settings.html',
-                    controller: 'MasterCtrl'
+                  templateUrl: 'templates/settings.html'
+                })
+                .state('master.settingsAccount', {
+                    url: '/settings/account',
+                    templateUrl: 'templates/settings/my-account.html'
                 })
                 .state('master.authorized', {
                     url: '/authorized',
