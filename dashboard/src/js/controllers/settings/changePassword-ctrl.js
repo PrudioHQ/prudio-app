@@ -11,7 +11,8 @@ function changePasswordCtrl($scope, User) {
     console.log("changePasswordCtrl");
 
     $scope.submitForm = function(password) {
-        alert(password);
+        User.passwordUpdate({password: password});
+        console.log('updated');
     }
 
 }
