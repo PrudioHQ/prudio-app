@@ -40,6 +40,12 @@
     "room_prefix": {
       "type": "string",
       "required": true
+    },
+    "createdAt": {
+      "type": "date"
+    },
+    "lastModifiedAt": {
+      "type": "date"
     }
   },
   "validations": [],

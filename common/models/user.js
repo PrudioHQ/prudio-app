@@ -97,7 +97,7 @@ module.exports = function(User) {
 
 		}
 
-		User.app.models.Email.send({
+		/*User.app.models.Email.send({
 			async: true,
 			to: this.email,
 			from: 'hello@prud.io',
@@ -123,7 +123,7 @@ module.exports = function(User) {
 			}
 			next(err);
 		});
-	
+		*/
 	}
 	
 };

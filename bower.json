@@ -28,7 +28,9 @@
     "angular-resource": "1.3.8",
     "bootstrap": "~3.2.0",
     "font-awesome": "~4.1.0",
-    "angular-permission": "~0.1.6"
+    "angular-permission": "~0.1.6",
+    "moment": "~2.9.0",
+    "angular-moment": "~0.9.0"
   },
   "repository": {
     "type": "git",

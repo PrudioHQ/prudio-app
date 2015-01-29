@@ -35,16 +35,12 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User) {
 
     $scope.logout = function() {
 
-        console.log("Login out!");
-
         User.logout(function() {
             $state.go('auth.login', {}, { location: true });
         });
     };
 
     $scope.authSlack = function() {
-
-        console.log("authSlack");
 
         User.getCurrent(function(user, req, err) { 
 
@@ -62,6 +58,23 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User) {
         });
         
     };
+
+    /* Dummy data */
+    var date = new Date();
+    date.setHours(20);
+
+    $scope.applications = [
+        {
+            name: "App1",
+            room_count: 3,
+            createdAt: new Date()
+        },
+        {
+            name: "My cool apps",
+            room_count: 6,
+            createdAt: date
+        },
+    ];
 
     window.onresize = function() {
         $scope.$apply();
