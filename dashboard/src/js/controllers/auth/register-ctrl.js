@@ -1,10 +1,10 @@
 angular
 .module('RDash')
-.controller('registerCtrl', ['$scope', 'User', '$state', function($scope, User, $state) {
+.controller('registerCtrl', ['$scope', 'User', '$state', 'notificationService', function($scope, User, $state, notificationService) {
 
   $scope.register = function(form) {
     if (form.$invalid) {
-      return
+      return;
     }
     var newUser = {
       fname: form.fname,
@@ -13,11 +13,12 @@ angular
       password: form.password
     };
     User.create(newUser, function(){
-      // TODO: Notify the user that has been successfully created
+      notificationService.success("Your account has been created!");
       $state.go('master.index', {}, {location: true});
     }, function(res){
       console.log(res);
-      $scope.errorMessage = res.data.error.message
+      notificationService.error(res.data.error.message);
+      $scope.errorMessage = res.data.error.message;
     });
   };
 
