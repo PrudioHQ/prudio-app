@@ -23,23 +23,23 @@
   },
   "validations": [],
   "relations": {
-    "account": {
-      "type": "belongsTo",
-      "model": "Account",
-      "foreignKey": ""
-    },
     "apps": {
       "type": "hasMany",
       "model": "App",
-      "foreignKey": ""
+      "foreignKey": "ownerId"
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "Team",
+      "foreignKey": "ownerId"
     }
   },
   "acls": [
     {
       "principalType": "ROLE",
-      "principalId": "$everyone", 
-      "permission": "ALLOW",       
-      "property": "passwordUpdate"         
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "passwordUpdate"
     }
   ],
   "methods": []

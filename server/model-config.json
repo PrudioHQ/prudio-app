@@ -27,9 +27,9 @@
     "dataSource": "db",
     "public": false
   },
-  "Account": {
+  "Team": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "App": {
     "dataSource": "db",

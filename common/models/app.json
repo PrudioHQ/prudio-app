@@ -1,6 +1,5 @@
 {
   "name": "App",
-  "plural": "apps",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
@@ -18,28 +17,22 @@
       "type": "boolean"
     },
     "slack_api_token": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "slack_bot_token": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "slack_invite_user": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "slack_invite_bot": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "room_count": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "room_prefix": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "createdAt": {
       "type": "date"
@@ -50,17 +43,43 @@
   },
   "validations": [],
   "relations": {
+    "team": {
+      "type": "belongsTo",
+      "model": "Team",
+      "foreignKey": "teamId"
+    },
     "user": {
       "type": "belongsTo",
       "model": "user",
-      "foreignKey": ""
+      "foreignKey": "ownerId"
     },
-    "account": {
-      "type": "belongsTo",
-      "model": "account",
-      "foreignKey": ""
+    "token": {
+      "type": "hasOne",
+      "model": "externalProviderToken",
+      "foreignKey": "tokenId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "findById"
+    }
+  ],
   "methods": []
 }

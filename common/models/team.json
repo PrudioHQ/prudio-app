@@ -1,9 +1,17 @@
 {
-  "name": "Account",
-  "plural": "accounts",
+  "name": "Team",
+  "plural": "teams",
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
+    "ownerId": {
+      "type": "number",
+      "required": true
+    },
+    "memberId": {
+      "type": "number",
+      "required": true
+    },
     "name": {
       "type": "string",
       "required": true
@@ -17,15 +25,15 @@
   },
   "validations": [],
   "relations": {
-    "users": {
+    "members": {
       "type": "hasMany",
       "model": "user",
-      "foreignKey": ""
+      "foreignKey": "memberId"
     },
-    "externalProviderTokens": {
+    "tokens": {
       "type": "hasMany",
       "model": "externalProviderToken",
-      "foreignKey": ""
+      "foreignKey": "tokenId"
     }
   },
   "acls": [],

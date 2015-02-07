@@ -80,7 +80,9 @@ module.exports = function(User) {
 	
 	User.afterCreate = function(next) {
 
-		if (this.accountId === undefined || this.accountId === 0) {
+		next();
+
+		/*if (this.accountId === undefined || this.accountId === 0) {
 			
 			var name = this.fname + " " + this.lname + "'s Account";
 
@@ -95,7 +97,7 @@ module.exports = function(User) {
 				next();
 			});
 
-		}
+		}*/
 
 		/*User.app.models.Email.send({
 			async: true,
