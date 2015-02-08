@@ -17,14 +17,14 @@
   },
   "validations": [],
   "relations": {
-    "users": {
-      "type": "hasMany",
-      "model": "user",
-      "foreignKey": ""
-    },
     "externalProviderTokens": {
       "type": "hasMany",
       "model": "externalProviderToken",
+      "foreignKey": ""
+    },
+    "users": {
+      "type": "hasAndBelongsToMany",
+      "model": "user",
       "foreignKey": ""
     }
   },

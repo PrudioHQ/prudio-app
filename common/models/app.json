@@ -49,18 +49,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "user": {
-      "type": "belongsTo",
-      "model": "user",
-      "foreignKey": ""
-    },
-    "account": {
-      "type": "belongsTo",
-      "model": "account",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": []
 }
