@@ -26,6 +26,11 @@
       "type": "hasAndBelongsToMany",
       "model": "user",
       "foreignKey": ""
+    },
+    "apps": {
+      "type": "hasMany",
+      "model": "App",
+      "foreignKey": ""
     }
   },
   "acls": [],
