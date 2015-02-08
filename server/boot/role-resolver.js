@@ -27,7 +27,7 @@ module.exports = function(app) {
 
       Team.count({
         ownerId: app.ownerId,
-        memberId: userId
+        userId: userId
       }, function(err, count) {
         if (err) {
           console.log(err);

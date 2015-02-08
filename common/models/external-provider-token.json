@@ -11,18 +11,14 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
-      "type": "date"
-    },
-    "lastModifiedAt": {
-      "type": "date"
-    }
+    "created": "date",
+    "modified": "date"
   },
   "validations": [],
   "relations": {
-    "account": {
+    "app": {
       "type": "belongsTo",
-      "model": "Account",
+      "model": "App",
       "foreignKey": ""
     }
   },

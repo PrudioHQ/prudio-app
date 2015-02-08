@@ -14,12 +14,8 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
-      "type": "date"
-    },
-    "lastModifiedAt": {
-      "type": "date"
-    }
+    "created": "date",
+    "modified": "date"
   },
   "validations": [],
   "relations": {

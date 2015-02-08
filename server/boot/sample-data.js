@@ -43,8 +43,8 @@ module.exports = function(application) {
 
         // add team members
         Team.create([
-          { name: "Team 1", ownerId: app.ownerId, memberId: users[0].id },
-          { name: "Team 2", ownerId: app.ownerId, memberId: users[1].id }
+          { ownerId: app.ownerId, userId: users[0].id },
+          { ownerId: app.ownerId, userId: users[1].id }
         ], function(err, team) {
           if (err) {
             console.log('Error creating team: ', err);
@@ -65,9 +65,8 @@ module.exports = function(application) {
 
         //add team members
         Team.create({
-          name: "Team 3",
           ownerId: app.ownerId,
-          memberId: users[1].id
+          userId: users[1].id
         }, function(err, team) {
           if (err) {
             console.log('Error creating team: ', err);

@@ -34,12 +34,8 @@
     "room_prefix": {
       "type": "string"
     },
-    "createdAt": {
-      "type": "date"
-    },
-    "lastModifiedAt": {
-      "type": "date"
-    }
+    "created": "date",
+    "modified": "date"
   },
   "validations": [],
   "relations": {
@@ -55,6 +51,11 @@
     },
     "token": {
       "type": "hasOne",
+      "model": "externalProviderToken",
+      "foreignKey": "tokenId"
+    },
+    "tokens": {
+      "type": "hasMany",
       "model": "externalProviderToken",
       "foreignKey": "tokenId"
     }
