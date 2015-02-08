@@ -84,7 +84,7 @@ module.exports = function(User) {
 			
 			var name = this.fname + " " + this.lname + "'s Account";
 
-			this.account.create({
+			this.accounts.create({
 				name: name
 			}, function(err, account) {
 				if (err) {
