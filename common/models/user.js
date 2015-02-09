@@ -1,5 +1,12 @@
 module.exports = function(User) {
 
+	User.disableRemoteMethod('find', true);
+	User.disableRemoteMethod('exists', true);
+	User.disableRemoteMethod('count', true);
+	User.disableRemoteMethod('upsert', true);
+	User.disableRemoteMethod('updateAll', true);
+	User.disableRemoteMethod('findOne', true);
+
 	User.passwordUpdate = function(accessToken, password, next) {
 
 		this.app.models.AccessToken.findById(accessToken, function(err, token) {
