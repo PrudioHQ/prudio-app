@@ -50,14 +50,9 @@
   },
   "validations": [],
   "relations": {
-    "user": {
-      "type": "belongsTo",
-      "model": "user",
-      "foreignKey": ""
-    },
     "account": {
       "type": "belongsTo",
-      "model": "account",
+      "model": "Account",
       "foreignKey": ""
     }
   },
