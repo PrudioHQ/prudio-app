@@ -33,7 +33,7 @@
   },
   "App": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "Email": {
     "dataSource": "mandrill",

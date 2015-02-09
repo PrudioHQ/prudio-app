@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$window', '$state', '$cookieStore', 'SlackService', 'User', MasterCtrl]);
+    .controller('MasterCtrl', ['$scope', '$window', '$state', '$cookieStore', 'SlackService', 'User', 'Account', MasterCtrl]);
 
-function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User) {
+function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, Account) {
     /**
      * Sidebar Toggle & Cookie Control
      */
@@ -59,22 +59,22 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User) {
         
     };
 
-    /* Dummy data */
-    var date = new Date();
-    date.setHours(20);
+    $scope.applications = [];
 
-    $scope.applications = [
-        {
-            name: "App1",
-            room_count: 3,
-            createdAt: new Date()
-        },
-        {
-            name: "My cool apps",
-            room_count: 6,
-            createdAt: date
-        },
-    ];
+    User.getCurrent(function(user, req, err) {
+        User.accounts({ id: user.id }, function(accounts, req, err) {
+            for (var i = accounts.length - 1; i >= 0; i--) {
+                var account = accounts[i];
+
+                Account.apps({ id: account.id }, function(apps, req, err) {
+                    for (var j = apps.length - 1; j >= 0; j--) {
+                        var app = apps[j];
+                        $scope.applications.push(app);
+                    }
+                });
+            };
+        });
+    });
 
     window.onresize = function() {
         $scope.$apply();
