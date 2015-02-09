@@ -8,7 +8,11 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-minify-html'),
-    loopbackAngular = require('gulp-loopback-sdk-angular');
+    loopbackAngular = require('gulp-loopback-sdk-angular'),
+    app = require('server/server'),
+    protractor = require("gulp-protractor").protractor,
+    webdriver_update = require('gulp-protractor').webdriver_update;
+    instance = undefined;
 
 var paths = {
     scripts: 'dashboard/src/js/**/*.*',
@@ -108,3 +112,26 @@ gulp.task('lb-services', function () {
  */
 gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
 gulp.task('default', ['build', 'livereload', 'watch']);
+
+/**
+* Protractor Tests
+*/
+gulp.task('webdriver_update', webdriver_update);
+
+gulp.task('start-local-server', function(){
+    instance = app.start();
+});
+
+gulp.task('protractor', ['webdriver_update', 'start-local-server'], function(cb) {
+    gulp.src(["test/e2e/*.js"])
+        .pipe(protractor({
+            configFile: "test/protractor.config.js"
+        }))
+        .on('error', function(e) { throw e })
+        .on('end', function(){
+            if (instance){
+                instance.close();
+            }
+        });
+});
+

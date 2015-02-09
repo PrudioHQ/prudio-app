@@ -23,3 +23,8 @@
 1. Run `slc run` and open your browser at [http://localhost:3000/](http://localhost:3000/).
 2. Run the gulp default task: `gulp`. This will build any changes made automatically.
 3. Open your browser at [http://localhost:3000/explorer](http://localhost:3000/explorer) to check the API endpoints.
+
+## Running the test suite
+
+* Use the following command to run the api test suite: `npm test`
+* For end-to-end tests use: `gulp protractor`
