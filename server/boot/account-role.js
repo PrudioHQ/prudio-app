@@ -1,7 +1,7 @@
 module.exports = function(app) {
   var Role = app.models.Role;
 
-  Role.registerResolver('teamMember', function(role, context, cb) {
+  Role.registerResolver('accountMember', function(role, context, cb) {
 
     function reject(msg) {
       console.log(msg);
