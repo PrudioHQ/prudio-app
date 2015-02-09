@@ -108,7 +108,6 @@ module.exports = function(User) {
 			next();
 		});
 
-
 		
 
 		/*User.app.models.Email.send({
