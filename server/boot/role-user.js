@@ -19,7 +19,7 @@ module.exports = function(app) {
     User.findById(context.modelId, function provideModel(err, user) {
       if (err || !user) {
         return reject('No relative model found.');
-      } else if (user.id !== userId) {
+      } else if (user.id.toString() !== userId.toString()) {
         console.log("User .CTX: '" + userId  + "'");
         console.log("User user: '" + user.id + "'");
         console.log("    !==  : ", (user.id !== userId));
@@ -27,6 +27,9 @@ module.exports = function(app) {
         console.log("");
         console.log("typeof  user.id: ", typeof user.id);
         console.log("typeof   userId: ", typeof userId );
+        console.log("");
+        console.log("toString  user.id: ", user.id.toString());
+        console.log("toString   userId: ", userId.toString());
 
 
         return reject("Unauthorized!");
