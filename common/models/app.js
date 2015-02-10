@@ -60,7 +60,7 @@ module.exports = function(App) {
         'connect', 
         {
             description: "Connect an App",
-            accepts: {arg: 'id', type: 'int', required: true, description: 'PersistedModel id'},
+            accepts: {arg: 'id', type: 'any', required: true, description: 'PersistedModel id'},
             http: {path: '/:id/connect', verb: 'get'},
             returns: [
                 {arg: 'success', type: 'boolean'},
@@ -107,7 +107,7 @@ module.exports = function(App) {
         'disconnect', 
         {
             description: "Connect an App",
-            accepts: {arg: 'id', type: 'int', required: true, description: 'PersistedModel id'},
+            accepts: {arg: 'id', type: 'any', required: true, description: 'PersistedModel id'},
             http: {path: '/:id/disconnect', verb: 'get'},
             returns: [
                 {arg: 'success', type: 'boolean'},
