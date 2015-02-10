@@ -53,6 +53,7 @@ module.exports = function(application) {
         accounts[0].apps.create([
           { 
             name: "App 1",
+            appid: "xxx",
             slack_api_token: "xxx",
             slack_bot_token: "bot",
             slack_invite_user: "uuu",
@@ -63,6 +64,7 @@ module.exports = function(application) {
           },
           { 
             name: "App 2",
+            appid: "xxx2",
             slack_api_token: "yyy",
             slack_bot_token: "bot",
             slack_invite_user: "uuu",
@@ -110,6 +112,7 @@ module.exports = function(application) {
         accounts[0].apps.create([
           { 
             name: "App 3",
+            appid: "234",
             slack_api_token: "xxx",
             slack_bot_token: "bot",
             slack_invite_user: "uuu",
@@ -120,6 +123,7 @@ module.exports = function(application) {
           },
           { 
             name: "App 4",
+            appid: "dfe3",
             slack_api_token: "yyy",
             slack_bot_token: "bot",
             slack_invite_user: "uuu",

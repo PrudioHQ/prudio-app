@@ -1,7 +1,8 @@
 module.exports = function(app) {
   var Role = app.models.Role;
 
-  Role.registerResolver('accountMember', function(role, context, cb) {
+  // TODO: check if user belongs to App
+  Role.registerResolver('appRole', function(role, context, cb) {
 
     function reject(msg) {
       console.log(msg);

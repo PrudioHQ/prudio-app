@@ -43,7 +43,7 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "accountMember",
+      "principalId": "accountRole",
       "permission": "ALLOW"
     }
   ],

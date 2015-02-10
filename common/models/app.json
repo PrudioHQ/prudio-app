@@ -8,6 +8,10 @@
       "type": "string",
       "required": true
     },
+    "appid": {
+      "type": "string",
+      "required": true
+    },
     "active": {
       "type": "boolean"
     },
@@ -62,6 +66,18 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "connect"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "disconnect"
     }
   ],
   "methods": []
