@@ -1,5 +1,7 @@
 module.exports = function(app) {
   var Role = app.models.Role;
+  var User = app.models.user;
+  var App = app.models.App;
 
   // TODO: check if user belongs to App
   Role.registerResolver('appRole', function(role, context, cb) {
@@ -10,36 +12,39 @@ module.exports = function(app) {
         cb(null, false);
       });
     }
-
+    
     var userId = context.accessToken.userId;
-    if (!userId) {
+    if (!userId || !context.modelId) {
       return reject('Invalid access token');
     }
 
-    context.model.findById(context.modelId, function provideModel(err, model) {
-      if (err || !model) {
-        return reject('No relative model found.');
+    User.findById(userId, function provideModel(err, user) {
+      if (err || !user) {
+        return reject('Invalid access token');
       }
 
-      var modelWithUsers = null;
-      if (model.users) {
-        modelWithUsers = model;
-      }
-      if (model.account) {
-        modelWithUsers = model.account;
-      }
-      if (!modelWithUsers) {
-        reject('Model cannot be linked to user, so this role should fail.');
-      }
-
-      modelWithUsers.users.findById(userId, function postFind(err, users) {
-        if (err || !users) {
+      user.accounts(function (err, accounts) {
+        if (err || !accounts) {
           reject("Unauthorized!");
         } else {
-          cb(null, true);
+          var accountsId = [];
+
+          for (var i = accounts.length - 1; i >= 0; i--) {
+            accountsId.push(accounts[i].id);
+          }
+
+          App.find({ where: { accountId: accountsId, id: context.modelId } }, function(err, apps) {
+            if (err) {
+              reject("Unauthorized!");
+            }
+            if (apps.length > 0) {
+              return cb(null, true);
+            } else {
+              reject("Unauthorized!");
+            }
+          });
         }
       });
-
     });
   });
 }

@@ -68,16 +68,10 @@
       "permission": "DENY"
     },
     {
+      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "connect"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "disconnect"
+      "principalId": "appRole",
+      "permission": "ALLOW"
     }
   ],
   "methods": []
