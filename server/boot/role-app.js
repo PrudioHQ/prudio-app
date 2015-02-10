@@ -33,7 +33,7 @@ module.exports = function(app) {
             accountsId.push(accounts[i].id);
           }
 
-          App.find({ where: { accountId: accountsId, id: context.modelId } }, function(err, apps) {
+          App.find({ where: { id: context.modelId, accountId: { inq: accountsId } } }, function(err, apps) {
             if (err) {
               reject("Unauthorized!");
             }
