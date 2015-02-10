@@ -20,7 +20,7 @@ module.exports = function(app) {
       if (err || !user) {
         return reject('No relative model found.');
       } else if (user.id !== userId) {
-        console.log("User: ", user);
+        console.log("User: ", userId);
         return reject("Unauthorized!");
       } else {
         cb(null, true);
