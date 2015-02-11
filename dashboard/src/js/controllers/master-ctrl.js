@@ -40,25 +40,6 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
         });
     };
 
-    $scope.authSlack = function() {
-
-        User.getCurrent(function(user, req, err) { 
-
-            if(err) {
-                console.log("Error: ", err);
-                return; 
-            }
-            
-            $window.location.href = SlackService.url + 
-                        '?client_id' + '=' + SlackService.clientId +
-                        '&scope=' + SlackService.scope + 
-                        '&redirect_uri=' + location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/auth/slack' +
-                        '&state=' + user.id + '.' + user.accountId;
-
-        });
-        
-    };
-
     $scope.applications = [];
     $scope.accounts = [];
     $scope.user = {};
@@ -82,6 +63,25 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
             };
         });
     });
+
+    $scope.authSlack = function() {
+
+        User.getCurrent(function(user, req, err) { 
+
+            if(err) {
+                console.log("Error: ", err);
+                return; 
+            }
+            
+            $window.location.href = SlackService.url + 
+                        '?client_id' + '=' + SlackService.clientId +
+                        '&scope=' + SlackService.scope + 
+                        '&redirect_uri=' + location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/auth/slack' +
+                        '&state=' + user.id + '.' + user.defaultAccountId;
+
+        });
+        
+    };
 
     window.onresize = function() {
         $scope.$apply();
