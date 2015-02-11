@@ -17,6 +17,10 @@
       "type": "string",
       "required": true
     },
+    "defaultAccountId": {
+      "type": "string",
+      "default": ""
+    },
     "created": {
       "type": "date"
     },

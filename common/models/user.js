@@ -106,6 +106,8 @@ module.exports = function(User) {
 						console.error(err);
 						next(err);
 					}
+					user.defaultAccountId = account.id;
+					user.save();
 
 					next();
 				});

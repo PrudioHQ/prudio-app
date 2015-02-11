@@ -60,8 +60,13 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
     };
 
     $scope.applications = [];
+    $scope.accounts = [];
+    $scope.user = {};
 
     User.getCurrent(function(user, req, err) {
+
+        $scope.user = user;
+
         User.accounts({ id: user.id }, function(accounts, req, err) {
             for (var i = accounts.length - 1; i >= 0; i--) {
                 var account = accounts[i];
@@ -72,6 +77,8 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
                         $scope.applications.push(app);
                     }
                 });
+
+                $scope.accounts.push(account);
             };
         });
     });
