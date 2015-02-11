@@ -18,6 +18,7 @@ module.exports = function(App) {
     App.disableRemoteMethod('prototype.updateAttributes', true);
     App.disableRemoteMethod('prototype.__get__account', true);
 
+
     var environment = process.env.NODE_ENV || 'development';
     var baseUrl = 'http://localhost:5000';
     
@@ -115,5 +116,17 @@ module.exports = function(App) {
             ]
         }
     );
+
+
+    App.beforeUpdate = function(next, app) {
+        app.modified = new Date();
+        next();
+    }
+
+    App.beforeCreate = function(next, app) {
+        app.created = new Date();
+        app.modified = new Date();
+        next();
+    }
 
 };

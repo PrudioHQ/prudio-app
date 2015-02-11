@@ -10,7 +10,10 @@
     },
     "appid": {
       "type": "string",
-      "required": true
+      "required": true,
+      "index": {
+        "unique": true
+      }
     },
     "active": {
       "type": "boolean"
@@ -45,10 +48,10 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
+    "created": {
       "type": "date"
     },
-    "lastModifiedAt": {
+    "modified": {
       "type": "date"
     }
   },

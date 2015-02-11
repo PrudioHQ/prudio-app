@@ -8,10 +8,10 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
+    "created": {
       "type": "date"
     },
-    "lastModifiedAt": {
+    "modified": {
       "type": "date"
     }
   },

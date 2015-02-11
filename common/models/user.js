@@ -145,5 +145,17 @@ module.exports = function(User) {
 		});
 		*/
 	}
+
+	User.beforeUpdate = function(next, user) {
+		user.modified = new Date();
+		next();
+	}
+
+	User.beforeCreate = function(next, user) {
+		user.created = new Date();
+		user.modified = new Date();
+		next();
+	}
+
 	
 };

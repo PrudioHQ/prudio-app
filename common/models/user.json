@@ -3,8 +3,11 @@
   "plural": "users",
   "base": "User",
   "properties": {
-    "username": {
-      "type": "string"
+    "email": {
+      "type": "string",
+      "index": {
+        "unique": true
+      }
     },
     "fname": {
       "type": "string",
@@ -14,10 +17,10 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
+    "created": {
       "type": "date"
     },
-    "lastModifiedAt": {
+    "modified": {
       "type": "date"
     }
   },
