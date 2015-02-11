@@ -7,10 +7,10 @@ describe('/api/users', function() {
   lt.beforeEach.withApp(app);
 
   var newUser = {
-      fname: "new",
-      lname: "user",
-      password: "newuser",
-      email: "newuser@newuser.com"
+    fname: "John",
+    lname: "Doe",
+    email: "john@doe.com",
+    password: "johndoe"
   }
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
@@ -39,7 +39,6 @@ describe('/api/users', function() {
     });
 
     lt.describe.whenCalledRemotely('POST', '/api/users', newUser, function(){
-      lt.it.shouldBeAllowed();
       it('when given all fields it should create a new user', function(){
         assert.equal(this.res.statusCode, 200);
         //Missing database validation

@@ -27,4 +27,7 @@
 ## Running the test suite
 
 * Use the following command to run the api test suite: `npm test`
-* For end-to-end tests use: `gulp protractor`
+* For end-to-end tests use: `npm run-script test-e2e`
+
+All code related to the tests are under the `test` folder.  
+[loopback-testing](https://github.com/strongloop/loopback-testing) is being used for api tests and `protractor`for e2e tests.

@@ -43,7 +43,8 @@
     "protractor": "^1.6.1"
   },
   "scripts": {
-    "test": "mocha test/api -R spec --recursive",
+    "test": "rm -f tmp/testdb && NODE_ENV=\"testing\" mocha test/api -R spec --recursive ",
+    "test-e2e": "rm -f tmp/testdb && NODE_ENV=\"testing\" gulp protractor",
     "postinstall": "node_modules/.bin/bower install && node_modules/.bin/gulp build"
   },
   "repository": {
