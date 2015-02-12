@@ -61,7 +61,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownAccounts">
                   <li ng-repeat="account in accounts" role="presentation">
-                    <a role="menuitem" tabindex="-1" ng-href="account/{{ account.id }}">{{ account.name }} <i class="fa fa-check" ng-show="(account.id == user.defaultAccountId)"></i> </a>
+                    <a role="menuitem" tabindex="-1" ng-href="#/account/{{ account.id }}/switch">{{ account.name }} <i class="fa fa-check" ng-show="(account.id == user.defaultAccountId)"></i> </a>
                   </li>
                 </ul>
               </div>

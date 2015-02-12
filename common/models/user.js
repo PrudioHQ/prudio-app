@@ -3,7 +3,7 @@ module.exports = function(User) {
 	User.disableRemoteMethod('find', true);
 	User.disableRemoteMethod('exists', true);
 	User.disableRemoteMethod('count', true);
-	User.disableRemoteMethod('upsert', true);
+	//User.disableRemoteMethod('upsert', true);
 	User.disableRemoteMethod('updateAll', true);
 	User.disableRemoteMethod('findOne', true);
 

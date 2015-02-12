@@ -31,12 +31,15 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                     url: '/settings/account',
                     templateUrl: 'templates/settings/my-account.html'
                 })
+                .state('master.accountSwitch', {
+                    url: '/account/:accountId/switch',
+                    controller: 'accountSwitchCtrl'
+                })
                 .state('master.authorized', {
                     url: '/authorized',
                     templateUrl: 'templates/authorized.html',
                     controller: 'MasterCtrl'
                 })
-
 
             .state('auth', {
                 templateUrl: 'templates/auth/wrapper.html'
