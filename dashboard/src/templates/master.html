@@ -53,6 +53,19 @@
                 <i class="fa fa-cog"></i>
               </a>
             </div>
+            <div ng-show="accounts.length > 1" class="account-dropdown">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownAccounts" data-toggle="dropdown" aria-expanded="true">
+                  Accounts ({{ accounts.length }})
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownAccounts">
+                  <li ng-repeat="account in accounts" role="presentation">
+                    <a role="menuitem" tabindex="-1" ng-href="#/account/{{ account.id }}/switch">{{ account.name }} <i class="fa fa-check" ng-show="(account.id == user.defaultAccountId)"></i> </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="meta">
             <div class="page">

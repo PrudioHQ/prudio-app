@@ -46,3 +46,5 @@ build
 
 # Bower components
 dashboard/src/components
+
+localdb.json

@@ -1,6 +1,6 @@
 angular
 .module('RDash')
-.controller('loginCtrl', ['$scope', '$state', 'User', 'notificationService', function($scope, $state, User, notificationService) {
+.controller('loginCtrl', ['$scope', '$state', '$location', 'User', 'notificationService', function($scope, $state, $location, User, notificationService) {
 
 	$scope.login = function(form) {
 		var credentials = {
@@ -11,7 +11,9 @@ angular
 
 		User.login({rememberMe: rememberMe}, credentials, function() {
 			notificationService.success("You have successfully logged in.");
-			$state.go('master.index', {}, {location: true});
+			var next = $location.nextAfterLogin || '/';
+			$location.nextAfterLogin = null;
+			$location.path(next);
 		}, function() {
 			$scope.error = true;
 			notificationService.error("Wrong email or password.");

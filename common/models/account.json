@@ -8,26 +8,44 @@
       "type": "string",
       "required": true
     },
-    "createdAt": {
+    "created": {
       "type": "date"
     },
-    "lastModifiedAt": {
+    "modified": {
       "type": "date"
     }
   },
   "validations": [],
   "relations": {
-    "users": {
-      "type": "hasMany",
-      "model": "user",
-      "foreignKey": ""
-    },
     "externalProviderTokens": {
       "type": "hasMany",
       "model": "externalProviderToken",
       "foreignKey": ""
+    },
+    "users": {
+      "type": "hasAndBelongsToMany",
+      "model": "user",
+      "foreignKey": ""
+    },
+    "apps": {
+      "type": "hasMany",
+      "model": "App",
+      "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "accountRole",
+      "permission": "ALLOW"
+    }
+  ],
   "methods": []
 }

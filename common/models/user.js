@@ -1,5 +1,12 @@
 module.exports = function(User) {
 
+	User.disableRemoteMethod('find', true);
+	User.disableRemoteMethod('exists', true);
+	User.disableRemoteMethod('count', true);
+	//User.disableRemoteMethod('upsert', true);
+	User.disableRemoteMethod('updateAll', true);
+	User.disableRemoteMethod('findOne', true);
+
 	User.passwordUpdate = function(accessToken, password, next) {
 
 		this.app.models.AccessToken.findById(accessToken, function(err, token) {
@@ -80,22 +87,37 @@ module.exports = function(User) {
 	
 	User.afterCreate = function(next) {
 
-		if (this.accountId === undefined || this.accountId === 0) {
-			
-			var name = this.fname + " " + this.lname + "'s Account";
+		var user = this;
 
-			this.account.create({
-				name: name
-			}, function(err, account) {
-				if (err) {
-					console.error(err);
-					next(err);
-				}
+		user.accounts.count(function(err, count) {
+			if (err) {
+				console.log('Error counting accounts: ', err);
+				next(err);
+			}
 
-				next();
-			});
+			if (count === 0) {
+				var name = user.fname + " " + user.lname + "'s Account";
 
-		}
+				user.accounts.create({
+					name: name
+				}, 
+				function(err, account) {
+					if (err) {
+						console.error(err);
+						next(err);
+					}
+					user.defaultAccountId = account.id;
+					user.save();
+
+					next();
+				});
+
+			}
+
+			next();
+		});
+
+		
 
 		/*User.app.models.Email.send({
 			async: true,
@@ -125,5 +147,17 @@ module.exports = function(User) {
 		});
 		*/
 	}
+
+	User.beforeUpdate = function(next, user) {
+		user.modified = new Date();
+		next();
+	}
+
+	User.beforeCreate = function(next, user) {
+		user.created = new Date();
+		user.modified = new Date();
+		next();
+	}
+
 	
 };
