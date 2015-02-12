@@ -11,7 +11,7 @@ module.exports = function(User) {
 
 		this.app.models.AccessToken.findById(accessToken, function(err, token) {
 			if (err) {
-				return next(err); 
+				return next(err);
 			} else if (!token) {
 				return next(new Error('Token not found!'));
 			}
@@ -34,9 +34,9 @@ module.exports = function(User) {
 
 		});
     }
-     
+
     User.remoteMethod(
-        'passwordUpdate', 
+        'passwordUpdate',
         {
         	description: "Resets the user password with the reset token",
 			accepts: [
@@ -75,7 +75,7 @@ module.exports = function(User) {
 							}]
 					}
 				]
-			}, 
+			},
 			function(err, result) {
 				if(err) {
 					console.log('Upppss something crash');
@@ -84,7 +84,7 @@ module.exports = function(User) {
 			});
 		}
 	});
-	
+
 	User.afterCreate = function(next) {
 
 		var user = this;
@@ -100,7 +100,7 @@ module.exports = function(User) {
 
 				user.accounts.create({
 					name: name
-				}, 
+				},
 				function(err, account) {
 					if (err) {
 						console.error(err);
@@ -117,7 +117,7 @@ module.exports = function(User) {
 			next();
 		});
 
-		
+
 
 		/*User.app.models.Email.send({
 			async: true,
@@ -137,7 +137,7 @@ module.exports = function(User) {
 						}]
 				}
 			]
-		}, 
+		},
 		function(err, result) {
 			if(err) {
 				console.log('Upppss something crash');
@@ -159,5 +159,5 @@ module.exports = function(User) {
 		next();
 	}
 
-	
+
 };

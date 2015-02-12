@@ -134,4 +134,3 @@ gulp.task('protractor', ['webdriver_update', 'start-local-server'], function(cb)
             }
         });
 });
-

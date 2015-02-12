@@ -14,7 +14,9 @@ describe('/api/users', function() {
   }
 
   lt.describe.whenCalledRemotely('GET', '/api/users', function() {
-    lt.it.shouldBeDenied();
+    it('should not exist', function(){
+      assert.equal(this.res.statusCode, 404);
+    });
   });
 
   lt.describe.whenCalledRemotely('PUT', '/api/users', function() {
@@ -34,7 +36,7 @@ describe('/api/users', function() {
         assert.include(codes.fname, "presence");
         assert.include(codes.lname, "presence");
         assert.include(codes.password, "presence");
-        assert.include(codes.email, "presence");
+        assert.include(codes.email, "format.blank");
       });
     });
 
