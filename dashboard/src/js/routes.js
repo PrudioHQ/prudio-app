@@ -3,8 +3,32 @@
 /**
  * Route configuration for the RDash module.
  */
-angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+    function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+        var interceptor = ['$location', '$q', '$injector', function($location, $q, $injector) {
+          function success(response) {
+            return response;
+          }
+          function error(response) {
+            if (response.status === 401) {
+              console.log("Got a 401!");
+              $location.nextAfterLogin = $location.path();
+              $injector.get('User').logout();
+              //$injector.get('$state').transitionTo('auth.login');
+              $injector.get('$state').go('auth.login', {}, {location: true});
+
+              return $q.reject(response);
+            } else {
+              return $q.reject(response);
+            }
+          }
+          return function(promise) {
+            return promise.then(success, error);
+          }
+        }];
+
+        $httpProvider.responseInterceptors.push(interceptor);
 
         $urlRouterProvider.otherwise('/');
 
@@ -93,7 +117,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
   .defineRole('anonymous', function (stateParams) {
     return !User.isAuthenticated();
   })
-  .defineRole('registered', function(stateParams) {
+  .defineRole('registered', function (stateParams) {
     return User.isAuthenticated();
   });
 

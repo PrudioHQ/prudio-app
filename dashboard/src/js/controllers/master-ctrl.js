@@ -34,10 +34,8 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
     };
 
     $scope.logout = function() {
-
-        User.logout(function() {
-            $state.go('auth.login', {}, { location: true });
-        });
+        User.logout();
+        $state.go('auth.login', {}, { location: true });
     };
 
     $scope.applications = [];
