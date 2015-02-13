@@ -2,7 +2,7 @@
   "db": {
     "name": "db",
     "connector": "memory",
-    "file": "tmp/localdb.json"
+    "file": "localdb.json"
   },
   "mandrill": {
     "name": "mandrill",

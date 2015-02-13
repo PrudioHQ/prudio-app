@@ -1,6 +1,6 @@
 module.exports = {
     "db": {
         "connector": "memory",
-        "file": "tmp/testdb"
+        "file": "testdb.json"
     },
 };
