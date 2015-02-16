@@ -8,45 +8,50 @@
       "type": "string",
       "required": true
     },
-    "appid": {
+    "appId": {
       "type": "string",
-      "required": true,
+      "required": false,
       "index": {
         "unique": true
       }
     },
     "active": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "online": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "join": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
-    "slack_api_token": {
+    "slackApiToken": {
       "type": "string",
       "required": true
     },
-    "slack_bot_token": {
+    "slackBotToken": {
       "type": "string",
       "required": true
     },
-    "slack_invite_user": {
+    "slackInviteUser": {
       "type": "string",
       "required": true
     },
-    "slack_invite_bot": {
+    "slackInviteBot": {
       "type": "string",
       "required": true
     },
-    "room_count": {
+    "roomCount": {
       "type": "number",
-      "required": true
+      "required": true,
+      "default": 0
     },
-    "room_prefix": {
+    "roomPrefix": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "sp-"
     },
     "created": {
       "type": "date"
