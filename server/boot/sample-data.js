@@ -9,6 +9,7 @@ module.exports = function(application) {
   var environment = process.env.NODE_ENV || 'development';
 
   if (environment !== 'development') {
+    console.log("Not in development mode");
     return;
   }
 
@@ -19,15 +20,15 @@ module.exports = function(application) {
     }
 
     if (count > 0) {
-      console.log("Already migrated data")
+      console.log("Already migrated data", environment)
       return;
-    } 
-    
+    }
+
     console.log('Migrating sample data');
 
     User.create(
       { fname: 'Hélder', lname: 'Duarte', email: 'cossou@gmail.com', password: '123456' }
-    , 
+    ,
     function(err, user) {
 
       console.log('USERS');
@@ -45,13 +46,13 @@ module.exports = function(application) {
 
         if (accounts.length === 0) {
           console.log('No accounts: ', accounts);
-          return; 
+          return;
         }
 
         console.log('Accounts: ', accounts);
 
         accounts[0].apps.create([
-          { 
+          {
             name: "App 1",
             appid: "xxx",
             slack_api_token: "xxx",
@@ -62,7 +63,7 @@ module.exports = function(application) {
             room_prefix: "sp-",
             accountId: accounts[0].id
           },
-          { 
+          {
             name: "App 2",
             appid: "xxx2",
             slack_api_token: "yyy",
@@ -73,7 +74,7 @@ module.exports = function(application) {
             room_prefix: "xp-",
             accountId: accounts[0].id
           }
-        ], 
+        ],
         function(err, apps) {
           if (err) {
             console.log('Error creating apps: ', err);
@@ -86,7 +87,7 @@ module.exports = function(application) {
 
     User.create(
       { fname: 'Jonh', lname: 'Doe', email: 'jonh@gmail.com', password: '123456' }
-    , 
+    ,
     function(err, user) {
 
       console.log('USERS');
@@ -104,13 +105,13 @@ module.exports = function(application) {
 
         if (accounts.length === 0) {
           console.log('No accounts: ', accounts);
-          return; 
+          return;
         }
 
         console.log('Accounts: ', accounts);
 
         accounts[0].apps.create([
-          { 
+          {
             name: "App 3",
             appid: "234",
             slack_api_token: "xxx",
@@ -121,7 +122,7 @@ module.exports = function(application) {
             room_prefix: "sp-",
             accountId: accounts[0].id
           },
-          { 
+          {
             name: "App 4",
             appid: "dfe3",
             slack_api_token: "yyy",
@@ -132,7 +133,7 @@ module.exports = function(application) {
             room_prefix: "xp-",
             accountId: accounts[0].id
           }
-        ], 
+        ],
         function(err, apps) {
           if (err) {
             console.log('Error creating apps: ', err);
@@ -145,7 +146,7 @@ module.exports = function(application) {
 
     // TODO: It does not work! The account is only created after...
     /*
-    
+
     */
   });
 };
