@@ -9,7 +9,6 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-minify-html'),
     loopbackAngular = require('gulp-loopback-sdk-angular'),
-    app = require('./server/server'),
     protractor = require("gulp-protractor").protractor,
     webdriver_update = require('gulp-protractor').webdriver_update;
     instance = undefined;
@@ -119,6 +118,7 @@ gulp.task('default', ['build', 'livereload', 'watch']);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('start-local-server', function(){
+    var app = require('./server/server')
     instance = app.start();
 });
 
