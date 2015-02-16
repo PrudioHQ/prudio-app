@@ -20,6 +20,7 @@
     "gulp-uglify": "^1.0.1",
     "gulp-usemin": "^0.3.7",
     "gulp-watch": "^0.6.9",
+    "gulp-protractor": "0.0.12",
     "lb-connector-mandrill": "0.0.3",
     "loopback": "^2.8.0",
     "loopback-boot": "^2.4.0",
@@ -36,7 +37,6 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "gulp-protractor": "0.0.12",
     "jshint": "^2.5.6",
     "loopback-testing": "^1.0.5",
     "mocha": "^2.1.0",
