@@ -118,7 +118,7 @@ gulp.task('default', ['build', 'livereload', 'watch']);
 gulp.task('webdriver_update', webdriver_update);
 
 gulp.task('start-local-server', function(){
-    var app = require('./server/server')
+    var app = require('./server/server');
     instance = app.start();
 });
 
