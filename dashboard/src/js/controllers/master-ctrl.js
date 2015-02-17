@@ -34,8 +34,9 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
     };
 
     $scope.logout = function() {
-        User.logout();
-        $state.go('auth.login', {}, { location: true });
+        User.logout(function() {
+            $state.go('auth.login', {}, { location: true });
+        });
     };
 
     $scope.applications = [];
@@ -64,21 +65,21 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
 
     $scope.authSlack = function() {
 
-        User.getCurrent(function(user, req, err) { 
+        User.getCurrent(function(user, req, err) {
 
             if(err) {
                 console.log("Error: ", err);
-                return; 
+                return;
             }
-            
-            $window.location.href = SlackService.url + 
+
+            $window.location.href = SlackService.url +
                         '?client_id' + '=' + SlackService.clientId +
-                        '&scope=' + SlackService.scope + 
+                        '&scope=' + SlackService.scope +
                         '&redirect_uri=' + location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/auth/slack' +
                         '&state=' + user.id + '.' + user.defaultAccountId;
 
         });
-        
+
     };
 
     window.onresize = function() {

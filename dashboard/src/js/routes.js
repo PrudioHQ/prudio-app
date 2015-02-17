@@ -12,12 +12,12 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
           }
           function error(response) {
             if (response.status === 401) {
-              console.log("Got a 401!");
-              $location.nextAfterLogin = $location.path();
-              $injector.get('User').logout();
-              //$injector.get('$state').transitionTo('auth.login');
-              $injector.get('$state').go('auth.login', {}, {location: true});
+              var LoopBackAuth = $injector.get('LoopBackAuth');
 
+              LoopBackAuth.clearUser();
+              LoopBackAuth.clearStorage();
+
+              $injector.get('$state').go('auth.login', {}, {location: true});
               return $q.reject(response);
             } else {
               return $q.reject(response);
