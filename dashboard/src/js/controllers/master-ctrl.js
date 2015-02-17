@@ -43,27 +43,35 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
     $scope.accounts = [];
     $scope.user = {};
 
-    User.getCurrent(function(user, req, err) {
+    $scope.retrieveAccounts = function() {
+        User.getCurrent(function(user, req, err) {
 
-        $scope.user = user;
+            $scope.user = user;
+            $scope.applications = [];
+            $scope.accounts = [];
 
-        User.accounts({ id: user.id }, function(accounts, req, err) {
-            for (var i = accounts.length - 1; i >= 0; i--) {
-                var account = accounts[i];
+            User.accounts({ id: user.id }, function(accounts, req, err) {
+                for (var i = accounts.length - 1; i >= 0; i--) {
+                    var account = accounts[i];
 
-                Account.apps({ id: account.id }, function(apps, req, err) {
-                    for (var j = apps.length - 1; j >= 0; j--) {
-                        var app = apps[j];
-                        $scope.applications.push(app);
-                    }
-                });
+                    Account.apps({ id: account.id }, function(apps, req, err) {
+                        for (var j = apps.length - 1; j >= 0; j--) {
+                            var app = apps[j];
+                            $scope.applications.push(app);
+                        }
+                    });
 
-                $scope.accounts.push(account);
-            };
-
-            $scope.$apply();
+                    $scope.accounts.push(account);
+                };
+            });
         });
+    }
+
+    $scope.$on('retrieveAccounts', function(event, data) {
+        $scope.retrieveAccounts();
     });
+
+    $scope.retrieveAccounts();
 
     $scope.authSlack = function() {
 
