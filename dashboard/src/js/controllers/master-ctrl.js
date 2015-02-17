@@ -60,6 +60,8 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
 
                 $scope.accounts.push(account);
             };
+
+            $scope.$apply();
         });
     });
 

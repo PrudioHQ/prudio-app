@@ -49,15 +49,25 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
                     controller: 'MasterCtrl'
                 })
                 .state('master.settings', {
-                  templateUrl: 'templates/settings.html'
+                    url: '/settings',
+                    templateUrl: 'templates/settings/settings.html'
                 })
                 .state('master.settingsAccount', {
                     url: '/settings/account',
                     templateUrl: 'templates/settings/my-account.html'
                 })
+                .state('master.settingsSubscriptions', {
+                    url: '/settings/subscriptions',
+                    templateUrl: 'templates/settings/subscriptions.html'
+                })
                 .state('master.accountSwitch', {
                     url: '/account/:accountId/switch',
                     controller: 'accountSwitchCtrl'
+                })
+                .state('master.listApps', {
+                    url: '/apps',
+                    controller: 'listAppsCtrl',
+                    templateUrl: 'templates/apps/list.html'
                 })
                 .state('master.authorized', {
                     url: '/authorized',

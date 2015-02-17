@@ -4,14 +4,14 @@
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation"><a aria-controls="profile" role="tab" data-toggle="tab">General Settings</a></li>
-				<li role="presentation" class="active"><a aria-controls="home" role="tab" data-toggle="tab">My account</a></li>
-				<li role="presentation"><a aria-controls="messages" role="tab" data-toggle="tab">Subscriptions</a></li>
+				<li><a href="#/settings" role="tab" data-toggle="tab">General Settings</a></li>
+				<li class="active"><a role="tab" data-toggle="tab">My account</a></li>
+				<li><a href="#/settings/subscriptions" role="tab" data-toggle="tab">Subscriptions</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="home">
+				<div role="tabpanel" class="tab-pane active">
 					<div class="panel panel-default" style="border-top: 0; border-top-left-radius: 0; border-top-right-radius: 0;">
 						<div class="panel-body">
 							<h3>Change password</h3>
@@ -26,7 +26,7 @@
 								<div class="checkbox">
 									<label for="showPass"><input type="checkbox" id="showPass" name="showPass" ng-model="showpass"/>Show password</label>
 								</div>
-								
+
 								<button type="submit" class="btn btn-default">Change my password</button>
 							</form>
 							</div>
@@ -34,21 +34,12 @@
 							<h3>Close my account</h3>
 							<hr>
 							<button type="submit" class="btn btn-danger" disabled="disabled">Close now</button>
-						    <p class="help-block">There is no turning back.</p>
+							<p class="help-block">There is no turning back.</p>
 						</div>
 					</div>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="profile">...</div>
-				<div role="tabpanel" class="tab-pane" id="messages">...</div>
 			</div>
 
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-	$('.na a').click(function (e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
-</script>

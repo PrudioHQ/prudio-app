@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="apps" ng-repeat="application in applications">
+            <div class="row">
+                <div class="col-lg-12">
+                       <rd-widget>
+                           <rd-widget-header title="{{ application.name }}">
+                               <i class="fa fa-circle right"></i>
+                           </rd-widget-header>
+                           <rd-widget-body classes="no-padding">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><small>{{ application.room_count }} converstations</small></td>
+                                            <td><small style="text-align: right">Created <span am-time-ago="application.createdAt"></span></small></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                           </rd-widget-body>
+                       </rd-widget>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
