@@ -1,1 +1,1 @@
-web: slc run
+web: node server/server.js
