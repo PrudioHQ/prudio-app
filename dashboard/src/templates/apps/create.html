@@ -22,10 +22,13 @@
                                     <option ng-repeat="token in tokens" value="{{ token.id }}">Token for team {{ token.team }} ({{ token.user }})</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="bot_token">Bot token</label>
-                                <input type="text" class="form-control" id="bot_token" placeholder="Enter bot token">
+                            <div class="form-group" ng-if="bots.length > 0">
+                                <label for="bot_token">Choose your bot user</label>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="bot in bots"><input type="radio" name="bot_user" value="{{ bot.id }}"> - {{ bot.name }}</li>
+                                </ul>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Create</button>
                        </form>
                    </rd-widget-body>

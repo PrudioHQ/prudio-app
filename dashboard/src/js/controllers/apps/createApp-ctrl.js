@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('createAppCtrl', ['$scope', '$http', 'User', 'Account', createAppCtrl]);
+    .controller('createAppCtrl', ['$scope', '$filter', 'User', 'Account', createAppCtrl]);
 
-function createAppCtrl($scope, $http, User, Account) {
+function createAppCtrl($scope, $filter, User, Account) {
 
     var url = "https://slack.com/api/users.list";
 
@@ -27,7 +27,7 @@ function createAppCtrl($scope, $http, User, Account) {
     $scope.getBots = function(token) {
         console.log(token);
         Account.listSlackMembers({ id: $scope.user.defaultAccountId, fk: token }, function(members, req, err) {
-            console.log("Members: ", members);
+            $scope.bots = $filter('filter')(members.result, { is_bot: true });
         })
     };
 
