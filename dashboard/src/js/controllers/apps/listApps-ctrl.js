@@ -1,5 +1,5 @@
 /**
- * Master Controller
+ * listApps Controller
  */
 
 angular.module('RDash')

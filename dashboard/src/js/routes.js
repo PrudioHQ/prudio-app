@@ -69,6 +69,11 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
                     controller: 'listAppsCtrl',
                     templateUrl: 'templates/apps/list.html'
                 })
+                .state('master.createApp', {
+                    url: '/app/create',
+                    controller: 'createAppCtrl',
+                    templateUrl: 'templates/apps/create.html'
+                })
                 .state('master.authorized', {
                     url: '/authorized',
                     templateUrl: 'templates/authorized.html',
