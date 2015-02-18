@@ -11,6 +11,24 @@
       "type": "string",
       "required": true
     },
+    "scope": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "team": {
+      "type": "string"
+    },
+    "user": {
+      "type": "string"
+    },
+    "teamId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
     "created": {
       "type": "date"
     },
