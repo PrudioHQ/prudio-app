@@ -1,11 +1,11 @@
-module.exports = function(ExternalProviderToken) {
+module.exports = function(externalProviderToken) {
 
-	ExternalProviderToken.beforeUpdate = function(next, ept) {
+	externalProviderToken.beforeUpdate = function(next, ept) {
 		ept.modified = new Date();
 		next();
 	}
 
-	ExternalProviderToken.beforeCreate = function(next, ept) {
+	externalProviderToken.beforeCreate = function(next, ept) {
 		ept.created = new Date();
 		ept.modified = new Date();
 		next();
