@@ -18,8 +18,8 @@
                             <input ng-if="tokens.length == 1" type="hidden" name="api_token" value="{{ tokens[0].token }}">
                             <div ng-if="tokens.length > 1" class="form-group">
                                 <label for="api_token">Token</label>
-                                <select class="form-control" name="api_token" ng-click="getBots(token.token)">
-                                    <option ng-repeat="token in tokens" value="{{ token.token }}">Token for team {{ token.team }} ({{ token.user }})</option>
+                                <select class="form-control" name="api_token" ng-model="selection.item" ng-change="getBots(selection.item)">
+                                    <option ng-repeat="token in tokens" value="{{ token.id }}">Token for team {{ token.team }} ({{ token.user }})</option>
                                 </select>
                             </div>
                             <div class="form-group">
