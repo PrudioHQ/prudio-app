@@ -27,7 +27,7 @@ function createAppCtrl($scope, $filter, User, Account) {
     $scope.getBots = function(token) {
         console.log(token);
         Account.listSlackMembers({ id: $scope.user.defaultAccountId, fk: token }, function(members, req, err) {
-            $scope.bots = $filter('filter')(members.result, { is_bot: true });
+            $scope.bots = $filter('filter')(members.result, { is_bot: true, deleted: false });
         })
     };
 

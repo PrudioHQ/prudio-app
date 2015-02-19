@@ -10,7 +10,7 @@
                        <div ng-if="tokens.length < 1" class="alert alert-info" role="alert">
                           <p>You have no tokens in this account! <a ng-click="$parent.authSlack()">Click here</a> to authorize Prud.io in your account.</p>
                        </div>
-                       <form ng-if="tokens.length > 0">
+                       <form ng-if="tokens.length > 0" name="createApp">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter name">
@@ -22,11 +22,18 @@
                                     <option ng-repeat="token in tokens" value="{{ token.id }}">Token for team {{ token.team }} ({{ token.user }})</option>
                                 </select>
                             </div>
-                            <div class="form-group" ng-if="bots.length > 0">
-                                <label for="bot_token">Choose your bot user</label>
+                            <div ng-if="bots.length > 0" class="form-group">
+                                <label for="bot_token">Choose your bot user (show only when user selects token)</label>
                                 <ul class="list-group">
                                     <li class="list-group-item" ng-repeat="bot in bots"><input type="radio" name="bot_user" value="{{ bot.id }}"> - {{ bot.name }}</li>
                                 </ul>
+                            </div>
+                            <div ng-if="bots.length == 0" class="alert alert-info" role="alert">
+                               <p>You have no bot users in your team!</p>
+                            </div>
+                            <div ng-hide="createApp.bot_user" class="form-group">
+                                <label for="name">Bot Token (show only when user select bot)</label>
+                                <input type="text" class="form-control" id="token" placeholder="xoxb-...">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Create</button>
