@@ -12,6 +12,7 @@ function createAppCtrl($scope, $filter, User, Account) {
     $scope.user   = {};
     $scope.tokens = [];
     $scope.bots   = [];
+    $scope.users  = [];
 
     User.getCurrent(function(user, req, err) {
         $scope.user = user;
@@ -24,10 +25,10 @@ function createAppCtrl($scope, $filter, User, Account) {
     });
 
 
-    $scope.getBots = function(token) {
-        console.log(token);
+    $scope.getMembers = function(token) {
         Account.listSlackMembers({ id: $scope.user.defaultAccountId, fk: token }, function(members, req, err) {
-            $scope.bots = $filter('filter')(members.result, { is_bot: true, deleted: false });
+            $scope.bots  = $filter('filter')(members.result, { is_bot: true, deleted: false });
+            $scope.users = $filter('filter')(members.result, { is_bot: false, deleted: false });
         })
     };
 

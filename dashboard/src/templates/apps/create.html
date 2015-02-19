@@ -13,19 +13,21 @@
                        <form ng-if="tokens.length > 0" name="createApp">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
                             </div>
                             <input ng-if="tokens.length == 1" type="hidden" name="api_token" value="{{ tokens[0].token }}">
                             <div ng-if="tokens.length > 1" class="form-group">
                                 <label for="api_token">Token</label>
-                                <select class="form-control" name="api_token" ng-model="selection.item" ng-change="getBots(selection.item)">
+                                <select class="form-control" name="api_token" ng-model="selection.item" ng-change="getMembers(selection.item)">
                                     <option ng-repeat="token in tokens" value="{{ token.id }}">Token for team {{ token.team }} ({{ token.user }})</option>
                                 </select>
                             </div>
                             <div ng-if="bots.length > 0" class="form-group">
-                                <label for="bot_token">Choose your bot user (show only when user selects token)</label>
+                                <label for="bot_token">Choose your bot user (show only when user selects token and bots > 0 else show warning)</label>
                                 <ul class="list-group">
-                                    <li class="list-group-item" ng-repeat="bot in bots"><input type="radio" name="bot_user" value="{{ bot.id }}"> - {{ bot.name }}</li>
+                                    <li class="list-group-item" ng-repeat="bot in bots">
+                                        <input type="radio" name="bot_user" value="{{ bot.id }}"> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
+                                    </li>
                                 </ul>
                             </div>
                             <div ng-if="bots.length == 0" class="alert alert-info" role="alert">
@@ -33,7 +35,16 @@
                             </div>
                             <div ng-hide="createApp.bot_user" class="form-group">
                                 <label for="name">Bot Token (show only when user select bot)</label>
-                                <input type="text" class="form-control" id="token" placeholder="xoxb-...">
+                                <input type="text" class="form-control" id="token" placeholder="xoxb-..." required>
+                            </div>
+
+                            <div ng-if="bots.length > 0" class="form-group">
+                                <label for="bot_token">Choose which user should we invite</label>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="user in users">
+                                        <input type="radio" name="user" value="{{ user.id }}"> &nbsp; <img class="img-circle" alt="{{ user.name }}" title="{{ user.profile.real_name || user.name }}" ng-src="{{ user.profile.image_24 }}"> {{ user.profile.real_name || user.name }}
+                                    </li>
+                                </ul>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Create</button>
