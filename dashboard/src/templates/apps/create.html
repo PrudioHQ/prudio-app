@@ -10,31 +10,31 @@
                        <div ng-if="tokens.length < 1" class="alert alert-info" role="alert">
                           <p>You have no tokens in this account! <a ng-click="$parent.authSlack()">Click here</a> to authorize Prud.io in your account.</p>
                        </div>
-                       <form ng-if="tokens.length > 0" name="createApp">
+                       <form ng-if="tokens.length > 0">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter name" required>
                             </div>
-                            <input ng-if="tokens.length == 1" type="hidden" name="api_token" value="{{ tokens[0].token }}">
-                            <div ng-if="tokens.length > 1" class="form-group">
-                                <label for="api_token">Token</label>
-                                <select class="form-control" name="api_token" ng-model="selection.item" ng-change="getMembers(selection.item)">
-                                    <option ng-repeat="token in tokens" value="{{ token.id }}">Token for team {{ token.team }} ({{ token.user }})</option>
-                                </select>
+                            <div ng-show="tokens.length > 1" class="form-group">
+                                <label for="api_token">Team token {{ selectedToken.name || '' }}</label>
+                                <select class="form-control" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
                             </div>
                             <div ng-if="bots.length > 0" class="form-group">
-                                <label for="bot_token">Choose your bot user (show only when user selects token and bots > 0 else show warning)</label>
+                                <label for="bot_token">Choose your bot user</label>
                                 <ul class="list-group">
                                     <li class="list-group-item" ng-repeat="bot in bots">
-                                        <input type="radio" name="bot_user" value="{{ bot.id }}"> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
+                                        <input type="radio" name="bot_user" ng-value="{{ bot }}" ng-model="$parent.$parent.selectedBot" required> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
                                     </li>
                                 </ul>
+
                             </div>
+
                             <div ng-if="bots.length == 0" class="alert alert-info" role="alert">
                                <p>You have no bot users in your team!</p>
                             </div>
-                            <div ng-hide="createApp.bot_user" class="form-group">
-                                <label for="name">Bot Token (show only when user select bot)</label>
+
+                            <div ng-show="selectedBot" class="form-group">
+                                <label for="name">Token for {{ selectedBot.profile.real_name || selectedBot.name ||  'Bot' }} </label>
                                 <input type="text" class="form-control" id="token" placeholder="xoxb-..." required>
                             </div>
 
@@ -42,7 +42,7 @@
                                 <label for="bot_token">Choose which user should we invite</label>
                                 <ul class="list-group">
                                     <li class="list-group-item" ng-repeat="user in users">
-                                        <input type="radio" name="user" value="{{ user.id }}"> &nbsp; <img class="img-circle" alt="{{ user.name }}" title="{{ user.profile.real_name || user.name }}" ng-src="{{ user.profile.image_24 }}"> {{ user.profile.real_name || user.name }}
+                                        <input type="radio" name="user" value="{{ user.id }}" required> &nbsp; <img class="img-circle" alt="{{ user.name }}" title="{{ user.profile.real_name || user.name }}" ng-src="{{ user.profile.image_24 }}"> {{ user.profile.real_name || user.name }}
                                     </li>
                                 </ul>
                             </div>
