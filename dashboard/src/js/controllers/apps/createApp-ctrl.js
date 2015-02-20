@@ -9,13 +9,16 @@ function createAppCtrl($scope, $filter, User, Account) {
 
     var url = "https://slack.com/api/users.list";
 
-    $scope.user   = {};
-    $scope.tokens = [];
-    $scope.bots   = [];
-    $scope.users  = [];
+    $scope.user     = {};
+    $scope.tokens   = [];
+    $scope.bots     = [];
+    $scope.users    = [];
+    $scope.channels = [];
 
     $scope.selectedToken = null;
     $scope.selectedBot   = null;
+    $scope.selectedUser  = null;
+    $scope.botToken      = '';
 
     User.getCurrent(function(user, req, err) {
         $scope.user = user;
@@ -34,6 +37,13 @@ function createAppCtrl($scope, $filter, User, Account) {
     });
 
 
+    $scope.getChannels = function(token) {
+        Account.listSlackChannels({ id: $scope.user.defaultAccountId, fk: token }, function(channels, req, err) {
+            $scope.channels = $filter('filter')(channels.result, { is_channel: true, is_archived: false });
+        });
+    };
+
+
     $scope.getMembers = function(token) {
         Account.listSlackMembers({ id: $scope.user.defaultAccountId, fk: token }, function(members, req, err) {
             $scope.bots  = $filter('filter')(members.result, { is_bot: true, deleted: false });
@@ -41,7 +51,7 @@ function createAppCtrl($scope, $filter, User, Account) {
 
             // Add the option to don't have a user automatically added
             $scope.users.push({ id: 0, name: "none", profile : { real_name: 'Don\'t add any', image_24: 'https://slack.global.ssl.fastly.net/8390/img/avatars/ava_0009-24.png' }});
-        })
+        });
     };
 
 

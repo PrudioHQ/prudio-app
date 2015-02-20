@@ -1855,6 +1855,42 @@ module.factory(
           method: "GET"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#listSlackChannels
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * List Slack channels from token
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `id` – `{*}` - PersistedModel id
+         *
+         *  - `fk` – `{*}` - Foreign key for externalProviderTokens
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `success` – `{boolean=}` - 
+         *
+         *  - `result` – `{mixed=}` - 
+         */
+        "listSlackChannels": {
+          url: urlBase + "/accounts/:id/externalProviderTokens/:fk/listSlackChannels",
+          method: "GET"
+        },
+
         // INTERNAL. Use User.accounts.findById() instead.
         "::findById::user::accounts": {
           url: urlBase + "/users/:id/accounts/:fk",
