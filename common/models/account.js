@@ -68,4 +68,50 @@ module.exports = function(Account) {
 		}
 	);
 
+	/*
+	* listSlackChannels method
+	*
+	*/
+	Account.listSlackChannels = function(id, fk, next) {
+
+		this.app.models.externalProviderToken.findById(fk, function(err, token) {
+			if (err) {
+				return next(err);
+				// Maybe it's not the best solution...
+			} else if (!token || token.accountId.toString() !== id) {
+				return next(new Error('externalProviderToken not found!'));
+			}
+
+			var url = "https://slack.com/api/channels.list";
+
+			request
+				.post({url: url, form: { token: token.token, exclude_archived: true }, json: true }, function (error, response, body) {
+					if (error) {
+						return next(null, false, error);
+					}
+
+					return next(null, body.ok, body.channels);
+				})
+				.on('error', function(err) {
+					console.log(err);
+				});
+		});
+	}
+
+	Account.remoteMethod(
+		'listSlackChannels',
+		{
+			description: "List Slack channels from token",
+			accepts: [
+				{arg: 'id', type: 'any', required: true, description: 'PersistedModel id'},
+				{arg: 'fk', type: 'any', required: true, description: 'Foreign key for externalProviderTokens'}
+			],
+			http: {path: '/:id/externalProviderTokens/:fk/listSlackChannels', verb: 'get'},
+			returns: [
+				{arg: 'success', type: 'boolean'},
+				{arg: 'result', type: 'mixed'}
+			]
+		}
+	);
+
 };
