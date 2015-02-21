@@ -43,6 +43,11 @@
       "type": "string",
       "required": true
     },
+    "notifyChannel": {
+      "type": "string",
+      "required": true,
+      "default": "#general"
+    },
     "roomCount": {
       "type": "number",
       "required": true,
