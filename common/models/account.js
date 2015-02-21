@@ -114,4 +114,41 @@ module.exports = function(Account) {
 		}
 	);
 
+	/*
+	* listSlackChannels method
+	*
+	*/
+	Account.testSlackToken = function(token, next) {
+
+		var url = "https://slack.com/api/auth.test";
+
+		request
+			.post({url: url, form: { token: token }, json: true }, function (error, response, body) {
+				if (error) {
+					return next(null, false, error);
+				}
+
+				return next(null, body.ok, body);
+			})
+			.on('error', function(err) {
+				console.log(err);
+			});
+
+	}
+
+	Account.remoteMethod(
+		'testSlackToken',
+		{
+			description: "List Slack channels from token",
+			accepts: [
+				{arg: 'token', type: 'any', required: true, description: 'Slack Token'},
+			],
+			http: {path: '/testSlackToken', verb: 'get'},
+			returns: [
+				{arg: 'success', type: 'boolean'},
+				{arg: 'result', type: 'mixed'}
+			]
+		}
+	);
+
 };
