@@ -3,27 +3,32 @@
  */
 
 angular.module('RDash')
-    .controller('createAppCtrl', ['$scope', '$filter', 'User', 'Account', createAppCtrl]);
+    .controller('createAppCtrl', ['$scope', '$filter', '$timeout', 'notificationService', 'User', 'Account', createAppCtrl]);
 
-function createAppCtrl($scope, $filter, User, Account) {
-
-    var url = "https://slack.com/api/users.list";
+function createAppCtrl($scope, $filter, $timeout, notificationService, User, Account) {
 
     $scope.user     = {};
+    $scope.account  = {};
     $scope.tokens   = [];
     $scope.bots     = [];
     $scope.users    = [];
     $scope.channels = [];
 
-    $scope.selectedToken = null;
-    $scope.selectedBot   = null;
-    $scope.selectedUser  = null;
-    $scope.botToken      = '';
+    $scope.name            = 'teste';
+    $scope.isDisabled      = true;
+    $scope.selectedToken   = null;
+    $scope.selectedBot     = null;
+    $scope.selectedUser    = null;
+    $scope.selectedChannel = null;
+    $scope.botToken        = 'xoxb-teste';
 
     User.getCurrent(function(user, req, err) {
         $scope.user = user;
 
         Account.findById({ id: user.defaultAccountId }, function(account, req, err) {
+
+            $scope.account = account;
+
             Account.prototype$__get__externalProviderTokens({ id: account.id }, function(tokens, req, err) {
                 $scope.tokens = tokens;
 
@@ -43,7 +48,6 @@ function createAppCtrl($scope, $filter, User, Account) {
         });
     };
 
-
     $scope.getMembers = function(token) {
         Account.listSlackMembers({ id: $scope.user.defaultAccountId, fk: token }, function(members, req, err) {
             $scope.bots  = $filter('filter')(members.result, { is_bot: true, deleted: false });
@@ -54,5 +58,38 @@ function createAppCtrl($scope, $filter, User, Account) {
         });
     };
 
+    $scope.confirmToken = function(token) {
+        Account.testSlackToken({ token: token }, function(result, req, err) {
+            console.log(result);
+        });
+    };
 
+    $scope.create = function(selectedBot, selectedUser, selectedChannel) {
+        $scope.isSaving = true;
+
+        var application = {
+            "name": $scope.name,
+            "slackApiToken": $scope.selectedToken.token,
+            "slackBotToken": $scope.botToken,
+            "slackInviteUser": selectedUser.id,
+            "slackInviteBot": selectedBot.id,
+            "notifyChannel": selectedChannel.id,
+            "roomCount": 0,
+            "roomPrefix": "sp-",
+            "accountId": $scope.account.id
+        };
+
+        Account.apps.create({ id: $scope.account.id }, application, function(app, err) {
+
+            if (err) {
+                notificationService.error("Ups! We couldn't save your app!");
+                $scope.isSaving = false;
+                return;
+            }
+
+            notificationService.success("You have created the app!!! Your code: " + app.appId + ".");
+
+        });
+
+    };
 }

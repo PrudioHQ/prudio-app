@@ -195,7 +195,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -312,7 +312,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__accessTokens": {
           url: urlBase + "/users/:id/accessTokens/count",
@@ -554,9 +554,9 @@ module.factory(
          *
          * The response body contains properties of the AccessToken created on login.
          * Depending on the value of `include` parameter, the body may contain additional properties:
-         * 
+         *
          *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
-         * 
+         *
          *
          */
         "login": {
@@ -629,11 +629,11 @@ module.factory(
          *
          * @param {Object=} parameters Request parameters.
          *
-         *  - `uid` – `{string}` - 
+         *  - `uid` – `{string}` -
          *
-         *  - `token` – `{string}` - 
+         *  - `token` – `{string}` -
          *
-         *  - `redirect` – `{string}` - 
+         *  - `redirect` – `{string}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -703,9 +703,9 @@ module.factory(
          *
          * @param {Object} postData Request data.
          *
-         *  - `accessToken` – `{string=}` - 
+         *  - `accessToken` – `{string=}` -
          *
-         *  - `password` – `{string=}` - 
+         *  - `password` – `{string=}` -
          *
          * @param {function(Object,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -719,7 +719,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `result` – `{boolean=}` - 
+         *  - `result` – `{boolean=}` -
          */
         "passwordUpdate": {
           url: urlBase + "/users/passwordUpdate",
@@ -999,7 +999,7 @@ module.factory(
          *
          *  - `id` – `{*}` - User id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -1049,7 +1049,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.accounts.count = function() {
           var TargetResource = $injector.get("Account");
@@ -1595,7 +1595,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -1712,7 +1712,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         "prototype$__count__externalProviderTokens": {
           url: urlBase + "/accounts/:id/externalProviderTokens/count",
@@ -1846,9 +1846,9 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `success` – `{boolean=}` - 
+         *  - `success` – `{boolean=}` -
          *
-         *  - `result` – `{mixed=}` - 
+         *  - `result` – `{mixed=}` -
          */
         "listSlackMembers": {
           url: urlBase + "/accounts/:id/externalProviderTokens/:fk/listSlackMembers",
@@ -1882,12 +1882,46 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `success` – `{boolean=}` - 
+         *  - `success` – `{boolean=}` -
          *
-         *  - `result` – `{mixed=}` - 
+         *  - `result` – `{mixed=}` -
          */
         "listSlackChannels": {
           url: urlBase + "/accounts/:id/externalProviderTokens/:fk/listSlackChannels",
+          method: "GET"
+        },
+
+        /**
+         * @ngdoc method
+         * @name lbServices.Account#testSlackToken
+         * @methodOf lbServices.Account
+         *
+         * @description
+         *
+         * List Slack channels from token
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *  - `token` – `{*}` - Slack Token
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `success` – `{boolean=}` -
+         *
+         *  - `result` – `{mixed=}` -
+         */
+        "testSlackToken": {
+          url: urlBase + "/accounts/testSlackToken",
           method: "GET"
         },
 
@@ -2049,7 +2083,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2099,7 +2133,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.users.count = function() {
           var TargetResource = $injector.get("User");
@@ -2421,7 +2455,7 @@ module.factory(
          *
          *  - `id` – `{*}` - PersistedModel id
          *
-         *  - `filter` – `{object=}` - 
+         *  - `filter` – `{object=}` -
          *
          * @param {function(Array.<Object>,Object)=} successCb
          *   Success callback with two arguments: `value`, `responseHeaders`.
@@ -2471,7 +2505,7 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `count` – `{number=}` - 
+         *  - `count` – `{number=}` -
          */
         R.apps.count = function() {
           var TargetResource = $injector.get("App");
@@ -2743,9 +2777,9 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `success` – `{boolean=}` - 
+         *  - `success` – `{boolean=}` -
          *
-         *  - `result` – `{mixed=}` - 
+         *  - `result` – `{mixed=}` -
          */
         "connect": {
           url: urlBase + "/apps/:id/connect",
@@ -2777,9 +2811,9 @@ module.factory(
          *
          * Data properties:
          *
-         *  - `success` – `{boolean=}` - 
+         *  - `success` – `{boolean=}` -
          *
-         *  - `result` – `{mixed=}` - 
+         *  - `result` – `{mixed=}` -
          */
         "disconnect": {
           url: urlBase + "/apps/:id/disconnect",

@@ -10,20 +10,20 @@
                        <div ng-if="tokens.length < 1" class="alert alert-info" role="alert">
                           <p>You have no tokens in this account! <a ng-click="$parent.authSlack()">Click here</a> to authorize Prud.io in your account.</p>
                        </div>
-                       <form ng-if="tokens.length > 0">
+                       <form name="createApp" ng-if="tokens.length > 0" ng-submit="create(selectedBot, selectedUser, selectedChannel)">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                                <input type="text" ng-model="name" ng-disabled="isSaving" class="form-control" id="name" placeholder="Enter name" required>
                             </div>
                             <div ng-show="tokens.length > 1" class="form-group">
                                 <label for="api_token">Team token {{ selectedToken.name || '' }}</label>
-                                <select class="form-control" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
+                                <select class="form-control" ng-disabled="isSaving" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
                             </div>
                             <div ng-if="bots.length > 0" class="form-group">
-                                <label for="bot_token">Choose your bot user <a class="btn btn-default btn-xs" ng-click="getMembers(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
+                                <label for="botUser">Choose your bot user <a class="btn btn-default btn-xs" ng-click="getMembers(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
                                 <ul class="list-group" style="max-height: 250px; overflow: auto">
                                     <li class="list-group-item" ng-repeat="bot in bots">
-                                        <input type="radio" name="bot_user" ng-value="{{ bot }}" ng-model="$parent.$parent.selectedBot" required> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
+                                        <input type="radio" ng-disabled="isSaving" name="botUser" ng-value="{{ bot }}" ng-model="$parent.$parent.selectedBot" required> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
                                     </li>
                                 </ul>
 
@@ -34,29 +34,29 @@
                             </div>
 
                             <div ng-show="selectedBot" class="form-group">
-                                <label for="name">Token for {{ selectedBot.profile.real_name || selectedBot.name ||  'Bot' }} </label>
-                                <input type="text" class="form-control" id="token" ng-model="botToken" placeholder="xoxb-..." required>
+                                <label for="botToken">Token for {{ selectedBot.profile.real_name || selectedBot.name ||  'Bot' }} </label>
+                                <input type="text" ng-disabled="isSaving" class="form-control" id="botToken" ng-model="botToken" placeholder="xoxb-..." required>
                             </div>
 
                             <div ng-show="botToken.indexOf('xoxb-') == 0" ng-if="bots.length > 0" class="form-group">
                                 <label for="user">Choose which user should we invite <a class="btn btn-default btn-xs" ng-click="getMembers(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
                                 <ul class="list-group" style="max-height: 250px; overflow: auto">
                                     <li class="list-group-item" ng-repeat="user in users">
-                                        <input type="radio" name="user" ng-model="$parent.$parent.$parent.selectedUser" ng-change="getChannels(selectedToken.id)" ng-value="{{ user }}" required> &nbsp; <img class="img-circle" alt="{{ user.name }}" title="{{ user.profile.real_name || user.name }}" ng-src="{{ user.profile.image_24 }}"> {{ user.profile.real_name || user.name }}
+                                        <input type="radio" name="user" ng-disabled="isSaving" ng-model="$parent.$parent.selectedUser" ng-change="getChannels(selectedToken.id)" ng-value="{{ user }}" required> &nbsp; <img class="img-circle" alt="{{ user.name }}" title="{{ user.profile.real_name || user.name }}" ng-src="{{ user.profile.image_24 }}"> {{ user.profile.real_name || user.name }}
                                     </li>
                                 </ul>
                             </div>
 
                             <div ng-show="selectedUser" class="form-group">
-                                <label for="bot_token">Choose which channel we should notify <a class="btn btn-default btn-xs" ng-click="getChannels(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
+                                <label for="channel">Choose which channel we should notify <a class="btn btn-default btn-xs" ng-click="getChannels(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
                                 <ul class="list-group" style="max-height: 250px; overflow: auto">
                                     <li class="list-group-item" ng-repeat="channel in channels">
-                                        <input type="radio" name="channel" value="{{ channel.id }}" required> &nbsp; #{{ channel.name || channel.name }}
+                                        <input type="radio" name="channel" ng-disabled="isSaving" ng-model="$parent.$parent.selectedChannel" ng-value="{{ channel }}" required> &nbsp; #{{ channel.name || channel.name }}
                                     </li>
                                 </ul>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary" ng-model="submit" ng-disabled="createApp.$invalid || isSaving">Create</button>
                        </form>
                    </rd-widget-body>
                 </rd-widget>
