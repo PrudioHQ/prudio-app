@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('createAppCtrl', ['$scope', '$filter', '$timeout', 'notificationService', 'User', 'Account', createAppCtrl]);
+    .controller('createAppCtrl', ['$scope', '$filter', '$timeout', '$modal', 'notificationService', 'User', 'Account', createAppCtrl]);
 
-function createAppCtrl($scope, $filter, $timeout, notificationService, User, Account) {
+function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, User, Account) {
 
     $scope.user     = {};
     $scope.account  = {};
@@ -86,6 +86,23 @@ function createAppCtrl($scope, $filter, $timeout, notificationService, User, Acc
                 $scope.isSaving = false;
                 return;
             }
+
+            var modalInstance = $modal.open({
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
 
             notificationService.success("You have created the app!!! Your code: " + app.appId + ".");
 

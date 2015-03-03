@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <div class="apps" ng-repeat="application in applications">
+        <div class="apps">
             <div class="row">
                 <div class="col-lg-12">
                        <rd-widget>
@@ -12,7 +12,17 @@
                               <table class="table" style="margin-bottom: 0">
                                   <tbody>
                                       <tr>
-                                        <td colspan="2"><a href="#/app/{{ application.id }}">Try it out</a></td>
+                                        <td colspan="2">
+                                          AppId: <strong>{{ application.appId }}</strong>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2">
+                                          Use this code in your website:
+                                          <pre>&#x3C;script src=&#x22;http://chat.prud.io/client.js?appid={{ application.appId }}&#x22; async&#x3E;&#x3C;/script&#x3E;</pre>
+                                          Find out more options in our <a href="#">docs</a>.
+                                        </td>
+
                                       </tr>
                                       <tr>
                                           <td><small>{{ application.roomCount || 0 }} converstations</small></td>
@@ -23,6 +33,18 @@
                             </div>
                            </rd-widget-body>
                        </rd-widget>
+
+                      <!-- THIS IS PRUD.IO 
+                      <script src="http://chat.prud.io/client.js?appid={{ application.appId }}" async></script>
+                      <script>
+
+                        window._PrudioSettings = {
+                          title: 'Trying out',
+                        };
+
+                      </script>
+                      PRUD.IO END -->
+
                 </div>
             </div>
         </div>
