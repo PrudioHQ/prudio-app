@@ -34,11 +34,11 @@ module.exports = function slackOAuth(server) {
 
                     server.models.Account.findById(state[1], function(err, account) {
                         if (err) {
-                            res.send(err); // No account found
+                            return res.send(err); // No account found
                         }
 
                         if (!account) {
-                            res.send("No account!"); // No account found
+                            return res.send("No account!"); // No account found
                         }
 
                         externalToken.accountId = account.id;
