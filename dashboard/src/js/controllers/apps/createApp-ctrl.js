@@ -14,13 +14,13 @@ function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, U
     $scope.users    = [];
     $scope.channels = [];
 
-    $scope.name            = 'teste';
+    $scope.name            = null;
     $scope.isDisabled      = true;
     $scope.selectedToken   = null;
     $scope.selectedBot     = null;
     $scope.selectedUser    = null;
     $scope.selectedChannel = null;
-    $scope.botToken        = 'xoxb-teste';
+    $scope.botToken        = null;
 
     User.getCurrent(function(user, req, err) {
         $scope.user = user;
@@ -79,30 +79,13 @@ function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, U
             "accountId": $scope.account.id
         };
 
-        Account.apps.create({ id: $scope.account.id }, application, function(app, err) {
+        Account.apps.create({ id: $scope.account.id }, application, function(app, req, err) {
 
             if (err) {
                 notificationService.error("Ups! We couldn't save your app!");
                 $scope.isSaving = false;
                 return;
             }
-
-            var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
 
             notificationService.success("You have created the app!!! Your code: " + app.appId + ".");
 
