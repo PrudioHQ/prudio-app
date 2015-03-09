@@ -23,7 +23,7 @@
                                           <pre>&#x3C;script src=&#x22;http://chat.prud.io/client.js?appid={{ application.appId }}&#x22; async&#x3E;&#x3C;/script&#x3E;</pre>
                                           Find out more options in our <a href="#">docs</a>.
                                           <hr>
-                                          <a class="btn btn-default" ng-click="delete()" title="Delete {{ application.name }}"><i class="fa fa-trash-o"></i></a>
+                                          <a class="btn btn-default" confirmed-click="delete()" ng-confirm-click="Would you like to delete this application?" title="Delete {{ application.name }}"><i class="fa fa-trash-o"></i></a>
                                           <a ng-if="application.online" ng-click="turnOff()" class="btn btn-default" title="Turn off {{ application.name }}"><i class="fa fa-toggle-on"></i></a>
                                           <a ng-if="!application.online" ng-click="turnOn()" class="btn btn-default" title="Turn on {{ application.name }}"><i class="fa fa-toggle-off"></i></a>
                                         </td>
