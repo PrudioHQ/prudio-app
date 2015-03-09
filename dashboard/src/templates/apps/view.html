@@ -5,7 +5,8 @@
                 <div class="col-lg-12">
                        <rd-widget>
                            <rd-widget-header title="{{ application.name }}">
-                               <i class="fa fa-circle right"></i>
+                               <i ng-if="application.online" style="color: green" title="Online" class="fa fa-circle right"></i>
+                               <i ng-if="!application.online" style="color: red" title="Offline" class="fa fa-circle right"></i>
                            </rd-widget-header>
                            <rd-widget-body classes="no-padding">
                             <div class="table-responsive">
@@ -21,8 +22,11 @@
                                           Use this code in your website:
                                           <pre>&#x3C;script src=&#x22;http://chat.prud.io/client.js?appid={{ application.appId }}&#x22; async&#x3E;&#x3C;/script&#x3E;</pre>
                                           Find out more options in our <a href="#">docs</a>.
+                                          <hr>
+                                          <a class="btn btn-default" ng-click="delete()" title="Delete {{ application.name }}"><i class="fa fa-trash-o"></i></a>
+                                          <a ng-if="application.online" ng-click="turnOff()" class="btn btn-default" title="Turn off {{ application.name }}"><i class="fa fa-toggle-on"></i></a>
+                                          <a ng-if="!application.online" ng-click="turnOn()" class="btn btn-default" title="Turn on {{ application.name }}"><i class="fa fa-toggle-off"></i></a>
                                         </td>
-
                                       </tr>
                                       <tr>
                                           <td><small>{{ application.roomCount || 0 }} converstations</small></td>
