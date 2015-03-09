@@ -8,6 +8,7 @@ angular.module('RDash')
 function viewAppCtrl($state, $scope, $stateParams, $location, User, Account) {
 
     $scope.application = {};
+    $scope.url = $location.absUrl();
 
     User.getCurrent(function(user, req, err) {
         Account.apps.findById({ id: user.defaultAccountId, fk: $stateParams.appId }, function(app, req, err) {

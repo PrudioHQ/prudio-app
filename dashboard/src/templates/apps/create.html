@@ -16,7 +16,7 @@
                                 <input type="text" ng-model="name" ng-disabled="isSaving" class="form-control" id="name" placeholder="Enter name" required>
                             </div>
                             <div ng-show="tokens.length > 1" class="form-group">
-                                <label for="api_token">Team token {{ selectedToken.name || '' }}</label>
+                                <label for="api_token">Your team {{ selectedToken.name || '' }}</label>
                                 <select class="form-control" ng-disabled="isSaving" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
                             </div>
                             <div ng-if="bots.length > 0" class="form-group">
