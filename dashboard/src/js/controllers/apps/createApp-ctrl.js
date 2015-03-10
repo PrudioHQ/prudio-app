@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('createAppCtrl', ['$scope', '$filter', '$timeout', '$modal', 'notificationService', 'User', 'Account', createAppCtrl]);
+    .controller('createAppCtrl', ['$scope', '$filter', '$location', 'notificationService', 'User', 'Account', createAppCtrl]);
 
-function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, User, Account) {
+function createAppCtrl($scope, $filter, $location, notificationService, User, Account) {
 
     $scope.user     = {};
     $scope.account  = {};
@@ -64,13 +64,11 @@ function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, U
         });
     };
 
-    $scope.create = function(selectedBot, selectedUser, selectedChannel) {
-        $scope.isSaving = true;
-
+    $scope.create = function(name, botToken, selectedBot, selectedUser, selectedChannel) {
         var application = {
-            "name": $scope.name,
+            "name": name,
             "slackApiToken": $scope.selectedToken.token,
-            "slackBotToken": $scope.botToken,
+            "slackBotToken": botToken,
             "slackInviteUser": selectedUser.id,
             "slackInviteBot": selectedBot.id,
             "notifyChannel": selectedChannel.id,
@@ -79,17 +77,18 @@ function createAppCtrl($scope, $filter, $timeout, $modal, notificationService, U
             "accountId": $scope.account.id
         };
 
-        Account.apps.create({ id: $scope.account.id }, application, function(app, req, err) {
+        $scope.isSaving = true;
 
-            if (err) {
+        Account.apps.create({ id: $scope.account.id }, application, 
+            function(app) {
+                notificationService.success("You have created the application " + app.name + ".");
+                $location.path('/apps');
+            },
+            function(err) {
                 notificationService.error("Ups! We couldn't save your app!");
                 $scope.isSaving = false;
-                return;
             }
-
-            notificationService.success("You have created the app!!! Your code: " + app.appId + ".");
-
-        });
+        );
 
     };
 }
