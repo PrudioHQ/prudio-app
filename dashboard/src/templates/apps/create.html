@@ -34,7 +34,7 @@
                             </div>
 
                             <div ng-show="selectedBot" class="form-group">
-                                <label for="botToken">Token for {{ selectedBot.profile.real_name || selectedBot.name ||  'Bot' }} </label>
+                                <label for="botToken">Token for {{ selectedBot.profile.real_name || selectedBot.name ||  'Bot' }} (<a href="{{ selectedToken.url }}services" target="_blank">check it here</a>)</label>
                                 <input type="text" ng-disabled="isSaving" class="form-control" id="botToken" ng-model="botToken" placeholder="xoxb-..." required>
                             </div>
 
