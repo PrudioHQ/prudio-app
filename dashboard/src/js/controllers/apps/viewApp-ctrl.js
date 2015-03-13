@@ -3,9 +3,9 @@
  */
 
 angular.module('RDash')
-    .controller('viewAppCtrl', ['$state', '$scope', '$stateParams', '$location', 'notificationService', 'User', 'Account', viewAppCtrl]);
+    .controller('viewAppCtrl', ['$state', '$scope', '$stateParams', '$location', 'notificationService', 'User', 'App', 'Account', viewAppCtrl]);
 
-function viewAppCtrl($state, $scope, $stateParams, $location, notificationService, User, Account) {
+function viewAppCtrl($state, $scope, $stateParams, $location, notificationService, User, App, Account) {
 
     $scope.application = {};
     $scope.url = $location.absUrl();
@@ -19,6 +19,8 @@ function viewAppCtrl($state, $scope, $stateParams, $location, notificationServic
             Account.apps.updateById({ id: user.defaultAccountId, fk: $stateParams.appId }, { online: true }, function(app, req, err) {
                 notificationService.success("Application is now online");
                 $scope.application = app;
+
+                App.connect({ id: app.id });
             });
         }
 
@@ -26,6 +28,8 @@ function viewAppCtrl($state, $scope, $stateParams, $location, notificationServic
             Account.apps.updateById({ id: user.defaultAccountId, fk: $stateParams.appId }, { online: false }, function(app, req, err) {
                 notificationService.success("Application is now offline");
                 $scope.application = app;
+
+                App.disconnect({ id: app.id });
             });
         }
 
@@ -38,5 +42,5 @@ function viewAppCtrl($state, $scope, $stateParams, $location, notificationServic
         }
     });
 
-    
+
 }
