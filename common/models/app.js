@@ -54,7 +54,7 @@ module.exports = function(App) {
                     return next(null, body.success, body.message);
                 })
                 .on('error', function(err) {
-                    console.log(err);
+                    console.error(err);
                 });
         });
     }
@@ -101,7 +101,7 @@ module.exports = function(App) {
                     return next(null, body.success, body.message);
                 })
                 .on('error', function(err) {
-                    console.log(err);
+                    console.error(err);
                 });
         });
     }
