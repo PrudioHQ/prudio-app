@@ -8,7 +8,7 @@
                    </rd-widget-header>
                    <rd-widget-body>
                        <div ng-if="tokens.length < 1" class="alert alert-info" role="alert">
-                          <p>You have no tokens in this account! <a ng-click="$parent.authSlack()">Click here</a> to authorize Prud.io in your account.</p>
+                          <p>You have no tokens in this account! <a ng-click="$parent.authSlack()">Click here</a> to authorize Prud.io into your Slack team.</p>
                        </div>
                        <form name="createApp" ng-if="tokens.length > 0" ng-submit="create(name, botToken, selectedBot, selectedUser, selectedChannel)">
                             <div class="form-group">
@@ -17,10 +17,10 @@
                             </div>
                             <div ng-show="tokens.length > 1" class="form-group">
                                 <label for="api_token">Your team {{ selectedToken.name || '' }}</label>
-                                <select class="form-control" ng-disabled="isSaving" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
+                                <select class="form-control" ng-disåabled="isSaving" ng-model="selectedToken" name="api_token" ng-options="token.team for token in tokens track by token.id" ng-change="getMembers(selectedToken.id)">
                             </div>
                             <div ng-if="bots.length > 0" class="form-group">
-                                <label for="botUser">Choose your bot user <a class="btn btn-default btn-xs" ng-click="getMembers(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a></label>
+                                <label for="botUser">Choose your bot user <a title="Refresh the list" class="btn btn-default btn-xs" ng-click="getMembers(selectedToken.id)" role="button"><i class="glyphicon glyphicon-refresh"></i></a> <a title="Create a new bot user" class="btn btn-default btn-xs" href="{{ selectedToken.url }}services/new/bot" target="_blank" role="button"><i class="glyphicon glyphicon-plus"></i></a></label>
                                 <ul class="list-group" style="max-height: 250px; overflow: auto">
                                     <li class="list-group-item" ng-repeat="bot in bots">
                                         <input type="radio" ng-disabled="isSaving" name="botUser" ng-value="{{ bot }}" ng-model="$parent.$parent.selectedBot" required> &nbsp; <img class="img-circle" alt="{{ bot.name }}" title="{{ bot.profile.real_name || bot.name }}" ng-src="{{ bot.profile.image_24 }}"> {{ bot.profile.real_name || bot.name }}
@@ -30,7 +30,7 @@
                             </div>
 
                             <div ng-if="bots.length == 0" class="alert alert-info" role="alert">
-                               <p>You have no bot users in your team!</p>
+                               <p>It looks like you have no bot users in your team! Create one <a href="{{ selectedToken.url }}services/new/bot" target="_blank">here</a>.</p>
                             </div>
 
                             <div ng-show="selectedBot" class="form-group">
