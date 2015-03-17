@@ -50,9 +50,6 @@ module.exports = function(User) {
 	User.on('resetPasswordRequest', function (info) {
 		if (info.user) {
 
-			// The reset token!
-			console.log(info.accessToken.id);
-
 			User.app.models.Email.send({
 				async: true,
 				to: info.user.email,
@@ -78,8 +75,7 @@ module.exports = function(User) {
 			},
 			function(err, result) {
 				if(err) {
-					console.log('Upppss something crash');
-					console.log(err);
+					console.error(err);
 				}
 			});
 		}
@@ -91,7 +87,7 @@ module.exports = function(User) {
 
 		user.accounts.count(function(err, count) {
 			if (err) {
-				console.log('Error counting accounts: ', err);
+				console.error('Error counting accounts: ', err);
 				next(err);
 			}
 
@@ -119,7 +115,7 @@ module.exports = function(User) {
 
 
 
-		/*User.app.models.Email.send({
+		User.app.models.Email.send({
 			async: true,
 			to: this.email,
 			from: 'hello@prud.io',
@@ -140,12 +136,10 @@ module.exports = function(User) {
 		},
 		function(err, result) {
 			if(err) {
-				console.log('Upppss something crash');
-				console.log(err);
+				console.error(err);
 			}
 			next(err);
 		});
-		*/
 	}
 
 	User.beforeUpdate = function(next, user) {
