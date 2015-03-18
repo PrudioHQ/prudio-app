@@ -119,13 +119,7 @@ module.exports = function(App) {
         }
     );
 
-
-    App.beforeUpdate = function(next, app) {
-        app.modified = new Date();
-        next();
-    }
-
-    App.beforeCreate = function(next, app) {
+    App.observe('before save', function beforeSave(ctx, next) {
 
         // Creates a 32 char random string
         function makeid()
@@ -139,11 +133,16 @@ module.exports = function(App) {
             return text;
         }
 
-        app.appId    = makeid();
-        app.created  = new Date();
-        app.modified = new Date();
+        // If instance = new object
+        if (ctx.instance) {
+            ctx.instance.appId    = makeid();
+            ctx.instance.created  = new Date();
+            ctx.instance.modified = new Date();
+        } else {
+            ctx.data.modified = new Date();
+        }
 
         next();
-    }
+    });
 
 };

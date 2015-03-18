@@ -10,17 +10,18 @@ module.exports = function(Account) {
 	Account.disableRemoteMethod('updateAll', true);
 	Account.disableRemoteMethod('findOne', true);
 
+	Account.observe('before save', function beforeSave(ctx, next) {
 
-	Account.beforeUpdate = function(next, account) {
-		account.modified = new Date();
-		next();
-	}
+        // If instance = new object
+        if (ctx.instance) {
+            ctx.instance.created  = new Date();
+            ctx.instance.modified = new Date();
+        } else {
+            ctx.data.modified = new Date();
+        }
 
-	Account.beforeCreate = function(next, account) {
-		account.created = new Date();
-		account.modified = new Date();
-		next();
-	}
+        next();
+    });
 
 	/*
 	* listSlackMembers method

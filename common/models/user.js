@@ -81,77 +81,87 @@ module.exports = function(User) {
 		}
 	});
 
-	User.afterCreate = function(next) {
+	User.observe('after save', function beforeSave(ctx, next) {
 
-		var user = this;
+		// If instance = new object
+		if (ctx.instance) {
+			var user = ctx.instance;
 
-		user.accounts.count(function(err, count) {
-			if (err) {
-				console.error('Error counting accounts: ', err);
-				next(err);
-			}
+			user.created  = new Date();
+			user.modified = new Date();
 
-			if (count === 0) {
-				var name = user.fname + " " + user.lname + "'s Account";
-
-				user.accounts.create({
-					name: name
-				},
-				function(err, account) {
-					if (err) {
-						console.error(err);
-						next(err);
-					}
-					user.defaultAccountId = account.id;
-					user.save();
-
-					next();
-				});
-
-			}
-
-			next();
-		});
-
-
-
-		User.app.models.Email.send({
-			async: true,
-			to: this.email,
-			from: 'hello@prud.io',
-			subject: 'Welcome to Prud.io',
-			template: {
-				name: "signup-e-mail"
-			},
-			merge_vars: [
-				{
-					"rcpt": this.email,
-					"vars": [
-						{
-							name: "name",
-							content: this.fname
-						}]
+			user.accounts.count(function(err, count) {
+				if (err) {
+					console.error('Error counting accounts: ', err);
+					next(err);
 				}
-			]
-		},
-		function(err, result) {
-			if(err) {
-				console.error(err);
-			}
-			next(err);
-		});
-	}
 
-	User.beforeUpdate = function(next, user) {
-		user.modified = new Date();
-		next();
-	}
+				if (count === 0) {
+					var name = user.fname + " " + user.lname + "'s Account";
 
-	User.beforeCreate = function(next, user) {
-		user.created = new Date();
-		user.modified = new Date();
+					user.accounts.create({
+						name: name
+					},
+					function(err, account) {
+						if (err) {
+							console.error(err);
+							next(err);
+						}
+						user.defaultAccountId = account.id;
+						user.save();
+
+						next();
+					});
+
+				}
+
+				next();
+			});
+
+			// Send welcome e-mail
+			User.app.models.Email.send({
+				async: true,
+				to: this.email,
+				from: 'hello@prud.io',
+				subject: 'Welcome to Prud.io',
+				template: {
+					name: "signup-e-mail"
+				},
+				merge_vars: [
+					{
+						"rcpt": this.email,
+						"vars": [
+							{
+								name: "name",
+								content: this.fname
+							}]
+					}
+				]
+			},
+			function(err, result) {
+				if(err) {
+					console.error(err);
+				}
+				next(err);
+			});
+		}
+
 		next();
-	}
+
+	});
+
+	User.observe('before save', function beforeSave(ctx, next) {
+
+		// If instance = new object
+		if (ctx.instance) {
+			ctx.instance.created  = new Date();
+			ctx.instance.modified = new Date();
+		} else {
+		    ctx.data.modified = new Date();
+		}
+
+		next();
+	});
 
 
 };
