@@ -1,0 +1,45 @@
+{
+  "name": "Server",
+  "plural": "servers",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+      "active": {
+        "type": "boolean",
+        "default": true
+      },
+      "name": {
+        "type": "string",
+        "required": true
+      },
+      "server": {
+        "type": "string",
+        "required": true
+      },
+      "address": {
+        "type": "string",
+        "required": true
+      },
+      "port": {
+        "type": "number",
+        "required": true,
+        "default": 443
+      },
+      "region": {
+        "type": "string",
+        "required": true,
+        "default": "us"
+      }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": []
+}

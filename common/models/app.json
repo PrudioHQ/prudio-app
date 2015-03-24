@@ -58,6 +58,14 @@
       "required": true,
       "default": "sp-"
     },
+    "server": {
+      "type": "string",
+      "required": true
+    },
+    "socketURL": {
+      "type": "string",
+      "required": true
+    },
     "created": {
       "type": "date"
     },

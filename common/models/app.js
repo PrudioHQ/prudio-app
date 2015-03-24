@@ -138,6 +138,8 @@ module.exports = function(App) {
             ctx.instance.appId    = makeid();
             ctx.instance.created  = new Date();
             ctx.instance.modified = new Date();
+
+            // Add server and socketURL
         } else {
             ctx.data.modified = new Date();
         }
