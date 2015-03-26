@@ -1,5 +1,5 @@
 {
-  "name": "Server",
+  "name": "Servers",
   "plural": "servers",
   "base": "PersistedModel",
   "idInjection": true,

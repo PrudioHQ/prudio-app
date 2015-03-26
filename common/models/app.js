@@ -1,5 +1,6 @@
-var request = require('request');
-var qs      = require('querystring');
+var request  = require('request');
+var qs       = require('querystring');
+var loopback = require('loopback');
 
 module.exports = function(App) {
 
@@ -121,6 +122,10 @@ module.exports = function(App) {
 
     App.observe('before save', function beforeSave(ctx, next) {
 
+        var Servers = loopback.getModel('Servers');
+
+        // DO AN ALGORITHM TO SELECT THE SERVER
+
         // Creates a 32 char random string
         function makeid()
         {
@@ -135,9 +140,11 @@ module.exports = function(App) {
 
         // If instance = new object
         if (ctx.instance) {
-            ctx.instance.appId    = makeid();
-            ctx.instance.created  = new Date();
-            ctx.instance.modified = new Date();
+            ctx.instance.appId     = makeid();
+            ctx.instance.server    = "BURKINA";
+            ctx.instance.socketURL = "https://prudio-burkina.herokuapp.com:443";
+            ctx.instance.created   = new Date();
+            ctx.instance.modified  = new Date();
 
             // Add server and socketURL
         } else {

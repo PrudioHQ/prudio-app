@@ -1,5 +1,6 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
+var rollbar = require('rollbar');
 
 var app = module.exports = loopback();
 
@@ -18,6 +19,9 @@ app.use(loopback.static(websitePath));
 // by any middleware. Convert them into a 404 error
 // that will be handled later down the chain.
 app.use(loopback.urlNotFound());
+
+// -- Rollbar Error Handling --
+app.use(rollbar.errorHandler(process.env.ROLLBAR_ACCESS_TOKEN));
 
 // The ultimate error handler.
 app.use(loopback.errorHandler());
