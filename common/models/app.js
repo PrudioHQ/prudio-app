@@ -135,7 +135,7 @@ module.exports = function(App) {
         }
 
         // If instance = new object
-        if (ctx.instance) {
+        if (ctx.isNewInstance) {
 
             var Servers = loopback.getModel('Servers');
 
@@ -169,7 +169,7 @@ module.exports = function(App) {
     // Decrement the apps counter in the Server collection
     App.observe('before delete', function afterDelete(ctx, next) {
 
-        if (ctx.instance && ctx.instance.server) {
+        if (ctx.isNewInstance && ctx.instance.server) {
             var Servers = loopback.getModel('Servers');
 
             Servers.findOne({ where: { active: true, server: ctx.instance.server }}, function(err, server) {

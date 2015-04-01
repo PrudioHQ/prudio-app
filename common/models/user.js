@@ -84,7 +84,8 @@ module.exports = function(User) {
 	User.observe('after save', function beforeSave(ctx, next) {
 
 		// If instance = new object
-		if (ctx.instance) {
+		if (ctx.isNewInstance) {
+
 			var user = ctx.instance;
 
 			user.created  = new Date();
@@ -153,7 +154,7 @@ module.exports = function(User) {
 	User.observe('before save', function beforeSave(ctx, next) {
 
 		// If instance = new object
-		if (ctx.instance) {
+		if (ctx.isNewInstance) {
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 		} else {
