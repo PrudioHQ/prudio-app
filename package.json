@@ -27,7 +27,7 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-passport": "^1.2.0",
     "loopback-connector-mongodb": "^1.8.0",
-    "loopback-datasource-juggler": "^2.21.0",
+    "loopback-datasource-juggler": "^2.23.0",
     "qs": "^2.3.3",
     "request": "^2.51.0",
     "rollbar": "^0.4.5",
