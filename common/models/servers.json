@@ -29,6 +29,11 @@
         "type": "string",
         "required": true,
         "default": "us"
+      },
+      "apps": {
+        "type": "number",
+        "required": true,
+        "default": 0
       }
   },
   "validations": [],

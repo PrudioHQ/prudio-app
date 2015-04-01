@@ -122,10 +122,6 @@ module.exports = function(App) {
 
     App.observe('before save', function beforeSave(ctx, next) {
 
-        var Servers = loopback.getModel('Servers');
-
-        // DO AN ALGORITHM TO SELECT THE SERVER
-
         // Creates a 32 char random string
         function makeid()
         {
@@ -140,18 +136,56 @@ module.exports = function(App) {
 
         // If instance = new object
         if (ctx.instance) {
-            ctx.instance.appId     = makeid();
-            ctx.instance.server    = "BURKINA";
-            ctx.instance.socketURL = "https://prudio-burkina.herokuapp.com:443";
-            ctx.instance.created   = new Date();
-            ctx.instance.modified  = new Date();
+
+            var Servers = loopback.getModel('Servers');
+
+            Servers.findOne({ where: { active: true }, order: 'apps ASC'}, function(err, server) {
+                if (err) {
+                    return next(err);
+                }
+
+                ctx.instance.server    = server.server;
+                ctx.instance.socketURL = server.address + ":" + server.port;
+
+                ctx.instance.appId     = makeid();
+                ctx.instance.created   = new Date();
+                ctx.instance.modified  = new Date();
+
+                server.apps++;
+                server.save();
+
+                next();
+            });
 
             // Add server and socketURL
         } else {
             ctx.data.modified = new Date();
+
+            next();
         }
 
-        next();
+    });
+
+    // Decrement the apps counter in the Server collection
+    App.observe('before delete', function afterDelete(ctx, next) {
+
+        if (ctx.instance && ctx.instance.server) {
+            var Servers = loopback.getModel('Servers');
+
+            Servers.findOne({ where: { active: true, server: ctx.instance.server }}, function(err, server) {
+                if (err) {
+                    return next(err);
+                }
+
+                server.apps--;
+                server.save();
+
+                next();
+            });
+
+        } else {
+            next();
+        }
     });
 
 };
