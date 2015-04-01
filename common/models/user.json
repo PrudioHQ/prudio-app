@@ -3,6 +3,9 @@
   "plural": "users",
   "base": "User",
   "properties": {
+    "id": {
+      "type": "string"    
+    },
     "email": {
       "type": "string",
       "index": {
