@@ -15,11 +15,7 @@ function accountSwitchCtrl($state, $scope, $stateParams, User, notificationServi
             $state.go('master.index', {}, {location: true});
         }
 
-        var userId = user.id;
-        user.id = undefined;
-        user.defaultAccountId = $stateParams.accountId;
-
-        User.prototype$updateAttributes({ id: userId }, user, function() {
+        User.prototype$updateAttributes({ id: user.id }, { defaultAccountId: $stateParams.accountId }, function() {
             notificationService.success('Account changed!');
             $scope.$emit('retrieveAccounts');
             $state.go('master.index', {}, {location: true});
