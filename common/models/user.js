@@ -111,14 +111,13 @@ module.exports = function(User) {
 						user.defaultAccountId = account.id;
 						user.save();
 					});
-
 				}
 			});
 
 			// Send welcome e-mail
 			User.app.models.Email.send({
 				async: true,
-				to: this.email,
+				to: user.email,
 				from: 'hello@prud.io',
 				subject: 'Welcome to Prud.io',
 				template: {
@@ -126,11 +125,11 @@ module.exports = function(User) {
 				},
 				merge_vars: [
 					{
-						"rcpt": this.email,
+						"rcpt": user.email,
 						"vars": [
 							{
 								name: "name",
-								content: this.fname
+								content: user.fname
 							}]
 					}
 				]
@@ -141,6 +140,8 @@ module.exports = function(User) {
 					return next(err);
 				}
 			});
+		} else {
+		    ctx.instance.modified = new Date();
 		}
 
 		next();
