@@ -110,13 +110,9 @@ module.exports = function(User) {
 						}
 						user.defaultAccountId = account.id;
 						user.save();
-
-						next();
 					});
 
 				}
-
-				next();
 			});
 
 			// Send welcome e-mail
@@ -142,8 +138,8 @@ module.exports = function(User) {
 			function(err, result) {
 				if(err) {
 					console.error(err);
+					return next(err);
 				}
-				next(err);
 			});
 		}
 
@@ -158,11 +154,10 @@ module.exports = function(User) {
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 		} else {
-		    ctx.data.modified = new Date();
+		    ctx.instance.modified = new Date();
 		}
 
 		next();
 	});
-
 
 };
