@@ -20,6 +20,7 @@ var paths = {
     templates: 'dashboard/src/templates/**/*.html',
     index: 'dashboard/src/index.html',
     robots: 'dashboard/src/robots.txt',
+    favicon: 'dashboard/src/img/favicon.ico',
     bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
 
@@ -51,10 +52,15 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-robots', 'custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-robots', 'custom-favicon', 'custom-images', 'custom-js', 'custom-less', 'custom-templates']);
 
 gulp.task('custom-robots', function() {
     return gulp.src(paths.robots)
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('custom-favicon', function() {
+    return gulp.src(paths.favicon)
         .pipe(gulp.dest('build'));
 });
 
