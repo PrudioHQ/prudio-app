@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     minifyHTML = require('gulp-minify-html'),
     loopbackAngular = require('gulp-loopback-sdk-angular'),
-    protractor = require("gulp-protractor").protractor,
+    protractor = require('gulp-protractor').protractor,
     webdriver_update = require('gulp-protractor').webdriver_update;
     instance = undefined;
 
@@ -19,6 +19,7 @@ var paths = {
     images: 'dashboard/src/img/**/*.*',
     templates: 'dashboard/src/templates/**/*.html',
     index: 'dashboard/src/index.html',
+    robots: 'dashboard/src/robots.txt',
     bowerFonts: 'dashboard/src/components/**/*.{ttf,woff,eof,svg}',
 };
 
@@ -50,7 +51,12 @@ gulp.task('copy-bower_fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-robots', 'custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+
+gulp.task('custom-robots', function() {
+    return gulp.src(paths.robots)
+        .pipe(gulp.dest('build'));
+});
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
