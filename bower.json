@@ -31,7 +31,8 @@
     "angular-permission": "~0.1.6",
     "moment": "~2.9.0",
     "angular-moment": "~0.9.0",
-    "angular-pnotify": "~0.0.6"
+    "angular-pnotify": "~0.0.6",
+    "angular-md5": "~0.1.7"
   },
   "repository": {
     "type": "git",

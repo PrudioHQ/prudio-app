@@ -47,6 +47,13 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
         User.getCurrent(function(user, req, err) {
 
             $scope.user = user;
+
+            // PRUDIO
+            window._PrudioSettings = {
+                name: user.name,
+                email: user.email
+            }
+
             $scope.applications = [];
             $scope.accounts = [];
 
