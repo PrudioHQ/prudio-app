@@ -50,7 +50,7 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
 
             // PRUDIO
             window._PrudioSettings = {
-                name: user.name,
+                name: user.fname + ' ' + user.lname,
                 email: user.email
             }
 
