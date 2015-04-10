@@ -13,11 +13,11 @@ module.exports = function(Account) {
 	Account.observe('before save', function beforeSave(ctx, next) {
 
         // If instance = new object
-        if (ctx.instance) {
+        if (ctx.isNewInstance) {
             ctx.instance.created  = new Date();
             ctx.instance.modified = new Date();
         } else {
-            ctx.instance.modified = new Date();
+            ctx.data.modified = new Date();
         }
 
         next();
@@ -40,7 +40,7 @@ module.exports = function(Account) {
 			var url = "https://slack.com/api/users.list";
 
 			request
-				.post({url: url, form: { token: token.token }, json: true }, function (error, response, body) {
+				.post({url: url, form: { token: token.token }, json: true }, function(error, response, body) {
 					if (error) {
 						return next(null, false, error);
 					}
@@ -86,7 +86,7 @@ module.exports = function(Account) {
 			var url = "https://slack.com/api/channels.list";
 
 			request
-				.post({url: url, form: { token: token.token, exclude_archived: true }, json: true }, function (error, response, body) {
+				.post({url: url, form: { token: token.token, exclude_archived: true }, json: true }, function(error, response, body) {
 					if (error) {
 						return next(null, false, error);
 					}

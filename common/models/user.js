@@ -41,13 +41,13 @@ module.exports = function(User) {
         	description: "Resets the user password with the reset token",
 			accepts: [
 				{arg: 'accessToken', type: 'string'},
-				{arg: 'password', type: 'string'},
+				{arg: 'password', type: 'string'}
 			],
 			returns: {arg: 'result', type: 'boolean'}
         }
     );
 
-	User.on('resetPasswordRequest', function (info) {
+	User.on('resetPasswordRequest', function(info) {
 		if (info.user) {
 
 			User.app.models.Email.send({
@@ -155,7 +155,7 @@ module.exports = function(User) {
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 		} else {
-		    ctx.instance.modified = new Date();
+		    ctx.data.modified = new Date();
 		}
 
 		next();

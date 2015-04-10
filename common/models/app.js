@@ -48,7 +48,7 @@ module.exports = function(App) {
             }
 
             request
-                .post({url: baseUrl + '/app/connect?' + qs.stringify(query), json: true}, function (error, response, body) {
+                .post({url: baseUrl + '/app/connect?' + qs.stringify(query), json: true}, function(error, response, body) {
                     if (error) {
                         return next(null, false, error);
                     }
@@ -95,7 +95,7 @@ module.exports = function(App) {
             }
 
             request
-                .post({url: baseUrl + '/app/disconnect?' + qs.stringify(query), json: true}, function (error, response, body) {
+                .post({url: baseUrl + '/app/disconnect?' + qs.stringify(query), json: true}, function(error, response, body) {
                     if (error) {
                         return next(null, false, error);
                     }
