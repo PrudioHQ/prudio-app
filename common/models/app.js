@@ -26,7 +26,7 @@ module.exports = function(App) {
     var baseUrl = 'http://localhost:5000';
 
     if (environment !== 'development') {
-        baseUrl = 'http://chat.prud.io';
+        baseUrl = 'https://chat.prud.io';
     }
 
     /*
@@ -159,7 +159,7 @@ module.exports = function(App) {
 
             // Add server and socketURL
         } else {
-            ctx.instance.modified = new Date();
+            ctx.data.modified = new Date();
 
             next();
         }
