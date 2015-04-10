@@ -1,4 +1,4 @@
-# Prud.io App [![Codacy Badge](https://www.codacy.com/project/badge/770f6a0903d641bd8bf31f041914a615)](https://www.codacy.com/public/cossou/prudio-app) <a href="https://assembly.com/prudio/bounties"><img src="https://asm-badger.herokuapp.com/prudio/badges/tasks.svg" height="24px" alt="Open Tasks" /></a> <img src="https://codeship.com/projects/73374/status?branch=master" alt="Codeship" />
+# Prud.io App [![Codacy Badge](https://www.codacy.com/project/badge/770f6a0903d641bd8bf31f041914a615)](https://www.codacy.com/public/cossou/prudio-app) <a href="https://assembly.com/prudio/bounties"><img src="https://asm-badger.herokuapp.com/prudio/badges/tasks.svg" height="24px" alt="Open Tasks" /></a> <img src="https://codeship.com/projects/4f9ef190-c0f7-0132-4964-4acb6a01a969/status?branch=master" alt="Codeship" />
 
 
 ## Building the application
