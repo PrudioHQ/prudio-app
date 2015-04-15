@@ -159,7 +159,7 @@ module.exports = function(App) {
 
             // Add server and socketURL
         } else {
-            ctx.data.modified = new Date();
+            ctx.instance.modified = new Date();
 
             next();
         }

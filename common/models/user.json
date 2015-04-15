@@ -4,7 +4,7 @@
   "base": "User",
   "properties": {
     "id": {
-      "type": "string"    
+      "type": "string"
     },
     "email": {
       "type": "string",
@@ -22,7 +22,8 @@
     },
     "defaultAccountId": {
       "type": "string",
-      "default": ""
+      "default": "",
+      "required": true
     },
     "created": {
       "type": "date"
