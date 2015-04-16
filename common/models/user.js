@@ -86,38 +86,10 @@ module.exports = function(User) {
 		// If instance = new object
 		if (ctx.isNewInstance) {
 
-			var user = ctx.instance;
-
-			user.created  = new Date();
-			user.modified = new Date();
-
-			user.accounts.count(function(err, count) {
-				if (err) {
-					console.error('Error counting accounts: ', err);
-					next(err);
-				}
-
-				if (count === 0) {
-					var name = user.fname + " " + user.lname + "'s Account";
-
-					user.accounts.create({
-						name: name
-					},
-					function(err, account) {
-						if (err) {
-							console.error(err);
-							next(err);
-						}
-						user.defaultAccountId = account._id;
-						user.save();
-					});
-				}
-			});
-
 			// Send welcome e-mail
 			User.app.models.Email.send({
 				async: true,
-				to: user.email,
+				to: ctx.instance.email,
 				from: 'hello@prud.io',
 				subject: 'Welcome to Prud.io',
 				template: {
@@ -125,11 +97,11 @@ module.exports = function(User) {
 				},
 				merge_vars: [
 					{
-						"rcpt": user.email,
+						"rcpt": ctx.instance.email,
 						"vars": [
 							{
 								name: "name",
-								content: user.fname
+								content: ctx.instance.fname
 							}]
 					}
 				]
@@ -140,12 +112,39 @@ module.exports = function(User) {
 					return next(err);
 				}
 			});
+
+			ctx.instance.created  = new Date();
+			ctx.instance.modified = new Date();
+
+			user.accounts.count(function(err, count) {
+				if (err) {
+					console.error('Error counting accounts: ', err);
+					return next(err);
+				}
+
+				if (count === 0) {
+					var name = ctx.instance.fname + " " + ctx.instance.lname + '\'s Account';
+
+					ctx.instance.accounts.create({
+						name: name
+					},
+					function(err, account) {
+						if (err) {
+							console.error(err);
+							next(err);
+						}
+						ctx.instance.defaultAccountId = account.id;
+
+						next();
+					});
+				} else {
+					next();
+				}
+			});
 		} else {
 		    ctx.instance.modified = new Date();
+			next();
 		}
-
-		next();
-
 	});
 
 	User.observe('before save', function beforeSave(ctx, next) {
