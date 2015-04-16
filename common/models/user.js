@@ -23,7 +23,7 @@ module.exports = function(User) {
 					return next(new Error('User not found!'));
 				}
 
-				user.updateAttribute("password", password, function(err, user) {
+				user.updateAttribute('password', password, function(err, user) {
 					if (err) {
 						next(err);
 					}
@@ -38,7 +38,7 @@ module.exports = function(User) {
     User.remoteMethod(
         'passwordUpdate',
         {
-        	description: "Resets the user password with the reset token",
+        	description: 'Resets the user password with the reset token',
 			accepts: [
 				{arg: 'accessToken', type: 'string'},
 				{arg: 'password', type: 'string'}
@@ -56,18 +56,18 @@ module.exports = function(User) {
 				from: 'hello@prud.io',
 				subject: 'Reset your password',
 				template: {
-					name: "reset-password"
+					name: 'reset-password'
 				},
 				merge_vars: [
 					{
-						"rcpt": info.user.email,
-						"vars": [
+						'rcpt': info.user.email,
+						'vars': [
 							{
-								name: "name",
+								name: 'name',
 								content: info.user.fname
 							},
 							{
-								name: "token",
+								name: 'token',
 								content: info.accessToken.id
 							}]
 					}
@@ -93,14 +93,14 @@ module.exports = function(User) {
 				from: 'hello@prud.io',
 				subject: 'Welcome to Prud.io',
 				template: {
-					name: "signup-e-mail"
+					name: 'signup-e-mail'
 				},
 				merge_vars: [
 					{
-						"rcpt": ctx.instance.email,
-						"vars": [
+						'rcpt': ctx.instance.email,
+						'vars': [
 							{
-								name: "name",
+								name: 'name',
 								content: ctx.instance.fname
 							}]
 					}
@@ -123,44 +123,26 @@ module.exports = function(User) {
 		// If instance = new object
 		if (ctx.isNewInstance) {
 
-			console.error("IS NEW INSTANCE");
-
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 
-			ctx.instance.accounts.count(function(err, count) {
+			var name = ctx.instance.fname + " " + ctx.instance.lname + '\'s Account';
+
+			ctx.instance.accounts.create({
+				name: name
+			},
+			function(err, account) {
 				if (err) {
-					console.error('Error counting accounts: ', err);
-					return next(err);
+					console.error(err);
+					next(err);
 				}
 
-				console.error("GOT " + count + " ACCOUNTS");
+				ctx.instance.defaultAccountId = account.id;
 
-				if (count === 0) {
-					var name = ctx.instance.fname + " " + ctx.instance.lname + '\'s Account';
-
-					ctx.instance.accounts.create({
-						name: name
-					},
-					function(err, account) {
-						if (err) {
-							console.error(err);
-							next(err);
-						}
-
-						console.error("CREATED NEW ACCOUNT ", account.id);
-
-						ctx.instance.defaultAccountId = account.id;
-						ctx.instance.save();
-
-						next();
-					});
-				} else {
-					next();
-				}
+				next();
 			});
+
 		} else {
-			console.error("IS NOT NEW INSTANCE");
 
 		    ctx.instance.modified = new Date();
 			next();
