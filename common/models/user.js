@@ -144,6 +144,7 @@ module.exports = function(User) {
 							next(err);
 						}
 						ctx.instance.defaultAccountId = account.id;
+						ctx.instance.save();
 
 						next();
 					});
