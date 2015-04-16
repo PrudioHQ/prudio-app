@@ -123,6 +123,8 @@ module.exports = function(User) {
 		// If instance = new object
 		if (ctx.isNewInstance) {
 
+			console.error("IS NEW INSTANCE");
+
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 
@@ -131,6 +133,8 @@ module.exports = function(User) {
 					console.error('Error counting accounts: ', err);
 					return next(err);
 				}
+
+				console.error("GOT " + count + " ACCOUNTS");
 
 				if (count === 0) {
 					var name = ctx.instance.fname + " " + ctx.instance.lname + '\'s Account';
@@ -143,6 +147,9 @@ module.exports = function(User) {
 							console.error(err);
 							next(err);
 						}
+
+						console.error("CREATED NEW ACCOUNT ", account.id);
+
 						ctx.instance.defaultAccountId = account.id;
 						ctx.instance.save();
 
@@ -153,6 +160,8 @@ module.exports = function(User) {
 				}
 			});
 		} else {
+			console.error("IS NOT NEW INSTANCE");
+
 		    ctx.instance.modified = new Date();
 			next();
 		}
