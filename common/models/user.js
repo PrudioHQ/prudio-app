@@ -111,12 +111,21 @@ module.exports = function(User) {
 					console.error(err);
 					return next(err);
 				}
+				next();
 			});
+		} else {
+			next();
+		}
+	});
 
+	User.observe('before save', function beforeSave(ctx, next) {
+
+		// If instance = new object
+		if (ctx.isNewInstance) {
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 
-			user.accounts.count(function(err, count) {
+			ctx.instance.accounts.count(function(err, count) {
 				if (err) {
 					console.error('Error counting accounts: ', err);
 					return next(err);
@@ -145,19 +154,6 @@ module.exports = function(User) {
 		    ctx.instance.modified = new Date();
 			next();
 		}
-	});
-
-	User.observe('before save', function beforeSave(ctx, next) {
-
-		// If instance = new object
-		if (ctx.isNewInstance) {
-			ctx.instance.created  = new Date();
-			ctx.instance.modified = new Date();
-		} else {
-		    ctx.instance.modified = new Date();
-		}
-
-		next();
 	});
 
 };
