@@ -122,6 +122,7 @@ module.exports = function(User) {
 
 		// If instance = new object
 		if (ctx.isNewInstance) {
+
 			ctx.instance.created  = new Date();
 			ctx.instance.modified = new Date();
 

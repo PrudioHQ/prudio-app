@@ -22,7 +22,7 @@
     },
     "defaultAccountId": {
       "type": "string",
-      "default": "",
+      "default": "not-set",
       "required": true
     },
     "created": {
