@@ -81,44 +81,7 @@ module.exports = function(User) {
 		}
 	});
 
-	User.observe('after save', function beforeSave(ctx, next) {
-
-		// If instance = new object
-		if (ctx.isNewInstance) {
-
-			// Send welcome e-mail
-			User.app.models.Email.send({
-				async: true,
-				to: ctx.instance.email,
-				from: 'hello@prud.io',
-				subject: 'Welcome to Prud.io',
-				template: {
-					name: 'signup-e-mail'
-				},
-				merge_vars: [
-					{
-						'rcpt': ctx.instance.email,
-						'vars': [
-							{
-								name: 'name',
-								content: ctx.instance.fname
-							}]
-					}
-				]
-			},
-			function(err, result) {
-				if(err) {
-					console.error(err);
-					return next(err);
-				}
-				next();
-			});
-		} else {
-			next();
-		}
-	});
-
-	User.observe('before save', function beforeSave(ctx, next) {
+	User.observe('after save', function afterSave(ctx, next) {
 
 		// If instance = new object
 		if (ctx.isNewInstance) {
@@ -139,7 +102,33 @@ module.exports = function(User) {
 
 				ctx.instance.defaultAccountId = account.id;
 
-				next();
+				// Send welcome e-mail
+				User.app.models.Email.send({
+					async: true,
+					to: ctx.instance.email,
+					from: 'hello@prud.io',
+					subject: 'Welcome to Prud.io',
+					template: {
+						name: 'signup-e-mail'
+					},
+					merge_vars: [
+						{
+							'rcpt': ctx.instance.email,
+							'vars': [
+								{
+									name: 'name',
+									content: ctx.instance.fname
+								}]
+						}
+					]
+				},
+				function(err, result) {
+					if(err) {
+						console.error(err);
+						return next(err);
+					}
+					next();
+				});
 			});
 
 		} else {
