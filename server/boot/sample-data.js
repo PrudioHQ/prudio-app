@@ -1,6 +1,7 @@
 module.exports = function(application) {
 
   var User = application.models.user;
+  var Servers = application.models.Servers;
   //var Role = application.models.Role;
   //var RoleMapping = application.models.RoleMapping;
   var App = application.models.App;
@@ -23,6 +24,22 @@ module.exports = function(application) {
       console.log("Already migrated data", environment)
       return;
     }
+
+    Servers.create({
+        active: true,
+        name: "prudio-burkina",
+        server: "BURKINA",
+        address: "https://prudio-burkina.herokuapp.com",
+        port: 443,
+        region: "us",
+        apps: 0
+    },
+    function(err, server) {
+        if (err) {
+          console.log('Error creating server.', err);
+          throw err;
+        }
+    });
 
     console.log('Migrating sample data');
 

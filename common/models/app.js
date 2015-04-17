@@ -120,7 +120,20 @@ module.exports = function(App) {
         }
     );
 
-    App.observe('before save', function beforeSave(ctx, next) {
+    App.observe('before save', function updateTiming(ctx, next) {
+
+        // If instance = new object
+        if (ctx.isNewInstance) {
+            ctx.instance.created  = new Date();
+            ctx.instance.modified = new Date();
+        } else {
+            ctx.data.modified = new Date();
+        }
+
+        next();
+    });
+
+    App.observe('before save', function assignNewAppId(ctx, next) {
 
         // Creates a 32 char random string
         function makeid()
@@ -136,6 +149,16 @@ module.exports = function(App) {
 
         // If instance = new object
         if (ctx.isNewInstance) {
+            ctx.instance.appId = makeid();
+        }
+
+        next();
+    });
+
+    App.observe('before save', function assignServer(ctx, next) {
+
+        // If instance = new object
+        if (ctx.isNewInstance) {
 
             var Servers = loopback.getModel('Servers');
 
@@ -147,27 +170,18 @@ module.exports = function(App) {
                 ctx.instance.server    = server.server;
                 ctx.instance.socketURL = server.address + ":" + server.port;
 
-                ctx.instance.appId     = makeid();
-                ctx.instance.created   = new Date();
-                ctx.instance.modified  = new Date();
-
                 server.apps++;
                 server.save();
 
                 next();
             });
-
-            // Add server and socketURL
         } else {
-            ctx.instance.modified = new Date();
-
             next();
         }
-
     });
 
     // Decrement the apps counter in the Server collection
-    App.observe('before delete', function afterDelete(ctx, next) {
+    App.observe('before delete', function decrementServerAppsCount(ctx, next) {
 
         if (ctx.isNewInstance && ctx.instance.server) {
             var Servers = loopback.getModel('Servers');
@@ -182,7 +196,6 @@ module.exports = function(App) {
 
                 next();
             });
-
         } else {
             next();
         }

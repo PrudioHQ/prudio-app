@@ -2,6 +2,9 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var rollbar = require('rollbar');
 
+// Environment
+var environment = process.env.NODE_ENV || 'development';
+
 var app = module.exports = loopback();
 
 // Bootstrap the application, configure models, datasources and middleware.
@@ -21,7 +24,9 @@ app.use(loopback.static(websitePath));
 app.use(loopback.urlNotFound());
 
 // -- Rollbar Error Handling --
-app.use(rollbar.errorHandler(process.env.ROLLBAR_ACCESS_TOKEN));
+if (environment === 'production') {
+  app.use(rollbar.errorHandler(process.env.ROLLBAR_ACCESS_TOKEN, { environment: 'production' }));
+}
 
 // The ultimate error handler.
 app.use(loopback.errorHandler());

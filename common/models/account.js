@@ -10,14 +10,14 @@ module.exports = function(Account) {
 	Account.disableRemoteMethod('updateAll', true);
 	Account.disableRemoteMethod('findOne', true);
 
-	Account.observe('before save', function beforeSave(ctx, next) {
+	Account.observe('before save', function updateTimestamp(ctx, next) {
 
         // If instance = new object
         if (ctx.isNewInstance) {
             ctx.instance.created  = new Date();
             ctx.instance.modified = new Date();
         } else {
-            ctx.instance.modified = new Date();
+            ctx.data.modified = new Date();
         }
 
         next();

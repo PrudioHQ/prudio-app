@@ -37,13 +37,13 @@
         "type": "number",
         "required": true,
         "default": 0
-    },
-    "created": {
-      "type": "date"
-    },
-    "modified": {
-      "type": "date"
-    }
+      },
+      "created": {
+        "type": "date"
+      },
+      "modified": {
+        "type": "date"
+      }
   },
   "validations": [],
   "relations": {},

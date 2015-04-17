@@ -81,13 +81,24 @@ module.exports = function(User) {
 		}
 	});
 
-	User.observe('after save', function afterSave(ctx, next) {
+	User.observe('before save', function updateTimestamp(ctx, next) {
+
+		// If instance = new object
+		if (ctx.isNewInstance) {
+			ctx.instance.created  = new Date();
+			ctx.instance.modified = new Date();
+		} else {
+			ctx.data.modified = new Date();
+		}
+		next();
+	});
+
+	User.observe('after save', function addDefaultAccountId(ctx, next) {
 
 		// If instance = new object
 		if (ctx.isNewInstance) {
 
-			ctx.instance.created  = new Date();
-			ctx.instance.modified = new Date();
+			ctx.instance.unsetAttribute('defaultAccountId');
 
 			var name = ctx.instance.fname + " " + ctx.instance.lname + '\'s Account';
 
@@ -100,41 +111,43 @@ module.exports = function(User) {
 					next(err);
 				}
 
-				ctx.instance.defaultAccountId = account.id;
-
-				// Send welcome e-mail
-				User.app.models.Email.send({
-					async: true,
-					to: ctx.instance.email,
-					from: 'hello@prud.io',
-					subject: 'Welcome to Prud.io',
-					template: {
-						name: 'signup-e-mail'
-					},
-					merge_vars: [
-						{
-							'rcpt': ctx.instance.email,
-							'vars': [
-								{
-									name: 'name',
-									content: ctx.instance.fname
-								}]
-						}
-					]
-				},
-				function(err, result) {
-					if(err) {
-						console.error(err);
-						return next(err);
-					}
-					next();
-				});
+				ctx.instance.updateAttribute('defaultAccountId', account.id, next());
 			});
-
 		} else {
-
-		    ctx.instance.modified = new Date();
 			next();
+		}
+	});
+
+	User.observe('after save', function sendWelcomeEmail(ctx, next) {
+
+		if (ctx.isNewInstance) {
+			// Send welcome e-mail
+			User.app.models.Email.send({
+				async: true,
+				to: ctx.instance.email,
+				from: 'hello@prud.io',
+				subject: 'Welcome to Prud.io',
+				template: {
+					name: 'signup-e-mail'
+				},
+				merge_vars: [
+					{
+						'rcpt': ctx.instance.email,
+						'vars': [
+							{
+								name: 'name',
+								content: ctx.instance.fname
+							}]
+					}
+				]
+			},
+			function(err, result) {
+				if(err) {
+					console.error(err);
+					return next(err);
+				}
+				next();
+			});
 		}
 	});
 
