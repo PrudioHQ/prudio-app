@@ -1,5 +1,7 @@
 module.exports = function(User) {
 
+	var environment = process.env.NODE_ENV || 'development';
+
 	User.disableRemoteMethod('find', true);
 	User.disableRemoteMethod('exists', true);
 	User.disableRemoteMethod('count', true);
@@ -48,7 +50,7 @@ module.exports = function(User) {
     );
 
 	User.on('resetPasswordRequest', function(info) {
-		if (info.user) {
+		if (info.user && environment === 'production') {
 
 			User.app.models.Email.send({
 				async: true,
@@ -120,7 +122,7 @@ module.exports = function(User) {
 
 	User.observe('after save', function sendWelcomeEmail(ctx, next) {
 
-		if (ctx.isNewInstance) {
+		if (ctx.isNewInstance && environment === 'production') {
 			// Send welcome e-mail
 			User.app.models.Email.send({
 				async: true,
@@ -148,6 +150,8 @@ module.exports = function(User) {
 				}
 				next();
 			});
+		} else {
+			next();
 		}
 	});
 
