@@ -169,6 +169,10 @@ module.exports = function(App) {
                     return next(err);
                 }
 
+                if (!server) {
+                    throw new Error('No servers found!');
+                }
+
                 ctx.instance.server    = server.server;
                 ctx.instance.socketURL = server.address + ":" + server.port;
 
