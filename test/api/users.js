@@ -16,18 +16,6 @@ app.models.Servers.create({
   apps: 0
 });
 
-app.models.externalProviderToken.create({
-  provider: 'slack',
-  token: 'xoxp-xxxxxxxx-xxxxx-xxxx-xxxx',
-  scope: 'identify,read,post',
-  url: 'https://team.slack.com/',
-  team: 'Team',
-  user: 'User',
-  teamId: 'T00000000',
-  userId: 'U00000000',
-  accountId: 2
-});
-
 describe('/api/users', function() {
   lt.beforeEach.withApp(app);
 
@@ -44,6 +32,17 @@ describe('/api/users', function() {
     lname: 'Doe',
     email: 'jane@doe.com',
     password: 'janedoe'
+  };
+
+  var newSlackToken = {
+    provider: 'slack',
+    token: 'xoxp-xxxxxxxx-xxxxx-xxxx-xxxx',
+    scope: 'identify,read,post',
+    url: 'https://team.slack.com/',
+    team: 'Team',
+    user: 'User',
+    teamId: 'T00000000',
+    userId: 'U00000000'
   };
 
   var newApp = {
@@ -132,6 +131,13 @@ describe('/api/users', function() {
       });
     });
 
+    lt.describe.whenCalledByUser(newUser2, 'POST', '/api/accounts/2/externalProviderTokens', newSlackToken, function() {
+      it('should create external token', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.token, newSlackToken.token);
+      });
+    });
+
     lt.describe.whenCalledByUser(newUser2, 'GET', '/api/users/2/accounts', function() {
       it('should exist and name be equal', function() {
         assert.equal(this.res.statusCode, 200);
@@ -139,9 +145,18 @@ describe('/api/users', function() {
       });
     });
 
+    lt.describe.whenCalledByUser(newUser2, 'GET', '/api/accounts/2/users/count', function() {
+      it('should have one user', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.count, 1);
+      });
+    });
+
     lt.describe.whenCalledByUser(newUser2, 'POST', '/api/accounts/2/apps', newApp, function() {
       it('should create app', function() {
         assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.slackApiToken, newSlackToken.token);
+        assert.lengthOf(this.res.body.appId, 32, 'appId has length of 32');
       });
     });
 
@@ -150,6 +165,28 @@ describe('/api/users', function() {
         assert.equal(this.res.statusCode, 200);
         assert.equal(this.res.body[0].name, newApp.name);
         assert.equal(this.res.body[0].accountId, 2);
+      });
+    });
+
+    lt.describe.whenCalledByUser(newUser2, 'GET', '/api/apps/1', function() {
+      it('app should exist', function() {
+        assert.equal(this.res.statusCode, 200);
+        assert.equal(this.res.body.name, newApp.name);
+        assert.equal(this.res.body.accountId, 2);
+      });
+    });
+
+    // Problem connecting to external API
+    // lt.describe.whenCalledByUser(newUser2, 'GET', '/api/apps/1/connect', function() {
+    //   it('app should connect', function() {
+    //     assert.equal(this.res.statusCode, 200);
+    //   });
+    // });
+
+    lt.describe.whenCalledByUser(newUser2, 'GET', '/api/apps/999', function() {
+      it('app should not be allowed', function() {
+        assert.equal(this.res.statusCode, 401);
+        assert.equal(this.res.body.error.code, 'AUTHORIZATION_REQUIRED');
       });
     });
 

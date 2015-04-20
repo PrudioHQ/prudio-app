@@ -12,7 +12,7 @@ module.exports = function(app) {
         cb(null, false);
       });
     }
-    
+
     var userId = context.accessToken.userId;
     if (!userId || !context.modelId) {
       return reject('Invalid access token');
@@ -23,9 +23,9 @@ module.exports = function(app) {
         return reject('Invalid access token');
       }
 
-      user.accounts(function (err, accounts) {
+      user.accounts(function(err, accounts) {
         if (err || !accounts) {
-          reject("Unauthorized!");
+          reject('Unauthorized!');
         } else {
           var accountsId = [];
 
@@ -33,18 +33,19 @@ module.exports = function(app) {
             accountsId.push(accounts[i].id);
           }
 
-          App.find({ where: { id: context.modelId, accountId: { inq: accountsId } } }, function(err, apps) {
+          App.find({ where: { id: context.modelId, accountId: { inq: accountsId }}}, function(err, apps) {
             if (err) {
-              reject("Unauthorized!");
+              reject('Unauthorized!');
             }
+
             if (apps.length > 0) {
               return cb(null, true);
             } else {
-              reject("Unauthorized!");
+              reject('Unauthorized!');
             }
           });
         }
       });
     });
   });
-}
+};

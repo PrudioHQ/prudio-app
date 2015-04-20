@@ -24,16 +24,18 @@ module.exports = function(app) {
       if (model.users) {
         modelWithUsers = model;
       }
+
       if (model.account) {
         modelWithUsers = model.account;
       }
+
       if (!modelWithUsers) {
         reject('Model cannot be linked to user, so this role should fail.');
       }
 
       modelWithUsers.users.findById(userId, function postFind(err, users) {
         if (err || !users) {
-          reject("Unauthorized!");
+          reject('Unauthorized!');
         } else {
           cb(null, true);
         }
@@ -41,4 +43,4 @@ module.exports = function(app) {
 
     });
   });
-}
+};

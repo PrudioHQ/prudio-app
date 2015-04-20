@@ -25,7 +25,7 @@ module.exports = function(App) {
     var environment = process.env.NODE_ENV || 'development';
     var baseUrl = 'http://localhost:5000';
 
-    if (environment !== 'development') {
+    if (environment === 'production') {
         baseUrl = 'https://chat.prud.io';
     }
 
@@ -72,9 +72,6 @@ module.exports = function(App) {
             ]
         }
     );
-
-
-
 
     /*
     * Disconnect method

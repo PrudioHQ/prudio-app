@@ -20,10 +20,10 @@ module.exports = function(app) {
       if (err || !user) {
         return reject('No relative model found.');
       } else if (user.id.toString() !== userId.toString()) {
-        return reject("Unauthorized!");
+        return reject('Unauthorized!');
       } else {
         cb(null, true);
       }
     });
   });
-}
+};
