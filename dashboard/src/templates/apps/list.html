@@ -1,3 +1,16 @@
+<div class="row" ng-if="applications == 0">
+	<div class="col-lg-12">
+		<rd-widget>
+      		<rd-widget-body classes="big alert-info">
+				<div class="message">
+					<h4>Looks like you have no apps yet!</h4>
+					<p><a href="/#/app/create">Create your first app</a> or head to our <a href="http://docs.prud.io/installation/">documentation</a> to learn more.</p>
+				</div>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="apps" ng-repeat="application in applications">

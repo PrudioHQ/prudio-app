@@ -50,6 +50,8 @@ function MasterCtrl($scope, $window, $state, $cookieStore, SlackService, User, A
 
             // PRUDIO
             window._PrudioSettings = {
+                title: 'Prudio Support',
+                icon: 'prd-icon-btn-prudio',
                 name: user.fname + ' ' + user.lname,
                 email: user.email
             }
