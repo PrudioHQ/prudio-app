@@ -10,6 +10,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
           function success(response) {
             return response;
           }
+
           function error(response) {
             if (response.status === 401) {
               var LoopBackAuth = $injector.get('LoopBackAuth');
@@ -23,6 +24,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
               return $q.reject(response);
             }
           }
+
           return function(promise) {
             return promise.then(success, error);
           }
@@ -132,21 +134,21 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider', '$httpPr
     }
 ])
 
-.run(['Permission', 'User', function(Permission, User){
+.run(['Permission', 'User', function(Permission, User) {
   Permission
-  .defineRole('anonymous', function (stateParams) {
+  .defineRole('anonymous', function(stateParams) {
     return !User.isAuthenticated();
   })
-  .defineRole('registered', function (stateParams) {
+  .defineRole('registered', function(stateParams) {
     return User.isAuthenticated();
   });
 }])
 
-.run(["$rootScope", "LoopBackAuth", "md5", function ($rootScope, LoopBackAuth, md5) {
-    $rootScope.$on('$stateChangeSuccess', function(){
+.run(["$rootScope", "LoopBackAuth", "md5", function($rootScope, LoopBackAuth, md5) {
+    $rootScope.$on('$stateChangeSuccess', function() {
         if (LoopBackAuth.currentUserData){
           window.asml('track', md5.createHash(LoopBackAuth.currentUserData.email));
-        }else{
+        } else {
           window.asml('track');
         }
     });
