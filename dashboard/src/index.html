@@ -25,6 +25,7 @@
   <script type="text/javascript" src="components/angular-resource/angular-resource.min.js"></script>
   <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="components/angular-md5/angular-md5.min.js"></script>
   <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="components/moment/moment.js"></script>
   <script type="text/javascript" src="components/angular-moment/angular-moment.js"></script>
@@ -39,6 +40,16 @@
 
   <!-- Custom Scripts -->
   <script type="text/javascript" src="js/dashboard.min.js"></script>
+
+  <!-- Load Assembly Tracking script -->
+  <script type="text/javascript">
+    ;(function(p,l,o,w,i){if(!p[i]){p.__asml=p.__asml||[];
+    p.__asml.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+    };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+    n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","https://d1uxm17u44dmmr.cloudfront.net/1.0.0/asml.js","asml"));
+
+    asml('create', '4dce5f1cd51fad08aa8fcb47456f5b38d329d0e1');
+  </script>
 
 </head>
 <body>
