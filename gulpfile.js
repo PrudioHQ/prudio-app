@@ -150,7 +150,6 @@ gulp.task('lb-services', function () {
  * Gulp tasks
  */
 gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
-gulp.task('cdnize', ['cdn', 'purgeZone']);
 gulp.task('default', ['build', 'livereload', 'watch']);
 
 /**
