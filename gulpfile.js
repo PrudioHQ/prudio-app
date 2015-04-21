@@ -10,8 +10,11 @@ var gulp = require('gulp'),
     minifyHTML = require('gulp-minify-html'),
     loopbackAngular = require('gulp-loopback-sdk-angular'),
     protractor = require('gulp-protractor').protractor,
-    webdriver_update = require('gulp-protractor').webdriver_update;
+    webdriver_update = require('gulp-protractor').webdriver_update,
+    cdn = require('gulp-cdn-replace'),
+    keycdn = require('gulp-keycdn'),
     instance = undefined;
+
 
 var paths = {
     scripts: 'dashboard/src/js/**/*.*',
@@ -91,6 +94,31 @@ gulp.task('custom-templates', function() {
 });
 
 /**
+ *  CDN build and purge
+ */
+gulp.task('cdn', function() {
+    return gulp.src('build/index.html')
+        .pipe(cdn({
+            dir: 'build',
+            root: {
+                js:  'https://appcdn-13ca.kxcdn.com/',
+                css: 'https://appcdn-13ca.kxcdn.com/'
+            }
+        }))
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('purgeZone', function() {
+    var options = {
+        apiKey: process.env.KEYCDN_API_KEY,
+        zoneId: process.env.KEYCDN_ZONE_ID,
+        method: 'get'
+    };
+
+    keycdn(options, {});
+});
+
+/**
  * Watch custom files
  */
 gulp.task('watch', function() {
@@ -122,6 +150,7 @@ gulp.task('lb-services', function () {
  * Gulp tasks
  */
 gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
+gulp.task('cdnize', ['cdn', 'purgeZone']);
 gulp.task('default', ['build', 'livereload', 'watch']);
 
 /**
@@ -129,7 +158,7 @@ gulp.task('default', ['build', 'livereload', 'watch']);
 */
 gulp.task('webdriver_update', webdriver_update);
 
-gulp.task('start-local-server', function(){
+gulp.task('start-local-server', function() {
     var app = require('./server/server');
     instance = app.start();
 });
@@ -140,8 +169,8 @@ gulp.task('protractor', ['webdriver_update', 'start-local-server'], function(cb)
             configFile: "test/protractor.config.js"
         }))
         .on('error', function(e) { throw e })
-        .on('end', function(){
-            if (instance){
+        .on('end', function() {
+            if (instance) {
                 instance.close();
             }
         });
