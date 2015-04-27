@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 var gulp = require('gulp'),
     usemin = require('gulp-usemin'),
     connect = require('gulp-connect'),
@@ -11,10 +13,10 @@ var gulp = require('gulp'),
     loopbackAngular = require('gulp-loopback-sdk-angular'),
     protractor = require('gulp-protractor').protractor,
     webdriver_update = require('gulp-protractor').webdriver_update,
+    replace = require('gulp-replace'),
     cdn = require('gulp-cdn-replace'),
     keycdn = require('gulp-keycdn'),
     instance = undefined;
-
 
 var paths = {
     scripts: 'dashboard/src/js/**/*.*',
@@ -76,6 +78,7 @@ gulp.task('custom-js', function() {
     return gulp.src(paths.scripts)
         .pipe(minifyJs())
         .pipe(concat('dashboard.min.js'))
+        .pipe(replace('SLACK_CLIENT_ID', process.env.SLACK_CLIENT_ID))
         .pipe(gulp.dest('build/js'));
 });
 
