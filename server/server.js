@@ -1,6 +1,6 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-var rollbar = require('rollbar');
+var raygun = require('raygun');
 
 // Environment
 var environment = process.env.NODE_ENV || 'development';
@@ -23,9 +23,12 @@ app.use(loopback.static(websitePath));
 // that will be handled later down the chain.
 app.use(loopback.urlNotFound());
 
-// -- Rollbar Error Handling --
+// -- Raygun Error Handling --
 if (environment === 'production') {
-  app.use(rollbar.errorHandler(process.env.ROLLBAR_ACCESS_TOKEN, { environment: 'production' }));
+  var raygunClient = new raygun.Client().init({
+    apiKey: process.env.RAYGUN_APIKEY
+  });
+  app.use(raygunClient.expressHandler);
 }
 
 // The ultimate error handler.
