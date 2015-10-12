@@ -4,7 +4,7 @@
   "description": "Slack Instant Messaging Widget",
   "main": "server/server.js",
   "engines": {
-    "node": "0.10.x"
+    "node": "4.x"
   },
   "dependencies": {
     "bower": "^1.3.9",
