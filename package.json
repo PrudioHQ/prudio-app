@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "jshint": "^2.5.6",
+    "jshint": "^2.8.0",
     "loopback-testing": "^1.0.5",
     "mocha": "^2.1.0",
     "protractor": "^1.6.1"
