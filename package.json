@@ -27,7 +27,7 @@
     "gulp-watch": "^0.6.9",
     "jade": "^1.9.2",
     "lb-connector-mandrill": "0.0.3",
-    "loopback": "^2.14.0",
+    "loopback": "^2.22.2",
     "loopback-boot": "^2.6.5",
     "loopback-component-passport": "^1.2.0",
     "loopback-connector-mongodb": "^1.8.0",
